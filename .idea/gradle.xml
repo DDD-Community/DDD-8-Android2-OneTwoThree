@@ -15,7 +15,10 @@
             <option value="$PROJECT_DIR$/core/designsystem" />
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/network" />
+<<<<<<< HEAD
             <option value="$PROJECT_DIR$/feature-flag" />
+=======
+>>>>>>> de69feb (core module 추가(data, designsystem, domain, network))
           </set>
         </option>
       </GradleProjectSettings>
