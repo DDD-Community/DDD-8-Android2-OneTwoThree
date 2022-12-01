@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "510391537186",
+    "project_id": "one-two-three-81b30",
+    "storage_bucket": "one-two-three-81b30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510391537186:android:bc25729eb02b20ade5447b",
+        "android_client_info": {
+          "package_name": "com.inseoul.onetwothree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510391537186-iohp2399adrst1hnvfo0ek7gupm9ch0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8ywRdovOVVRIU01ovZs4DT7109pEN4q8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510391537186-iohp2399adrst1hnvfo0ek7gupm9ch0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
