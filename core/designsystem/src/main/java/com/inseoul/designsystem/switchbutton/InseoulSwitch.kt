@@ -21,10 +21,9 @@ import com.inseoul.designsystem.theme.gray300
 
 @Composable
 fun InseoulSwitch(
-    scale: Float = 2f,
-    width: Dp = 52.dp,
-    height: Dp = 32.dp,
-    gapBetweenThumbAndTrackEdge: Dp = 4.dp
+    width: Dp,
+    height: Dp,
+    gapBetweenThumbAndTrackEdge: Dp
 ) {
     val switchOn = remember { mutableStateOf(false) }
     val thumbRadius = (height / 2) - gapBetweenThumbAndTrackEdge
@@ -37,7 +36,6 @@ fun InseoulSwitch(
 
     Canvas(modifier = Modifier
         .size(width, height)
-        .scale(scale = scale)
         .pointerInput(Unit) {
             detectTapGestures(
                 onTap = {
@@ -47,9 +45,7 @@ fun InseoulSwitch(
         }
     ) {
         drawRoundRect(
-            color = if (switchOn.value) {
-                Green300
-            } else gray300,
+            color = if (switchOn.value) Green300 else gray300,
             cornerRadius = CornerRadius(x = 100.dp.toPx(), y = 100.dp.toPx()),
         )
         drawCircle(
