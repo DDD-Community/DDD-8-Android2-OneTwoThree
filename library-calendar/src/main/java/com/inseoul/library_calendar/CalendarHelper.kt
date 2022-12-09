@@ -47,6 +47,8 @@ class CalendarHelper {
 
     fun getCurrentCalendar(): String = "${getYear()}년 ${getMonth()}월 ${getDay()}일"
 
+    fun getCurrentYearAndMonth(): String = "${getYear()}년 ${getMonth()}월"
+
     fun getMaximumDay(): Int = calendar.getActualMaximum(Calendar.DATE)
 
     fun getCurrentWeekDay(): Int = calendar[Calendar.DAY_OF_WEEK]
@@ -86,5 +88,46 @@ class CalendarHelper {
 
             emptyWeekDayList.size - 1
         }
+    }
+
+    fun getLastDaysOfPreviousMonth(emptyCount: Int): List<Int> {
+        if (emptyCount <= 0) return emptyList()
+
+        val dayList = mutableListOf<Int>()
+        val newCalendar = Calendar.getInstance().apply {
+            set(Calendar.YEAR, getYear())
+            set(Calendar.MONTH, getMonth().minus(2))
+            setDay()
+        }
+        val maximumDay = newCalendar.getActualMaximum(Calendar.DATE)
+
+        if (emptyCount == 1) {
+            dayList.add(maximumDay)
+        } else {
+            for (i in maximumDay downTo maximumDay - (emptyCount -1)) {
+                dayList.add(i)
+            }
+        }
+
+        return if (dayList.size >= 2) {
+            dayList.reversed()
+        } else {
+            dayList
+        }
+    }
+
+    fun getFirstDaysOfNextMonth(emptyCount: Int): List<Int> {
+        if (emptyCount <= 0) return emptyList()
+
+        val dayList = mutableListOf<Int>()
+        if (emptyCount == 1) {
+            dayList.add(1)
+        } else {
+            for (i in 1..emptyCount) {
+                dayList.add(i)
+            }
+        }
+
+        return dayList
     }
 }
