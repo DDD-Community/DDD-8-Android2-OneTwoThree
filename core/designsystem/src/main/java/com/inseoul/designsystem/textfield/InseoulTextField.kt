@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.example.common.Constants
 import com.inseoul.designsystem.icon.InseoulIcons
 
 @Composable
@@ -22,7 +23,7 @@ fun InseoulTextField(
     label: String,
     placeholder: String,
 ) {
-    val text = remember { mutableStateOf(TextFieldValue("")) }
+    val text = remember { mutableStateOf(TextFieldValue(Constants.EMPTY_STRING)) }
     OutlinedTextField(
         modifier = modifier
             .width(328.dp)
