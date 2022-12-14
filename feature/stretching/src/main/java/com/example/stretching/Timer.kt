@@ -13,18 +13,15 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun Timer() {
     var millisInFutire: Long = 60 * 1000
-
     var timeData by remember { mutableStateOf(millisInFutire) }
-
     val countDownTimer = object : CountDownTimer(millisInFutire, 1000) {
         override fun onTick(p0: Long) {
             timeData = (p0 / 1000)
         }
 
+        // 측정이 끝난 경우(지정된 시간이 모두 지나감)
         override fun onFinish() {
-            // 측정이 끝난 경우(지정된 시간이 모두 지나감)
-            // 스트레칭 화면 이동
-            // '골라서 시작 페이지' 체크 등 완료 정보 데이터 뿌려주기 (data store)
+            // todo 화면 이동 및 데이터 전송
         }
     }
     DisposableEffect(key1 = "key") {
@@ -41,7 +38,6 @@ fun Timer() {
     }
 }
 
-// 단위 두 자리 유지
 fun String.pad(): String {
     return this.padStart(2,'0')
 }

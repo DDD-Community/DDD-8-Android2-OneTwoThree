@@ -11,13 +11,12 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun TimerProgressBar() {
-
     var progress by remember { mutableStateOf(0.0f) }
     var enabled by remember { mutableStateOf(true) }
     LaunchedEffect(key1 = progress, key2 = enabled) {
         if (progress < 1 && enabled) {
             delay(100L)
-            progress += 0.00271F
+            progress += 0.0027F
         }
     }
     LinearProgressIndicator(
