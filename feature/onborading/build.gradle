@@ -47,8 +47,11 @@ dependencies {
 
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
+<<<<<<< HEAD
     implementation "com.google.accompanist:accompanist-pager:0.23.1"
 
+=======
+>>>>>>> 7e4afc3 (feature에 추가해뒀던 모듈 제거 후 onboarding 모듈 추가)
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"

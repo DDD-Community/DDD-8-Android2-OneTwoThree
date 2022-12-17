@@ -23,7 +23,8 @@ fun IntroScreen(
     title: String,
     description: String,
     currentPagerIndex: Int,
-    totalPagerCount: Int
+    totalPagerCount: Int,
+    onButtonClicked: () -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -44,7 +45,8 @@ fun IntroScreen(
         IntroButton(
             modifier = Modifier
                 .weight(1f, false),
-            currentPagerIndex = currentPagerIndex
+            currentPagerIndex = currentPagerIndex,
+            onButtonClicked = onButtonClicked
         )
     }
 }
@@ -115,13 +117,14 @@ fun IntroDot(
 @Composable
 fun IntroButton(
     modifier: Modifier = Modifier,
-    currentPagerIndex: Int
+    currentPagerIndex: Int,
+    onButtonClicked: () -> Unit
 ) {
     Button(
         modifier = modifier
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, bottom = 24.dp),
-        onClick = { }
+        onClick = { onButtonClicked() }
     ) {
         Text(text = if (currentPagerIndex == 0) "다음" else "고양이 이름 지어주기")
     }
