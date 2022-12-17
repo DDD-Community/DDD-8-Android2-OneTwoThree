@@ -15,8 +15,8 @@ fun Timer() {
     var millisInFutire: Long = 60 * 1000
     var timeData by remember { mutableStateOf(millisInFutire) }
     val countDownTimer = object : CountDownTimer(millisInFutire, 1000) {
-        override fun onTick(p0: Long) {
-            timeData = (p0 / 1000)
+        override fun onTick(millisUntilFinished: Long) {
+            timeData = (millisUntilFinished / 1000)
         }
 
         // 측정이 끝난 경우(지정된 시간이 모두 지나감)
