@@ -1,5 +1,6 @@
 package com.treemiddle.calendar.screen
 
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -24,6 +25,13 @@ fun CalendarRoute(
              // 이전 화면으로 이동해야 합니다.
          },
          onPreviousClicked =  { viewModel.onPreviousClick() },
-         onNextClicked = { viewModel.onNextClick() }
+         onNextClicked = { viewModel.onNextClick() },
+         onOutSideClicked = { isShownNextMonth, _ ->
+             if (isShownNextMonth) {
+                 viewModel.onNextClick()
+             } else {
+                 viewModel.onPreviousClick()
+             }
+         }
      )
 }
