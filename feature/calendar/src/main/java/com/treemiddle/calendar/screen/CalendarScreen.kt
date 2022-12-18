@@ -21,7 +21,8 @@ fun CalendarScreen(
     currentTitle: String,
     onBackButtonClicked: () -> Unit,
     onPreviousClicked: () -> Unit,
-    onNextClicked: () -> Unit
+    onNextClicked: () -> Unit,
+    onOutSideClicked: (Boolean, Int) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -45,9 +46,20 @@ fun CalendarScreen(
             columns = GridCells.Fixed(7)
         ) {
             items(dayStateList.size) {
+                val day = dayStateList[it].day
+                val isActivated = dayStateList[it].isActivated
+                val isShownNextMonth = day.toInt() in 1..7
+
                 CalendarDay(
-                    day = dayStateList[it].day,
-                    isActivated = dayStateList[it].isActivated
+                    day = day,
+                    isActivated = isActivated,
+                    onDayClicked = {
+                        if (isActivated) {
+                            // NOTE : 해당 요일의 데이터를 가져와야 합니다.
+                        } else {
+                            onOutSideClicked(isShownNextMonth, day.toInt())
+                        }
+                    }
                 )
             }
         }
