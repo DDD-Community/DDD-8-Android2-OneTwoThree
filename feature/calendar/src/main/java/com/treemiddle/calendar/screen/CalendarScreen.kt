@@ -1,4 +1,4 @@
-package com.inseoul.library_calendar
+package com.treemiddle.calendar.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,21 +8,22 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.inseoul.library_calendar.CalendarDay
+import com.inseoul.library_calendar.CalendarToolbar
+import com.inseoul.library_calendar.CalendarViewModel
+import com.inseoul.library_calendar.CalendarWeek
 
 @Composable
 fun CalendarScreen(
     viewModel: CalendarViewModel
 ) {
-    val toolbarTitle = viewModel.getCalendarToolbarTitle()
-    val currentCalendar = viewModel.getCalendarDays()
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp)
     ) {
         CalendarToolbar(
-            title = toolbarTitle,
+            title = "캘린더",
             onPreviousClicked = {
                 // NOTE : 뒤로가기 클릭
             },
@@ -34,10 +35,10 @@ fun CalendarScreen(
         LazyVerticalGrid(
             columns = GridCells.Fixed(7)
         ) {
-            items(currentCalendar.size) {
+            items(viewModel.getCalendarDays().size) {
                 CalendarDay(
-                    day = currentCalendar[it].day,
-                    isActivated = currentCalendar[it].isActivated
+                    day = viewModel.getCalendarDays()[it].day,
+                    isActivated = viewModel.getCalendarDays()[it].isActivated
                 )
             }
         }
