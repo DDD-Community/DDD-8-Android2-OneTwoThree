@@ -8,6 +8,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.inseoul.designsystem.icon.InseoulIcons.ArrowBack
+import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.library_calendar.CalendarDay
 import com.inseoul.library_calendar.CalendarToolbar
 import com.inseoul.library_calendar.CalendarViewModel
@@ -22,13 +24,22 @@ fun CalendarScreen(
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp)
     ) {
-        CalendarToolbar(
+        // NOTE : 툴바 속성 수정이 필요합니다.
+        InseoulToolbar(
+            modifier = Modifier,
             title = "캘린더",
+            backButtonImageResource = ArrowBack,
+            onImageClicked = {
+                // NOTE : 툴바 뒤로가기
+            }
+        )
+        CalendarToolbar(
+            title = "2022년 12월",
             onPreviousClicked = {
-                // NOTE : 뒤로가기 클릭
+                // NOTE : 이전 달로 이동해야 합니다.
             },
             onNextClicked = {
-                // NOTE : 앞으로 가기 클릭
+                // NOTE : 다음 달로 이동해야 합니다.
             }
         )
         CalendarWeek()
