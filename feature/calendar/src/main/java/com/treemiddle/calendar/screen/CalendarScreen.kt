@@ -12,12 +12,16 @@ import com.inseoul.designsystem.icon.InseoulIcons.ArrowBack
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.library_calendar.CalendarDay
 import com.inseoul.library_calendar.CalendarToolbar
-import com.inseoul.library_calendar.CalendarViewModel
 import com.inseoul.library_calendar.CalendarWeek
+import com.inseoul.library_calendar.DayState
 
 @Composable
 fun CalendarScreen(
-    viewModel: CalendarViewModel
+    dayStateList: List<DayState>,
+    currentTitle: String,
+    onBackButtonClicked: () -> Unit,
+    onPreviousClicked: () -> Unit,
+    onNextClicked: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -29,27 +33,21 @@ fun CalendarScreen(
             modifier = Modifier,
             title = "캘린더",
             backButtonImageResource = ArrowBack,
-            onImageClicked = {
-                // NOTE : 툴바 뒤로가기
-            }
+            onImageClicked = { onBackButtonClicked() }
         )
         CalendarToolbar(
-            title = "2022년 12월",
-            onPreviousClicked = {
-                // NOTE : 이전 달로 이동해야 합니다.
-            },
-            onNextClicked = {
-                // NOTE : 다음 달로 이동해야 합니다.
-            }
+            title = currentTitle,
+            onPreviousClicked = { onPreviousClicked() },
+            onNextClicked = { onNextClicked() }
         )
         CalendarWeek()
         LazyVerticalGrid(
             columns = GridCells.Fixed(7)
         ) {
-            items(viewModel.getCalendarDays().size) {
+            items(dayStateList.size) {
                 CalendarDay(
-                    day = viewModel.getCalendarDays()[it].day,
-                    isActivated = viewModel.getCalendarDays()[it].isActivated
+                    day = dayStateList[it].day,
+                    isActivated = dayStateList[it].isActivated
                 )
             }
         }
