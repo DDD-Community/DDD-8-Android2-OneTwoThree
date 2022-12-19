@@ -7,7 +7,6 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import com.inseoul.designsystem.theme.*
 import com.inseoul.designsystem.theme.Green100
-import com.inseoul.designsystem.theme.Green300
 
 
 private val DarkColorPalette = darkColors(
@@ -17,7 +16,7 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = Green300,
+    primary = gray800,
     primaryVariant = gray00,
     secondary = Green100
 
@@ -42,7 +41,7 @@ fun OneTwoThreeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compo
     MaterialTheme(
         colors = colors,
         typography = Typography,
-        //shapes = Shapes,
+        shapes = Shapes,
         content = content
     )
 }
