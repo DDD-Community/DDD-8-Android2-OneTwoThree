@@ -15,7 +15,7 @@ import com.inseoul.designsystem.icon.InseoulIcons
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun StretchingFinishScreen(
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
 ) {
     Scaffold(
         topBar = {
@@ -45,5 +45,5 @@ fun StretchingFinishScreen(
 @Preview
 @Composable
 fun StretchingFinishScreenPreview() {
-    StretchingFinishScreen()
+    //StretchingFinishScreen()
 }

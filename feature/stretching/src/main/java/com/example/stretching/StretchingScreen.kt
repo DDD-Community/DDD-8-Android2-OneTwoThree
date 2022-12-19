@@ -47,7 +47,7 @@ fun StretchingScreen(
             Column {
                 StretchingUI()
                 // todo 이미지 추가
-                Timer()
+                Timer(navController)
                 TimerProgressBar()
             }
         }

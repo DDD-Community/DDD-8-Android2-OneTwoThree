@@ -9,9 +9,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun Timer() {
+fun Timer(
+    navController: NavHostController
+
+    ) {
     var millisInFutire: Long = 60 * 1000
     var timeData by remember { mutableStateOf(millisInFutire) }
     val countDownTimer = object : CountDownTimer(millisInFutire, 1000) {
@@ -22,6 +27,7 @@ fun Timer() {
         // 측정이 끝난 경우(지정된 시간이 모두 지나감)
         override fun onFinish() {
             // todo 화면 이동 및 데이터 전송
+            navController.navigate("route_stretching_finish")
         }
     }
     DisposableEffect(key1 = "key") {
@@ -46,5 +52,5 @@ fun String.pad(): String {
 @Preview
 @Composable
 fun TimerPreview() {
-    Timer()
+    //Timer()
 }
