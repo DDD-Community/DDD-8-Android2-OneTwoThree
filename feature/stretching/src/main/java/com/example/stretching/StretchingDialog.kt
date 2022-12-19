@@ -16,6 +16,22 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 
 @Composable
+fun TestScreen() {
+    val showDialog = remember { mutableStateOf(false) }
+    if (showDialog.value)
+        StretchingDialog(setShowDialog = { showDialog.value = it })
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colors.background
+    ) {
+        Button(onClick = { showDialog.value = true }) {
+            Text(text = "Dialog")
+        }
+    }
+}
+
+@Composable
 fun StretchingDialog(
     setShowDialog: (Boolean) -> Unit,
 ) {
@@ -65,3 +81,8 @@ fun StretchingDialog(
     }
 }
 
+@Preview
+@Composable
+fun PreviewTest() {
+    TestScreen()
+}
