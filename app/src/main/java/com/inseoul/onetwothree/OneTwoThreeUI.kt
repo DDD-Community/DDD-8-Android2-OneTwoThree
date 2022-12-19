@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import com.example.stretching.StretchingScreen
 import com.inseoul.onetwothree.navigation.InseoulNavGraph
 import com.inseoul.onetwothree.ui.theme.OneTwoThreeTheme
 
@@ -44,3 +45,11 @@ fun ScreenTwo(navController: NavHostController) {
         }
     }
 }
+
+@Composable
+fun StretchingTest(navController: NavHostController) {
+    StretchingScreen(
+        navController = navController
+    )
+}
+

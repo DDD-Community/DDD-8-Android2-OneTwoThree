@@ -14,12 +14,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.navigation.NavHostController
 
 @Composable
-fun TestScreen() {
+fun TestScreen(navController: NavHostController) {
     val showDialog = remember { mutableStateOf(false) }
     if (showDialog.value)
-        StretchingDialog(setShowDialog = { showDialog.value = it })
+        StretchingDialog(
+            setShowDialog = { showDialog.value = it },
+            navController = navController
+        )
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -33,6 +37,7 @@ fun TestScreen() {
 
 @Composable
 fun StretchingDialog(
+    navController: NavHostController,
     setShowDialog: (Boolean) -> Unit,
 ) {
     Dialog(onDismissRequest = { setShowDialog(false) }) {
@@ -65,7 +70,7 @@ fun StretchingDialog(
                         }
                         Button(
                             onClick = {
-                                // 뒤로 가기 구현(nav)
+                                navController.popBackStack()
                             },
                             modifier = Modifier
                                 .weight(1f)
@@ -84,5 +89,5 @@ fun StretchingDialog(
 @Preview
 @Composable
 fun PreviewTest() {
-    TestScreen()
+    //TestScreen()
 }
