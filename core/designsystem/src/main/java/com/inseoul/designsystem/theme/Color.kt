@@ -18,3 +18,8 @@ internal val Green50 = Color(0xFFDBDCD8)
 internal val Green100 = Color(0xFFB7C4B5)
 internal val Green200 = Color(0xFF91A68F)
 internal val Green300 = Color(0xFF52674F)
+
+val Purple200 = Color(0xFFBB86FC)
+val Purple500 = Color(0xFF6200EE)
+val Purple700 = Color(0xFF3700B3)
+val Teal200 = Color(0xFF03DAC5)

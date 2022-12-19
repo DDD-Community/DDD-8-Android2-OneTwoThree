@@ -21,7 +21,6 @@ val pretendard = FontFamily(
     Font(R.font.pretendard_black, FontWeight.Black, FontStyle.Normal)
 )
 
-// Set of Material typography styles to start with
 val Typography = Typography(
 
     h1 = TextStyle(
@@ -60,18 +59,4 @@ val Typography = Typography(
         fontSize = 16.sp
     )
 
-
-
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    )
-    */
 )
