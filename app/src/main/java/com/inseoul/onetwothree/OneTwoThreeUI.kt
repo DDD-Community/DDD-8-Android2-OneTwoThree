@@ -46,10 +46,3 @@ fun ScreenTwo(navController: NavHostController) {
     }
 }
 
-@Composable
-fun StretchingTest(navController: NavHostController) {
-    StretchingScreen(
-        navController = navController
-    )
-}
-

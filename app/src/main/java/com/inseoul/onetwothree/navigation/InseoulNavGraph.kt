@@ -19,15 +19,5 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
 //    ) {
 //        onBoardingScreen()
 //    }
-
-    // 임시 테스트 위해 작업 -> will be deleted
-    NavHost(navController = navController, startDestination = "route_stretching" ) {
-        composable("route_stretching") {
-            StretchingScreen(navController = navController)
-        }
-        composable("route_stretching_finish") {
-            StretchingFinishScreen(navController = navController)
-        }
-    }
 }
 

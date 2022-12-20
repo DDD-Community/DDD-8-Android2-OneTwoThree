@@ -32,9 +32,3 @@ fun StretchingFinishScreen(
         content = { Text(text = "운동 완료") }
     )
 }
-
-@Preview
-@Composable
-fun StretchingFinishScreenPreview() {
-    //StretchingFinishScreen()
-}
