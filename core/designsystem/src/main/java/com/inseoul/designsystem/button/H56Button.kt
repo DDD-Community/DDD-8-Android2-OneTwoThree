@@ -16,6 +16,7 @@ fun H56Button(
     title: String,
     cornerRadius: Int,
     backgroundColor: Color,
+    textColor: Color,
     onClicked: () -> Unit
 ) {
     Button(
@@ -24,6 +25,9 @@ fun H56Button(
         colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
         onClick = { onClicked() },
     ) {
-        Text(text = title)
+        Text(
+            text = title,
+            color = textColor
+        )
     }
 }
