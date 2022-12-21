@@ -1,6 +1,6 @@
 package com.treemiddle.calendar.screen
 
-import android.widget.Toast
+import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -9,17 +9,17 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.inseoul.library_calendar.CalendarViewModel
 
+@SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CalendarRoute(
     modifier: Modifier = Modifier,
     viewModel: CalendarViewModel = hiltViewModel()
 ) {
-    val dayStateList by viewModel.calendarState.collectAsStateWithLifecycle()
     val calendarTitle by viewModel.calendarTitle.collectAsStateWithLifecycle()
 
      CalendarScreen(
-         dayStateList = dayStateList,
+         dayStateList = viewModel.calendarState,
          currentTitle = calendarTitle,
          onBackButtonClicked = {
              // 이전 화면으로 이동해야 합니다.
@@ -32,6 +32,9 @@ fun CalendarRoute(
              } else {
                  viewModel.onPreviousClick()
              }
+         },
+         isClickedDay = { _, day ->
+             viewModel.onDayClick(day = day)
          }
      )
 }

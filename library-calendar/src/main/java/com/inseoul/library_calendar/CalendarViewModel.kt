@@ -1,24 +1,25 @@
 package com.inseoul.library_calendar
 
+import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.common.Constants.Companion.EMPTY_STRING
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CalendarViewModel @Inject() constructor() : ViewModel() {
-    private var calendarHelper = CalendarHelper()
-    private val days = mutableListOf<DayState>()
-
-    var calendarState = MutableStateFlow<List<DayState>>(emptyList())
-        private set
-
     var calendarTitle = MutableStateFlow(EMPTY_STRING)
         private set
+
+    private val calendarHelper = CalendarHelper()
+    private val days = mutableListOf<DayState>()
+
+    private val _calendarState: MutableList<DayState> = days.toMutableStateList()
+    val calendarState: List<DayState>
+        get() = _calendarState
 
     init {
         initalized()
@@ -28,12 +29,48 @@ class CalendarViewModel @Inject() constructor() : ViewModel() {
         calendarHelper.previousMonth()
         initalized()
     }
+
     fun onNextClick() {
         calendarHelper.nextMonth()
         initalized()
     }
 
+    fun onDayClick(day: Int) {
+        if (checkIsClickedDayOfDays()) {
+            changeOldDayState()
+            setNewDayState(day)
+        } else {
+            setNewDayState(day)
+        }
+
+        emitDayState(days)
+    }
+
+    private fun changeOldDayState() {
+        val oldDayState = days.find { it.isClickedDay } ?: return
+
+        val index = days.indexOf(oldDayState)
+        val newDayState = oldDayState.copy(isClickedDay = false)
+
+        days[index] = newDayState
+    }
+
+    private fun setNewDayState(day: Int) {
+        val dayState = findDayStateInDays(day) ?: return
+        val newDayState = dayState.copy(isClickedDay = true)
+
+        val index = days.indexOf(dayState)
+        days[index] = newDayState
+    }
+
+    private fun findDayStateInDays(clickedDay: Int): DayState? =
+        days.find { it.day.toInt() == clickedDay && it.isActivated }
+
     private fun initalized() {
+        if (days.isNotEmpty()) {
+            days.clear()
+        }
+
         val currentDays = calendarHelper.createCalendar()
         val firstWeekEmptyCount = getFirstWeekDayEmptyCount()
         val lastWeekEmptyCount = getLastWeekDayEmptyCount()
@@ -72,19 +109,16 @@ class CalendarViewModel @Inject() constructor() : ViewModel() {
         }
     }
 
-    private fun clearDays() = days.clear()
-
     private fun loadCalendarUi() {
         emitCalendarTitle()
         emitDayState(days)
     }
 
+    private fun checkIsClickedDayOfDays(): Boolean = days.any { it.isClickedDay }
+
     private fun emitDayState(dayStateList: List<DayState>) {
-        viewModelScope.launch {
-            calendarState.emit(dayStateList)
-            delay(10) // NOTE : 이쪽 로직은 조금 더 생각해봐야 합니다. (컴포즈 원리)
-            clearDays()
-        }
+        _calendarState.clear()
+        _calendarState.addAll(dayStateList)
     }
 
     private fun emitCalendarTitle() {
