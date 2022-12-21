@@ -18,10 +18,10 @@ import androidx.compose.ui.unit.dp
 fun InseoulToolbar(
     modifier: Modifier,
     title: String,
-    @DrawableRes backButtonImageResource: Int?,
-    @DrawableRes leftImageResource: Int?,
-    @DrawableRes centerImageResource: Int?,
-    @DrawableRes rightImageResource: Int?,
+    @DrawableRes backButtonImageResource: Int? = null,
+    @DrawableRes leftImageResource: Int? = null,
+    @DrawableRes centerImageResource: Int? = null,
+    @DrawableRes rightImageResource: Int? = null,
     onImageClicked: () -> Unit
 ) {
     Row(
@@ -30,7 +30,7 @@ fun InseoulToolbar(
     ) {
         if (backButtonImageResource != null && backButtonImageResource != 0) {
             InseoulToolbarImage(
-                modifier = modifier,
+                modifier = modifier.padding(start = 20.dp),
                 imageResource = backButtonImageResource,
                 onClicked = { onImageClicked() }
             )
@@ -77,7 +77,7 @@ fun InseoulToolbarImage(
 ) {
     Image(
         modifier = modifier
-            .size(size = 48.dp)
+            .size(size = 24.dp)
             .clickable { onClicked() },
         painter = painterResource(id = imageResource),
         contentDescription = null

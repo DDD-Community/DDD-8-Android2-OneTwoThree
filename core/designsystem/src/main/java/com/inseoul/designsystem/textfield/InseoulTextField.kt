@@ -1,5 +1,6 @@
 package com.inseoul.designsystem.textfield
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
@@ -26,7 +27,7 @@ fun InseoulTextField(
     val text = remember { mutableStateOf(TextFieldValue(Constants.EMPTY_STRING)) }
     OutlinedTextField(
         modifier = modifier
-            .width(328.dp)
+            .fillMaxWidth()
             .height(60.dp),
         value = text.value,
         onValueChange = { text.value = it },
