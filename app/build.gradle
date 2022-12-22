@@ -53,6 +53,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:calendar"))
     // implementation(project(":feature:onborading"))
     implementation(project(":feature:stretching"))
 
