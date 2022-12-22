@@ -35,9 +35,6 @@ fun StretchingScreen(
                 modifier = Modifier,
                 title = Constants.EMPTY_STRING,
                 backButtonImageResource = InseoulIcons.ArrowBack,
-                leftImageResource = null,
-                centerImageResource = null,
-                rightImageResource = null,
                 onImageClicked = { showDialog.value = true }
             )
         },

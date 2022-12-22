@@ -22,9 +22,6 @@ fun StretchingFinishScreen(
                 modifier = Modifier,
                 title = Constants.EMPTY_STRING,
                 backButtonImageResource = InseoulIcons.ArrowBack,
-                leftImageResource = null,
-                centerImageResource = null,
-                rightImageResource = null,
                 onImageClicked = {
                     // 뒤로 가기 기능 추가
                 }

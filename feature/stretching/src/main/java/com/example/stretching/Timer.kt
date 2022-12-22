@@ -27,7 +27,7 @@ fun Timer(
         // 측정이 끝난 경우(지정된 시간이 모두 지나감)
         override fun onFinish() {
             // todo 화면 이동 및 데이터 전송
-            navController.navigate("route_stretching_finish")
+            //navController.navigate("route_stretching_finish")
         }
     }
     DisposableEffect(key1 = "key") {
