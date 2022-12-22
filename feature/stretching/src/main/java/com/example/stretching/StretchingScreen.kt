@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.common.Constants
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 
@@ -32,7 +33,7 @@ fun StretchingScreen(
         topBar = {
             InseoulToolbar(
                 modifier = Modifier,
-                title = "",
+                title = Constants.EMPTY_STRING,
                 backButtonImageResource = InseoulIcons.ArrowBack,
                 leftImageResource = null,
                 centerImageResource = null,
