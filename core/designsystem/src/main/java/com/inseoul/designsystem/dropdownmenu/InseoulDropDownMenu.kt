@@ -24,7 +24,9 @@ fun InSeoulDropDownMenu(list: List<String>) {
     else
         InseoulIcons.ArrowDecreaseMono
 
-    Box(modifier = Modifier.fillMaxWidth()) {
+    Box(
+        //modifier = Modifier.fillMaxWidth()
+    ) {
         Column() {
             Row(
                 modifier = Modifier
