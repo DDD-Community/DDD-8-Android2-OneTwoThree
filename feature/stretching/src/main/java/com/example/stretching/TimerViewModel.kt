@@ -6,13 +6,14 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import java.time.Duration
 
 @RequiresApi(Build.VERSION_CODES.O)
 class TimerViewModel : ViewModel() {
 
     private val _viewState = MutableStateFlow<TimerModel>(TimerModel())
-    val viewState: StateFlow<TimerModel> = _viewState
+    val viewState: StateFlow<TimerModel> = _viewState.asStateFlow()
 
     var countDown: CountDownTimer? = null
 
@@ -38,7 +39,6 @@ class TimerViewModel : ViewModel() {
                     toggle = ButtonState.START
                 )
             }
-
         }
         countDown?.start()
     }
