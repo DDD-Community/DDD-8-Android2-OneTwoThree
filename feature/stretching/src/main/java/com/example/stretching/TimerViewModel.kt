@@ -18,6 +18,9 @@ class TimerViewModel : ViewModel() {
     var countDown: CountDownTimer? = null
 
     init {
+        val state = _viewState.value
+        startTime(state.timeDuration)
+
         _viewState.value = TimerModel()
     }
 

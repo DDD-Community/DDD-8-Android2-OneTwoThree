@@ -3,6 +3,8 @@ package com.example.stretching
 import android.os.Build
 import android.os.CountDownTimer
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.common.Constants
 import java.time.Duration
 
 @Composable
@@ -77,7 +80,7 @@ fun TimerScreen(viewModel: TimerViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
             StretchingTimer(timer.timeDuration.format(), timer.remainingTime)
-            TimerButton(TimerViewModel())
+            TimerButton(viewModel)
 
     }
 }
@@ -104,7 +107,8 @@ fun StretchingTimer(time: String, remainingTime: Long) {
     ) {
         Text(
             text = time,
-            fontSize = 60.sp
+            fontSize = 60.sp,
+            color = Color.Black
         )
     }
 }
@@ -119,16 +123,16 @@ fun TimerButton(timerState: TimerViewModel) {
 @Composable
 fun ButtonLayout(timerState: TimerViewModel) {
     val toggle by timerState.viewState.collectAsState()
-    var text = ""
+    var text = Constants.EMPTY_STRING
     var color = Color.White
     var textColor: Color = Color.Black
 
     when (toggle.toggle) {
-        ButtonState.START -> {
+        /*ButtonState.START -> {
             text = "시작"
             color = Color.White
             textColor = Color.Black
-        }
+        }*/
         ButtonState.PAUSE -> {
             text = "잠시 멈춤"
             color = Color.White
