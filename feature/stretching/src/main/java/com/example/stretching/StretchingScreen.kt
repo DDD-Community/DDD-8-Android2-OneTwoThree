@@ -1,6 +1,8 @@
 package com.example.stretching
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +20,7 @@ import com.example.common.Constants
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun StretchingScreen(
@@ -41,9 +44,8 @@ fun StretchingScreen(
         content = {
             Column {
                 StretchingHeader()
-                // 이미지 추가
-                Timer(navController)
-                TimerProgressBar()
+                // 애니메이션 추가
+                TimerScreen(TimerViewModel())
             }
         }
     )
@@ -59,11 +61,4 @@ fun StretchingHeader() {
         Text(text = "스트레칭 이름")
         Text(text = "머리를 오른쪽으로 잡아당기며 약 10초간 유지해주세용")
     }
-}
-
-@Preview
-@Composable
-fun StretchingPreview() {
-    val navController = rememberNavController()
-    StretchingScreen(navController)
 }

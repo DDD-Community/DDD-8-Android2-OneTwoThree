@@ -2,6 +2,7 @@ package com.example.stretching
 
 import android.os.Build
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,11 +17,10 @@ class TimerViewModel : ViewModel() {
     val viewState: StateFlow<TimerModel> = _viewState.asStateFlow()
 
     var countDown: CountDownTimer? = null
+    val state = _viewState.value
 
     init {
-        val state = _viewState.value
         startTime(state.timeDuration)
-
         _viewState.value = TimerModel()
     }
 
@@ -54,29 +54,19 @@ class TimerViewModel : ViewModel() {
         )
     }
 
-    fun resetTimer() {
-        countDown?.cancel()
-        _viewState.value = _viewState.value.copy(
-            status = Status.STARTED,
-            timeDuration = Duration.ofMillis(30000L),
-            toggle = ButtonState.START
-        )
-    }
-
     fun buttonSelection() {
         val state = _viewState.value
 
-        when (state?.status) {
+        when (state.status) {
             Status.STARTED -> {
                 startTime(state.timeDuration)
             }
             Status.RUNNING -> {
                 pauseTimer()
             }
-            Status.FINISHING -> {
-                resetTimer()
+            else -> {
+
             }
         }
-
     }
 }
