@@ -2,7 +2,6 @@ package com.example.stretching
 
 import android.os.Build
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,21 +12,21 @@ import java.time.Duration
 @RequiresApi(Build.VERSION_CODES.O)
 class TimerViewModel : ViewModel() {
 
-    private val _viewState = MutableStateFlow<TimerModel>(TimerModel())
-    val viewState: StateFlow<TimerModel> = _viewState.asStateFlow()
+    private val _timerState = MutableStateFlow<TimerModel>(TimerModel())
+    val timerState: StateFlow<TimerModel> = _timerState.asStateFlow()
 
     var countDown: CountDownTimer? = null
-    val state = _viewState.value
+    val state = _timerState.value
 
     init {
         startTime(state.timeDuration)
-        _viewState.value = TimerModel()
+        _timerState.value = TimerModel()
     }
 
     fun startTime(duration: Duration) {
         countDown = object : CountDownTimer(duration.toMillis(), 10) {
             override fun onTick(seconds: Long) {
-                _viewState.value = TimerModel(
+                _timerState.value = TimerModel(
                     timeDuration = Duration.ofMillis(seconds),
                     remainingTime = seconds,
                     status = Status.RUNNING,
@@ -36,7 +35,7 @@ class TimerViewModel : ViewModel() {
             }
 
             override fun onFinish() {
-                _viewState.value = _viewState.value.copy(
+                _timerState.value = _timerState.value.copy(
                     timeDuration = Duration.ZERO,
                     status = Status.FINISHING,
                     toggle = ButtonState.START
@@ -48,17 +47,17 @@ class TimerViewModel : ViewModel() {
 
     fun pauseTimer() {
         countDown?.cancel()
-        _viewState.value = _viewState.value.copy(
-            status = Status.STARTED,
+        _timerState.value = _timerState.value.copy(
+            status = Status.STARTING,
             toggle = ButtonState.RESUME
         )
     }
 
-    fun buttonSelection() {
-        val state = _viewState.value
+    fun selectTimerState() {
+        val state = _timerState.value
 
         when (state.status) {
-            Status.STARTED -> {
+            Status.STARTING -> {
                 startTime(state.timeDuration)
             }
             Status.RUNNING -> {

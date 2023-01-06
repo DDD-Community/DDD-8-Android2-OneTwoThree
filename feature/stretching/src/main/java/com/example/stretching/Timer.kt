@@ -24,7 +24,7 @@ import java.time.Duration
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TimerScreen(viewModel: TimerViewModel) {
-    val timer by viewModel.viewState.collectAsState(TimerModel())
+    val timer by viewModel.timerState.collectAsState(TimerModel())
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -62,7 +62,7 @@ fun StretchingTimer(time: String, remainingTime: Long) {
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TimerButton(timerState: TimerViewModel) {
-    val toggle by timerState.viewState.collectAsState()
+    val toggle by timerState.timerState.collectAsState()
     var text = Constants.EMPTY_STRING
     var color = Color.Gray
     var textColor: Color = Color.Black
@@ -84,7 +84,7 @@ fun TimerButton(timerState: TimerViewModel) {
     }
 
     Box(modifier = Modifier
-        .clickable { timerState.buttonSelection() }
+        .clickable { timerState.selectTimerState() }
         .width(135.5.dp)
         .height(56.dp)
         .background(color)
