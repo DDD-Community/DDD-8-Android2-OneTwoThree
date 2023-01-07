@@ -2,7 +2,7 @@ package com.inseoul.onetwothree.di
 
 import android.app.Application
 import com.example.common.Constants.Companion.BASE_URL
-import com.inseoul.api.API
+import com.inseoul.api.StretchingAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,8 +56,8 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideVaccinationCenterService(retrofit: Retrofit): API {
-        return retrofit.create(API::class.java)
+    fun provideVaccinationCenterService(retrofit: Retrofit): StretchingAPI {
+        return retrofit.create(StretchingAPI::class.java)
     }
 
 }
