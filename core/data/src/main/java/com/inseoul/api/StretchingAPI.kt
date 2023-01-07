@@ -1,28 +1,11 @@
 package com.inseoul.api
 
-import com.inseoul.model.AuthInfoResponse
-import com.inseoul.model.ChangeNicknameResponse
-import com.inseoul.model.EnrollMemberInfoResponse
-import com.inseoul.model.GetStretchingDayResponse
-import retrofit2.http.DELETE
-import retrofit2.http.Field
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
+import com.inseoul.model.*
+import retrofit2.http.*
 
-// 타입 확인하기..!
+// todo 타입 확인하기
 
 interface StretchingAPI {
-
-   /* @GET("15077586/v1/centers")
-    suspend fun getVaccinationCenter(
-        @Query("page") page: Int,
-        @Query("perPage") perPage: Int,
-        @Query("serviceKey") serviceKey: String = SERVICE_KEY
-    ): VaccinationCenterResponse*/
 
     // 회원정보 등록 API
     @POST("/api/member")
@@ -42,18 +25,18 @@ interface StretchingAPI {
     suspend fun changeNickname(
         @Header("onetwothree-member-id") onetwothree_member_id: Int,
         @Field("nickname") nickname: String
-    ): ChangeNicknameResponse
+    )
 
     // 알람 추가 API (헤더)
     @POST("/api/alarm")
     suspend fun addAlarm(
         @Header("onetwothree-member-id") onetwothree_member_id: Int,
-        //@Query("dayOfWeeks") dayOfWeeks: ["MONDAY", "FRIDAY"],
+        @Query("dayOfWeeks") dayOfWeeks: List<String>,  // 맞나?
         @Query("excludeHoliday") excludeHoliday: Boolean,
-        // @Query("startTime") startTime: "09:00"...
-        // @Query("endTime") endTime: "18:00",
+        @Query("startTime") startTime: String,
+        @Query("endTime") endTime: String,
         @Query("count") count: Int
-    ) : ChangeNicknameResponse  // 상태만 표시해서 일단 이것으로 대체
+    )
 
     // 알람 삭제 API
     @DELETE("/api/alarm/{alarm_id}")
@@ -66,15 +49,15 @@ interface StretchingAPI {
     @GET("/api/alarm")
     suspend fun getAlarm(
         @Header("onetwothree-member-id") onetwothree_member_id: Int
-    )
+    ): GetAlarmResponse
 
     // 스트레칭 시작 API
     @GET("/api/streching/start")
-    suspend fun startStretching()
+    suspend fun startStretching(): StartStretchingResponse
 
     //스트레칭 목록 조회 API
     @GET("/api/streching")
-    suspend fun getStretching()
+    suspend fun getStretching(): GetStretchingResponse
 
     // 월별 인증내역 조회 API (헤더)
     @GET("/api/auth/{year}/{month}")
@@ -82,7 +65,7 @@ interface StretchingAPI {
         @Header("onetwothree-member-id") onetwothree_member_id: Int,
         @Query("year") year: Int?,
         @Query("month") month: Int?
-    )
+    )   // 요거 어떻게 표기?
 
     // 일별 인증내역 조회 API (헤더)
     @GET("/api/auth/{year}/{month}/{day}")
@@ -95,8 +78,8 @@ interface StretchingAPI {
 
     // 인증 API (헤더)
     @POST("/api/auth")
-    suspend fun getStretchingCount(
+    suspend fun getStretchingAuthCount(
         @Header("onetwothree-member-id") onetwothree_member_id: Int
-    )
+    ): GetStretchingAuthCountResponse
 
 }

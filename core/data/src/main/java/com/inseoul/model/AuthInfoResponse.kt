@@ -1,9 +1,11 @@
 package com.inseoul.model
 
+import com.google.gson.annotations.SerializedName
+
 data class AuthInfoResponse(
-    val status: Int,
-    val data: AuthInfoData
-    )
+    @SerializedName("data") val data: AuthInfoData?
+
+)
 
 data class AuthInfoData(
     val memberId: Int,

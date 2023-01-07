@@ -1,16 +1,11 @@
 package com.inseoul.model
 
 data class GetStretchingDayResponse(
-    val status: Int,
-    // val data: AuthData 명명 다기 해주기
-)
-
-data class AuthData(
     val authCount: Int,
-    val auths: Auth
+    val auths: Auths
 )
 
-data class Auth(
+data class Auths(
     val time: String,
-    // val stretchingType: "NECK", "SHOULDER"...
+    val stretchingType: String
 )

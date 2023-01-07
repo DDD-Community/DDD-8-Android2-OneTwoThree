@@ -1,10 +1,11 @@
 package com.inseoul.model
 
+import com.google.gson.annotations.SerializedName
+
 data class EnrollMemberInfoResponse(
-    val status: Int?,
-    val data: EnrollData?
+    @SerializedName("data") val data: MemberId?
 )
 
-data class EnrollData(
-    val memberId: Int?
+data class MemberId(
+    @SerializedName("memberId") val memberId: Int?
 )

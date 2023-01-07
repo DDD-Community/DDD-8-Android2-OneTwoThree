@@ -1,7 +1,6 @@
 package com.inseoul.source
 
 import com.inseoul.model.AuthInfoResponse
-import com.inseoul.model.ChangeNicknameResponse
 import com.inseoul.model.EnrollMemberInfoResponse
 import com.inseoul.model.GetStretchingDayResponse
 
@@ -27,7 +26,7 @@ interface NetworkDataSource {
         onetwothree_member_id: Int,
         excludeHoliday: Boolean,
         count: Int
-    ): ChangeNicknameResponse
+    )
 
     // 알람 삭제 API
     suspend fun deleteAlarm(
