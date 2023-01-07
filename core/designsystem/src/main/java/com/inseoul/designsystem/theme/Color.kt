@@ -2,6 +2,8 @@ package com.inseoul.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 
+val background = Color(0xFFE1E1E1)
+
 val gray00 = Color(0xFFFFFFFF)
 val gray50 = Color(0xFFF7F8FA)
 val gray100 = Color(0xFFF2F3F6)
