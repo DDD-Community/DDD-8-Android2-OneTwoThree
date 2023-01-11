@@ -7,8 +7,8 @@ import com.treemiddle.catname.screen.CatNameScreen
 
 @Composable
 fun CatNameRoute(
-    modifier: Modifier = Modifier,
+    navigate: () -> Unit,
     viewModel: CatNameViewModel = hiltViewModel()
 ) {
-    CatNameScreen()
+    CatNameScreen(navigate)
 }

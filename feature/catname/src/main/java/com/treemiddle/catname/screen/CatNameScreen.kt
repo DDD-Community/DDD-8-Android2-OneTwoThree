@@ -17,7 +17,7 @@ import com.inseoul.designsystem.theme.gray900
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 
 @Composable
-fun CatNameScreen() {
+fun CatNameScreen(navigate: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
@@ -49,9 +49,7 @@ fun CatNameScreen() {
             )
         }
 
-        CatNameButton {
-            // NOTE : 확인 버튼 클릭
-        }
+        CatNameButton { navigate() }
     }
 }
 

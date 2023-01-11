@@ -6,8 +6,8 @@ import com.treemiddle.catname.CatNameRoute
 
 const val catNameRoute = "cat_name_route"
 
-fun NavGraphBuilder.onCatNameScreen() {
+fun NavGraphBuilder.onCatNameScreen(navigate: () -> Unit) {
     composable(route = catNameRoute) {
-        CatNameRoute()
+        CatNameRoute(navigate)
     }
 }
