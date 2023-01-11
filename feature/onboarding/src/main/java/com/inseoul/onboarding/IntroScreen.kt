@@ -1,13 +1,11 @@
-package com.inseoul.onborading.screen
+package com.inseoul.onboarding
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,6 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.inseoul.designsystem.button.H56Button
+import com.inseoul.designsystem.theme.*
 
 @Composable
 fun IntroScreen(
@@ -82,12 +82,12 @@ fun IntroInformation(
         Text(
             text = description,
             fontSize = 18.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            color = gray700
         )
     }
 }
 
-// NOTE : 임시로 Image로 해놨습니다.
 @Composable
 fun IntroDot(
     modifier: Modifier = Modifier,
@@ -101,31 +101,35 @@ fun IntroDot(
         horizontalArrangement = Arrangement.Center
     ) {
         for (i in 0 until totalPagerCount) {
-            Image(
-                imageVector = if (i == currentPagerIndex) {
-                    Icons.Default.AccountCircle
-                } else {
-                    Icons.Default.Add
-                },
-                contentDescription = "dot: $i"
-            )
+            Canvas(modifier = modifier
+                .padding(horizontal = 5.dp)
+                .size(10.dp)) {
+                drawCircle(
+                    color = if (i == currentPagerIndex) {
+                        Green300
+                    } else {
+                        gray300
+                    }
+                )
+            }
         }
     }
 }
 
-// NOTE : 디자인시스템 버튼을 사용해야 합니다.
 @Composable
 fun IntroButton(
     modifier: Modifier = Modifier,
     currentPagerIndex: Int,
     onButtonClicked: () -> Unit
 ) {
-    Button(
+    H56Button(
         modifier = modifier
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, bottom = 24.dp),
-        onClick = { onButtonClicked() }
-    ) {
-        Text(text = if (currentPagerIndex == 0) "다음" else "고양이 이름 지어주기")
-    }
+        title = if (currentPagerIndex == 0) "다음" else "고양이 이름 지어주기",
+        cornerRadius = 16,
+        backgroundColor = gray900,
+        textColor = gray00,
+        onClicked = onButtonClicked
+    )
 }

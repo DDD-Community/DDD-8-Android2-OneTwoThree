@@ -1,13 +1,13 @@
-package com.inseoul.onborading.navigation
+package com.inseoul.onboarding.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.inseoul.onborading.OnBoardingRoute
+import com.inseoul.onboarding.OnBoardingRoute
 
 const val onBoardingRoute = "on_boarding_route"
 
-fun NavGraphBuilder.onBoardingScreen() {
+fun NavGraphBuilder.onBoardingScreen(navigate: () -> Unit) {
     composable(route = onBoardingRoute) {
-        OnBoardingRoute()
+        OnBoardingRoute(navigate)
     }
 }
