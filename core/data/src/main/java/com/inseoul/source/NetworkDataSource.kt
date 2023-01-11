@@ -1,8 +1,7 @@
 package com.inseoul.source
 
-import com.inseoul.model.AuthInfoResponse
-import com.inseoul.model.EnrollMemberInfoResponse
-import com.inseoul.model.GetStretchingDayResponse
+import com.inseoul.model.*
+
 
 interface NetworkDataSource {
 
@@ -10,21 +9,24 @@ interface NetworkDataSource {
     suspend fun enrollMemberInfo(
         nickname: String,
         firebaseToken: String
-    ): EnrollMemberInfoResponse
+    ): EnrollMemberInfoDataResponse
 
     // 회원정보 조회 API
-    suspend fun getMemberInfo(): AuthInfoResponse
+    suspend fun getMemberInfo(): AuthInfoDataResponse
 
     // 닉네임 변경 API
     suspend fun changeNickname(
-        onetwothree_member_id: Int,
+        onetwothreeMemberId: Int,
         nickname: String
     )
 
     // 알람 추가 API
     suspend fun addAlarm(
-        onetwothree_member_id: Int,
+        onetwothreeMemberId: Int,
+        dayOfWeeks: List<String>,
         excludeHoliday: Boolean,
+        startTime: String,
+        endTime: String,
         count: Int
     )
 
@@ -34,29 +36,35 @@ interface NetworkDataSource {
     )
 
     // 알람 조회 API
-    suspend fun getAlarm()
+    suspend fun getAlarm(
+        onetwothreeMemberId: Int,
+    ): GetAlarmDataResponse
 
     // 스트레칭 시작 API
-    suspend fun startStretching()
+    suspend fun startStretching(): StartStretchingDataResponse
 
     //스트레칭 목록 조회 API
-    suspend fun getStretching()
+    suspend fun getStretching(): GetStretchingDataResponse
 
+    // 월별 인증내역 조회 API
     suspend fun getStretchingMonth(
-        onetwothree_member_id: Int,
+        onetwothreeMemberId: Int,
         year: Int?,
         month: Int?
     )
 
+    // 일별 일증내역 조회 API
     suspend fun getStretchingDay(
-        onetwothree_member_id: Int,
+        onetwothreeMemberId: Int,
         year: Int?,
         month: Int?,
         day: Int?
-    ): GetStretchingDayResponse
+    ): GetStretchingDayDataResponse
 
+    // 인증 API
     suspend fun getStretchingCount(
-        onetwothree_member_id: Int
-    )
+        onetwothree_member_id: Int,
+        stretchingType: String
+    ): GetStretchingAuthCountDataResponse
 
 }

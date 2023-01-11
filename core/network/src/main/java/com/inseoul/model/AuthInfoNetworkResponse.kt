@@ -2,7 +2,7 @@ package com.inseoul.model
 
 import com.google.gson.annotations.SerializedName
 
-data class AuthInfoResponse(
+data class AuthInfoNetworkResponse(
     @SerializedName("data") val data: AuthInfoData?
 
 )

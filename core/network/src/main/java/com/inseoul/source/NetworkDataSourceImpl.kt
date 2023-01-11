@@ -1,29 +1,33 @@
 package com.inseoul.source
 
-import com.inseoul.model.AuthInfoResponse
-import com.inseoul.model.EnrollMemberInfoResponse
-import com.inseoul.model.GetStretchingDayResponse
+import com.inseoul.api.StretchingAPI
+import com.inseoul.model.*
+import javax.inject.Inject
 
-class NetworkDataSourceImpl : NetworkDataSource {
-
+class NetworkDataSourceImpl @Inject constructor(
+    private val stretchingAPI: StretchingAPI
+) : NetworkDataSource {
     override suspend fun enrollMemberInfo(
         nickname: String,
         firebaseToken: String
-    ): EnrollMemberInfoResponse {
+    ): EnrollMemberInfoDataResponse {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getMemberInfo(): AuthInfoResponse {
+    override suspend fun getMemberInfo(): AuthInfoDataResponse {
         TODO("Not yet implemented")
     }
 
-    override suspend fun changeNickname(onetwothree_member_id: Int, nickname: String) {
+    override suspend fun changeNickname(onetwothreeMemberId: Int, nickname: String) {
         TODO("Not yet implemented")
     }
 
     override suspend fun addAlarm(
-        onetwothree_member_id: Int,
+        onetwothreeMemberId: Int,
+        dayOfWeeks: List<String>,
         excludeHoliday: Boolean,
+        startTime: String,
+        endTime: String,
         count: Int
     ) {
         TODO("Not yet implemented")
@@ -33,32 +37,36 @@ class NetworkDataSourceImpl : NetworkDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getAlarm() {
+    override suspend fun getAlarm(onetwothreeMemberId: Int): GetAlarmDataResponse {
         TODO("Not yet implemented")
     }
 
-    override suspend fun startStretching() {
+    override suspend fun startStretching(): StartStretchingDataResponse {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getStretching() {
+    override suspend fun getStretching(): GetStretchingDataResponse {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getStretchingMonth(onetwothree_member_id: Int, year: Int?, month: Int?) {
+    override suspend fun getStretchingMonth(onetwothreeMemberId: Int, year: Int?, month: Int?) {
         TODO("Not yet implemented")
     }
 
     override suspend fun getStretchingDay(
-        onetwothree_member_id: Int,
+        onetwothreeMemberId: Int,
         year: Int?,
         month: Int?,
         day: Int?
-    ): GetStretchingDayResponse {
+    ): GetStretchingDayDataResponse {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getStretchingCount(onetwothree_member_id: Int) {
+    override suspend fun getStretchingCount(
+        onetwothree_member_id: Int,
+        stretchingType: String
+    ): GetStretchingAuthCountDataResponse {
         TODO("Not yet implemented")
     }
+
 }

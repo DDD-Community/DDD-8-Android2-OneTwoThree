@@ -2,7 +2,7 @@ package com.inseoul.model
 
 import com.google.gson.annotations.SerializedName
 
-data class EnrollMemberInfoResponse(
+data class EnrollMemberInfoNetworkResponse(
     @SerializedName("data") val data: MemberId?
 )
 
