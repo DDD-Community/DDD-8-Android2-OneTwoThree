@@ -15,8 +15,9 @@ class RepositoryImpl @Inject constructor(
     private val getAlarmDataDomainMapper: GetAlarmDataDomainMapper,
     private val getStretchingAuthCountDataDomainMapper: GetStretchingAuthCountDataDomainMapper,
     private val getStretchingDataDomainMapper: GetStretchingDataDomainMapper,
-    private val getStretchingDayDataDomainMapper: GetStretchingDayDataDomainMapper,
-    private val startStretchingDataDomainMapper: StartStretchingDataDomainMapper
+    private val authsDataDomainMapper: AuthsDataDomainMapper,
+    private val startStretchingDataDomainMapper: StartStretchingDataDomainMapper,
+    private val getStretchingDayDataDomainMapper: GetStretchingDayDataDomainMapper
 ) : Repository {
 
     override suspend fun getMemberInfo(firebase_token: String): Flow<AuthInfoData> {
@@ -75,10 +76,11 @@ class RepositoryImpl @Inject constructor(
         year: Int?,
         month: Int?,
         day: Int?
-    ): Flow<List<Auths>> {
+    ): Flow<GetStretchingDayEntityResponse> {
         return flow {
             val dataList = networkDataSource.getStretchingDay(onetwothreeMemberId, year, month, day)
-            emit(getStretchingDayDataDomainMapper.fromList(dataList))
+            emit(getStretchingDayDataDomainMapper.from(dataList))
+        //emit(getStretchingDayDataDomainMapper.fromList(dataList))
         }
     }
 

@@ -61,7 +61,7 @@ interface Repository {
         year: Int?,
         month: Int?,
         day: Int?
-    ): Flow<List<Auths>>
+    ): Flow<GetStretchingDayEntityResponse>
 
     // 인증 API
     suspend fun getStretchingCount(

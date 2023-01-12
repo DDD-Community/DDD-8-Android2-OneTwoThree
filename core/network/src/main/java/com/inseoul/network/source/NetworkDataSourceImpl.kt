@@ -12,9 +12,10 @@ class NetworkDataSourceImpl @Inject constructor(
     private val enrollMemberInfoNetworkDataMapper: EnrollMemberInfoNetworkDataMapper,
     private val getAlarmNetworkDataMapper: GetAlarmNetworkDataMapper,
     private val getStretchingAuthCountNetworkDataMapper: GetStretchingAuthCountNetworkDataMapper,
-    private val getStretchingDayNetworkDataMapper: GetStretchingDayNetworkDataMapper,
+    private val authsNetworkDataMapper: AuthsNetworkDataMapper,
     private val getStretchingNetworkDataMapper: GetStretchingNetworkDataMapper,
-    private val startStretchingNetworkDataMapper: StartStretchingNetworkDataMapper
+    private val startStretchingNetworkDataMapper: StartStretchingNetworkDataMapper,
+    private val getStretchingDayNetworkDataMapper: GetStretchingDayNetworkDataMapper
 ) : NetworkDataSource {
     override suspend fun enrollMemberInfo(
         nickname: String,
@@ -80,18 +81,18 @@ class NetworkDataSourceImpl @Inject constructor(
 
     }
 
-    // todo  값 추가 필여
     override suspend fun getStretchingDay(
         onetwothreeMemberId: Int,
         year: Int?,
         month: Int?,
         day: Int?
-    ): List<Auths> {
+    ): GetStretchingDayDataResponse {
         val networkDataList = stretchingAPI.getStretchingDay(
             onetwothreeMemberId, year, month, day
         )
-        val networkData = networkDataList.auths
-        return getStretchingDayNetworkDataMapper.fromList(networkData)
+        return getStretchingDayNetworkDataMapper.from(networkDataList)
+        //val networkData = networkDataList.auths
+        //return getStretchingDayNetworkDataMapper.fromList(networkData)
     }
 
     override suspend fun getStretchingCount(

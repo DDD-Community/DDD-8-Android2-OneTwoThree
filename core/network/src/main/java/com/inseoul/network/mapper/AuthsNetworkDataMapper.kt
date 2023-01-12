@@ -6,7 +6,7 @@ import com.inseoul.network.model.Auths
 import com.inseoul.network.model.GetStretchingDayNetworkResponse
 import javax.inject.Inject
 
-class GetStretchingDayNetworkDataMapper @Inject constructor() :
+class AuthsNetworkDataMapper @Inject constructor() :
     Mapper<Auths, com.inseoul.data.model.Auths> {
     override fun from(i: Auths?): com.inseoul.data.model.Auths {
         return com.inseoul.data.model.Auths(
@@ -23,24 +23,23 @@ class GetStretchingDayNetworkDataMapper @Inject constructor() :
     }
 }
 
-// test
-class A @Inject constructor() :
+class GetStretchingDayNetworkDataMapper @Inject constructor() :
     Mapper<GetStretchingDayNetworkResponse, GetStretchingDayDataResponse> {
     override fun from(i: GetStretchingDayNetworkResponse?): GetStretchingDayDataResponse {
-        val d = GetStretchingDayNetworkDataMapper()
-        val k = listOf<Auths>()
+        val authsNetworkDataMapper = AuthsNetworkDataMapper()
+        val authsList = listOf<Auths>()
         return GetStretchingDayDataResponse(
             authCount = i?.authCount,
-            auths = d.fromList(k)
+            auths = authsNetworkDataMapper.fromList(authsList)
         )
     }
 
     override fun to(o: GetStretchingDayDataResponse?): GetStretchingDayNetworkResponse {
-        val d = GetStretchingDayNetworkDataMapper()
-        val k = listOf<com.inseoul.data.model.Auths>()
+        val authsNetworkDataMapper = AuthsNetworkDataMapper()
+        val authsList = listOf<com.inseoul.data.model.Auths>()
         return GetStretchingDayNetworkResponse(
             authCount = o?.authCount,
-            auths = d.toList(k)
+            auths = authsNetworkDataMapper.toList(authsList)
         )
     }
 }

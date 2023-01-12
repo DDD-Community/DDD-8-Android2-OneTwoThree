@@ -61,7 +61,7 @@ interface NetworkDataSource {
         year: Int?,
         month: Int?,
         day: Int?
-    ): List<Auths>
+    ): GetStretchingDayDataResponse
 
     // 인증 API
     suspend fun getStretchingCount(

@@ -45,7 +45,7 @@ abstract class MapperModule {
 
     @Binds
     abstract fun bindsGetStretchingDayNetworkDataMapper(
-        mapper: GetStretchingDayNetworkDataMapper
+        mapper: AuthsNetworkDataMapper
     ): Mapper<com.inseoul.network.model.Auths, com.inseoul.data.model.Auths>
 
     @Binds
@@ -87,7 +87,7 @@ abstract class MapperModule {
 
     @Binds
     abstract fun bindsGetStretchingDayDataDomainMapper(
-        mapper: GetStretchingDayDataDomainMapper
+        mapper: AuthsDataDomainMapper
     ): Mapper<Auths, com.inseoul.domain.entity.Auths>
 
     @Binds
