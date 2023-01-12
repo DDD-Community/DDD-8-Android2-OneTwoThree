@@ -2,7 +2,7 @@ package com.inseoul.onetwothree.di
 
 import android.app.Application
 import com.example.common.Constants.Companion.BASE_URL
-import com.inseoul.api.StretchingAPI
+import com.inseoul.network.api.StretchingAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

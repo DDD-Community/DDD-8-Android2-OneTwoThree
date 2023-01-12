@@ -1,8 +1,9 @@
 package com.inseoul.onetwothree.di
 
 import com.example.common.Mapper
-import com.inseoul.mapper.*
-import com.inseoul.model.*
+import com.inseoul.data.model.*
+import com.inseoul.network.mapper.*
+import com.inseoul.network.model.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
