@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 // 왜 리스트지?
 data class GetAlarmNetworkResponse(
-    @SerializedName("data") val data: List<GetAlarmNetworkData>
+    @SerializedName("data") val data: List<GetAlarmData>?
 )
 
-data class GetAlarmNetworkData(
+data class GetAlarmData(
     val alarmId: Int?,
     val dayOfWeeks: List<String>?,
     val excludeHoliday: Boolean?,

@@ -1,6 +1,6 @@
-package com.inseoul.model
+package com.inseoul.entity
 
-data class GetAlarmDataResponse(
+data class GetAlarmEntityResponse(
     val data: List<GetAlarmData>?
 )
 

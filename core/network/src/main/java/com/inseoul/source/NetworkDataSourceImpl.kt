@@ -1,25 +1,41 @@
 package com.inseoul.source
 
 import com.inseoul.api.StretchingAPI
+import com.inseoul.mapper.*
 import com.inseoul.model.*
+import retrofit2.Response
 import javax.inject.Inject
 
 class NetworkDataSourceImpl @Inject constructor(
-    private val stretchingAPI: StretchingAPI
+    private val stretchingAPI: StretchingAPI,
+    private val authInfoNetworkDataMapper: AuthInfoNetworkDataMapper,
+    private val enrollMemberInfoNetworkDataMapper: EnrollMemberInfoNetworkDataMapper,
+    private val getAlarmNetworkDataMapper: GetAlarmNetworkDataMapper,
+    private val getStretchingAuthCountNetworkDataMapper: GetStretchingAuthCountNetworkDataMapper,
+    private val getStretchingDayNetworkDataMapper: GetStretchingDayNetworkDataMapper,
+    private val getStretchingNetworkDataMapper: GetStretchingNetworkDataMapper,
+    private val startStretchingNetworkDataMapper: StartStretchingNetworkDataMapper
 ) : NetworkDataSource {
     override suspend fun enrollMemberInfo(
         nickname: String,
         firebaseToken: String
     ): EnrollMemberInfoDataResponse {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.enrollMemberInfo(
+            nickname, firebaseToken
+        )
+        return enrollMemberInfoNetworkDataMapper.from(networkData)
     }
 
-    override suspend fun getMemberInfo(): AuthInfoDataResponse {
-        TODO("Not yet implemented")
+    override suspend fun getMemberInfo(firebase_token: String): AuthInfoDataResponse {
+        val networkData = stretchingAPI.getMemberInfo(firebase_token)
+        return authInfoNetworkDataMapper.from(networkData)
     }
 
     override suspend fun changeNickname(onetwothreeMemberId: Int, nickname: String) {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.changeNickname(
+            onetwothreeMemberId, nickname
+        )
+        return networkData
     }
 
     override suspend fun addAlarm(
@@ -30,27 +46,35 @@ class NetworkDataSourceImpl @Inject constructor(
         endTime: String,
         count: Int
     ) {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.addAlarm(
+            onetwothreeMemberId, dayOfWeeks, excludeHoliday, startTime, endTime, count
+        )
+        return networkData
     }
 
     override suspend fun deleteAlarm(alarm_id: Int?) {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.deleteAlarm(alarm_id)
+        return networkData
     }
 
     override suspend fun getAlarm(onetwothreeMemberId: Int): GetAlarmDataResponse {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.getAlarm(onetwothreeMemberId)
+        return getAlarmNetworkDataMapper.from(networkData)
     }
 
     override suspend fun startStretching(): StartStretchingDataResponse {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.startStretching()
+        return startStretchingNetworkDataMapper.from(networkData)
     }
 
     override suspend fun getStretching(): GetStretchingDataResponse {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.getStretching()
+        return getStretchingNetworkDataMapper.from(networkData)
     }
 
+    // todo 수정
     override suspend fun getStretchingMonth(onetwothreeMemberId: Int, year: Int?, month: Int?) {
-        TODO("Not yet implemented")
+
     }
 
     override suspend fun getStretchingDay(
@@ -59,14 +83,20 @@ class NetworkDataSourceImpl @Inject constructor(
         month: Int?,
         day: Int?
     ): GetStretchingDayDataResponse {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.getStretchingDay(
+            onetwothreeMemberId, year, month, day
+        )
+        return getStretchingDayNetworkDataMapper.from(networkData)
     }
 
     override suspend fun getStretchingCount(
         onetwothree_member_id: Int,
         stretchingType: String
     ): GetStretchingAuthCountDataResponse {
-        TODO("Not yet implemented")
+        val networkData = stretchingAPI.getStretchingAuthCount(
+            onetwothree_member_id, stretchingType
+        )
+        return getStretchingAuthCountNetworkDataMapper.from(networkData)
     }
 
 }

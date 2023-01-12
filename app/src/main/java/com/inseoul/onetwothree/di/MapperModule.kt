@@ -25,7 +25,7 @@ abstract class MapperModule {
     @Binds
     abstract fun bindsGetAlarmNetworkDataMapper(
         mapper: GetAlarmNetworkDataMapper
-    ): Mapper<GetAlarmNetworkData, GetAlarmData>
+    ): Mapper<GetAlarmData, GetAlarmData>
 
     @Binds
     abstract fun bindsGetStretchingAuthCountNetworkDataMapper(

@@ -1,13 +1,29 @@
 package com.inseoul.mapper
 
 import com.example.common.Mapper
-import com.inseoul.model.GetAlarmData
-import com.inseoul.model.GetAlarmNetworkData
+import com.inseoul.model.GetAlarmDataResponse
+import com.inseoul.model.GetAlarmNetworkResponse
 import javax.inject.Inject
 
-// list 단위 list 내부 단위..? 확인 필요ㅕ
-class GetAlarmNetworkDataMapper @Inject constructor() : Mapper<GetAlarmNetworkData, GetAlarmData> {
-    override fun from(i: GetAlarmNetworkData?): GetAlarmData {
+// list 단위 list 내부 단위 확인 필요ㅕ
+class GetAlarmNetworkDataMapper @Inject constructor() :
+    Mapper<GetAlarmNetworkResponse, GetAlarmDataResponse> {
+
+    override fun from(i: GetAlarmNetworkResponse?): GetAlarmDataResponse {
+        return GetAlarmDataResponse(
+            data = i?.data
+        )
+    }
+
+    override fun to(o: GetAlarmDataResponse?): GetAlarmNetworkResponse {
+        return GetAlarmNetworkResponse(
+            data = o?.data
+        )
+    }
+
+
+
+    /*override fun from(i: GetAlarmNetworkData?): GetAlarmData {
         return GetAlarmData(
             alarmId = i?.alarmId,
             dayOfWeeks = i?.dayOfWeeks,
@@ -25,6 +41,7 @@ class GetAlarmNetworkDataMapper @Inject constructor() : Mapper<GetAlarmNetworkDa
             count = o?.count,
             pushTimeList = o?.pushTimeList
         )
-    }
+    }*/
+
 
 }
