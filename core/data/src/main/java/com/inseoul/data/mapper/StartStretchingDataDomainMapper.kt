@@ -5,7 +5,8 @@ import com.inseoul.data.model.StartStretchingDataResponse
 import com.inseoul.domain.entity.StartStretchingEntityResponse
 import javax.inject.Inject
 
-class StartStretchingDataDomainMapper @Inject constructor() : Mapper<StartStretchingDataResponse, StartStretchingEntityResponse> {
+class StartStretchingDataDomainMapper @Inject constructor() :
+    Mapper<StartStretchingDataResponse, StartStretchingEntityResponse> {
     override fun from(i: StartStretchingDataResponse?): StartStretchingEntityResponse {
         return StartStretchingEntityResponse(
             stretchingType = i?.stretchingType

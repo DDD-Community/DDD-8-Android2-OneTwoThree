@@ -4,7 +4,8 @@ import com.example.common.Mapper
 import com.inseoul.data.model.GetAlarmData
 import javax.inject.Inject
 
-class GetAlarmDataDomainMapper @Inject constructor() : Mapper<GetAlarmData, com.inseoul.domain.entity.GetAlarmData> {
+class GetAlarmDataDomainMapper @Inject constructor() :
+    Mapper<GetAlarmData, com.inseoul.domain.entity.GetAlarmData> {
     override fun from(i: GetAlarmData?): com.inseoul.domain.entity.GetAlarmData {
         return com.inseoul.domain.entity.GetAlarmData(
             alarmId = i?.alarmId,
