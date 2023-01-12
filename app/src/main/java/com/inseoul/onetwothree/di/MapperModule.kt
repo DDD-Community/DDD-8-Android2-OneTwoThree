@@ -26,27 +26,27 @@ abstract class MapperModule {
     @Binds
     abstract fun bindsAuthInfoNetworkDataMapper(
         mapper: AuthInfoNetworkDataMapper
-    ): Mapper<AuthInfoNetworkResponse, AuthInfoDataResponse>
+    ): Mapper<com.inseoul.network.model.AuthInfoData, com.inseoul.data.model.AuthInfoData>
 
     @Binds
     abstract fun bindsEnrollMemberInfoNetworkDataMapper(
         mapper: EnrollMemberInfoNetworkDataMapper
-    ): Mapper<EnrollMemberInfoNetworkResponse, EnrollMemberInfoDataResponse>
+    ): Mapper<com.inseoul.network.model.MemberId, com.inseoul.data.model.MemberId>
 
     @Binds
     abstract fun bindsGetAlarmNetworkDataMapper(
         mapper: GetAlarmNetworkDataMapper
-    ): Mapper<GetAlarmNetworkResponse, GetAlarmDataResponse>
+    ): Mapper<com.inseoul.network.model.GetAlarmData, com.inseoul.data.model.GetAlarmData>
 
     @Binds
     abstract fun bindsGetStretchingAuthCountNetworkDataMapper(
         mapper: GetStretchingAuthCountNetworkDataMapper
-    ): Mapper<GetStretchingAuthCountNetworkResponse, GetStretchingAuthCountDataResponse>
+    ): Mapper<com.inseoul.network.model.StretchingAuthCount, com.inseoul.data.model.StretchingAuthCount>
 
     @Binds
     abstract fun bindsGetStretchingDayNetworkDataMapper(
         mapper: GetStretchingDayNetworkDataMapper
-    ): Mapper<GetStretchingDayNetworkResponse, GetStretchingDayDataResponse>
+    ): Mapper<com.inseoul.network.model.Auths, com.inseoul.data.model.Auths>
 
     @Binds
     abstract fun bindsGetStretchingNetworkDataMapper(
@@ -57,6 +57,7 @@ abstract class MapperModule {
     abstract fun bindsStartStretchingNetworkDataMapper(
         mapper: StartStretchingNetworkDataMapper
     ): Mapper<StartStretchingNetworkResponse, StartStretchingDataResponse>
+
 
     /* data -> domain */
     @Binds

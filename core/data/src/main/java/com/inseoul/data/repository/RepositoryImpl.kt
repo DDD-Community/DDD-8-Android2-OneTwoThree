@@ -101,6 +101,4 @@ class RepositoryImpl @Inject constructor(
             emit(enrollMemberInfoDataDomainMapper.from(data))
         }
     }
-
-
 }
