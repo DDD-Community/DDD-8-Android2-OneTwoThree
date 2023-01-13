@@ -55,6 +55,8 @@ android {
 dependencies {
     implementation(project(":feature:calendar"))
     implementation(project(":feature:onboarding"))
+    implementation(project(":feature:setting"))
+    implementation(project(":feature:catname"))
     implementation(project(":feature:stretching"))
 
     implementation(project(":library-calendar"))
