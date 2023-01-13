@@ -1,8 +1,6 @@
 package com.inseoul.network.mapper
 
 import com.example.common.Mapper
-import com.inseoul.data.model.GetStretchingAuthCountDataResponse
-import com.inseoul.network.model.GetStretchingAuthCountNetworkResponse
 import com.inseoul.network.model.StretchingAuthCount
 import javax.inject.Inject
 

@@ -48,7 +48,7 @@ interface Repository {
     //스트레칭 목록 조회 API
     suspend fun getStretching(): Flow<GetStretchingEntityResponse>
 
-    // 월별 인증내역 조회 API (패스)
+    // TODO 월별 인증내역 조회 API
     suspend fun getStretchingMonth(
         onetwothreeMemberId: Int,
         year: Int?,

@@ -1,8 +1,8 @@
 package com.inseoul.network.source
 
-import com.inseoul.network.api.StretchingAPI
 import com.inseoul.data.model.*
 import com.inseoul.data.source.NetworkDataSource
+import com.inseoul.network.api.StretchingAPI
 import com.inseoul.network.mapper.*
 import javax.inject.Inject
 

@@ -1,10 +1,7 @@
 package com.inseoul.network.model
 
-import com.google.gson.annotations.SerializedName
-
-// 왜 리스트지?
 data class GetAlarmNetworkResponse(
-    @SerializedName("data") val data: List<GetAlarmData>?
+    val data: List<GetAlarmData>?
 )
 
 data class GetAlarmData(

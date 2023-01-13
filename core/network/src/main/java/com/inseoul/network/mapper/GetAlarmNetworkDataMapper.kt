@@ -1,9 +1,7 @@
 package com.inseoul.network.mapper
 
 import com.example.common.Mapper
-import com.inseoul.data.model.GetAlarmDataResponse
 import com.inseoul.network.model.GetAlarmData
-import com.inseoul.network.model.GetAlarmNetworkResponse
 import javax.inject.Inject
 
 // list 단위 list 내부 단위 확인 필요ㅕ

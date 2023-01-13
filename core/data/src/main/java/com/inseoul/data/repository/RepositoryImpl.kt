@@ -28,7 +28,7 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun changeNickname(onetwothreeMemberId: Int, nickname: String) {
-        TODO("Not yet implemented")
+        return networkDataSource.changeNickname(onetwothreeMemberId, nickname)
     }
 
     override suspend fun addAlarm(
@@ -39,11 +39,11 @@ class RepositoryImpl @Inject constructor(
         endTime: String,
         count: Int
     ) {
-        TODO("Not yet implemented")
+        return networkDataSource.addAlarm(onetwothreeMemberId, dayOfWeeks, excludeHoliday, startTime, endTime, count)
     }
 
     override suspend fun deleteAlarm(alarm_id: Int?) {
-        TODO("Not yet implemented")
+        return networkDataSource.deleteAlarm(alarm_id)
     }
 
     override suspend fun getAlarm(onetwothreeMemberId: Int): Flow<List<GetAlarmData>> {
@@ -68,7 +68,7 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun getStretchingMonth(onetwothreeMemberId: Int, year: Int?, month: Int?) {
-        TODO("Not yet implemented")
+        // TODO
     }
 
     override suspend fun getStretchingDay(

@@ -21,5 +21,4 @@ class AuthInfoDataDomainMapper @Inject constructor() :
             nickname = o?.nickname
         )
     }
-
 }

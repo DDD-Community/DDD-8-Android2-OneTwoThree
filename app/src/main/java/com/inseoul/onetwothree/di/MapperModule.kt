@@ -8,6 +8,7 @@ import com.inseoul.data.model.Auths
 import com.inseoul.data.model.GetAlarmData
 import com.inseoul.data.model.MemberId
 import com.inseoul.data.model.StretchingAuthCount
+import com.inseoul.domain.entity.GetStretchingDayEntityResponse
 import com.inseoul.domain.entity.GetStretchingEntityResponse
 import com.inseoul.domain.entity.StartStretchingEntityResponse
 import com.inseoul.network.mapper.*
@@ -22,7 +23,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class MapperModule {
 
     /* remote -> data */
-
     @Binds
     abstract fun bindsAuthInfoNetworkDataMapper(
         mapper: AuthInfoNetworkDataMapper
@@ -44,9 +44,15 @@ abstract class MapperModule {
     ): Mapper<com.inseoul.network.model.StretchingAuthCount, com.inseoul.data.model.StretchingAuthCount>
 
     @Binds
-    abstract fun bindsGetStretchingDayNetworkDataMapper(
+    abstract fun bindsAuthsNetworkDataMapper(
         mapper: AuthsNetworkDataMapper
     ): Mapper<com.inseoul.network.model.Auths, com.inseoul.data.model.Auths>
+
+    @Binds
+    abstract fun bindsGetStretchingDayNetworkDataMapper(
+        mapper: GetStretchingDayNetworkDataMapper
+    ): Mapper<GetStretchingDayNetworkResponse, GetStretchingDayDataResponse>
+
 
     @Binds
     abstract fun bindsGetStretchingNetworkDataMapper(
@@ -86,9 +92,14 @@ abstract class MapperModule {
     ): Mapper<GetStretchingDataResponse, GetStretchingEntityResponse>
 
     @Binds
-    abstract fun bindsGetStretchingDayDataDomainMapper(
+    abstract fun bindsAuthsDataDomainMapper(
         mapper: AuthsDataDomainMapper
     ): Mapper<Auths, com.inseoul.domain.entity.Auths>
+
+    @Binds
+    abstract fun bindsGetStretchingDayDataDomainMapper(
+        mapper: GetStretchingDayDataDomainMapper
+    ): Mapper<GetStretchingDayDataResponse, GetStretchingDayEntityResponse>
 
     @Binds
     abstract fun bindsStartStretchingDataDomainMapper(

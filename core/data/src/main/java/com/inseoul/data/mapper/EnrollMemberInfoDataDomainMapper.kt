@@ -1,9 +1,7 @@
 package com.inseoul.data.mapper
 
 import com.example.common.Mapper
-import com.inseoul.data.model.EnrollMemberInfoDataResponse
 import com.inseoul.data.model.MemberId
-import com.inseoul.domain.entity.EnrollMemberInfoEntityResponse
 import javax.inject.Inject
 
 class EnrollMemberInfoDataDomainMapper @Inject constructor() :

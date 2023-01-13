@@ -1,23 +1,7 @@
 package com.inseoul.network.api
 
 import com.inseoul.network.model.*
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
-
-// todo 타입 확인하기
-
-/*
-@Path - 동적으로 경로를 사용하기 위한 어노테이션
-@Query, @QueryMap - @GET 에서 사용하며 조건 파라미터를 설정
-@Field, @FieldMap - @POST 에서 사용하며 조건 파라미터를 설정
-@Body - 객체를 이용하여 조건 파라미터를 설정
-@Header - 해더 설정
-
-url 중 {}가 있으면 -> @path 사용해야 하는듯
-*/
-
-
 
 interface StretchingAPI {
 
@@ -79,7 +63,7 @@ interface StretchingAPI {
     suspend fun getStretching(): GetStretchingNetworkResponse
 
     /*
-    // todo 월별 인증내역 조회 API
+    TODO 월별 인증내역 조회 API
     @GET("/api/auth/{year}/{month}")
     suspend fun getStretchingMonth(
         @Header("onetwothree-member-id") onetwothreeMemberId: Int,

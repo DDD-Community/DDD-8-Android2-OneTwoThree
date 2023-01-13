@@ -1,9 +1,7 @@
 package com.inseoul.network.mapper
 
 import com.example.common.Mapper
-import com.inseoul.data.model.AuthInfoDataResponse
 import com.inseoul.network.model.AuthInfoData
-import com.inseoul.network.model.AuthInfoNetworkResponse
 import javax.inject.Inject
 
 class AuthInfoNetworkDataMapper @Inject constructor() :
