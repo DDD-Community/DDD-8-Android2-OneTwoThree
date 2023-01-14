@@ -26,7 +26,7 @@ fun CalendarScreen(
     onOutSideClicked: (Boolean, Int) -> Unit,
     isClickedDay: (Boolean, Int) -> Unit
 ) {
-     val stateList = remember { mutableStateOf(dayStateList) }
+    val stateList = remember { mutableStateOf(dayStateList) }
 
     Column(
         modifier = Modifier
@@ -46,13 +46,14 @@ fun CalendarScreen(
         )
         CalendarWeek()
         Box(
-             contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center
         ) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(7),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(stateList.value.size) {
+                    val dayState = stateList.value[it]
                     val day = stateList.value[it].day
                     val isActivated = stateList.value[it].isActivated
                     val isClicked = stateList.value[it].isClickedDay
@@ -64,6 +65,7 @@ fun CalendarScreen(
                         isActivated = isActivated,
                         isClicked = isClicked,
                         stretchCount = stretchCount,
+                        isFirstInitialized = dayState.isFirstInitialized(),
                         onDayClicked = { isDayActivated, isDayClicked, day ->
                             if (isDayActivated) {
                                 // NOTE : 해당 요일의 데이터를 가져와야 합니다.

@@ -12,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.inseoul.designsystem.theme.Green300
 import com.inseoul.designsystem.theme.bg
 import com.inseoul.designsystem.theme.gray400
 import com.inseoul.designsystem.theme.gray900
@@ -25,6 +27,7 @@ fun CalendarDay(
     isActivated: Boolean,
     isClicked: Boolean,
     stretchCount: Int,
+    isFirstInitialized: Boolean,
     onDayClicked: (Boolean, Boolean, Int) -> Unit,
 ) {
     val stretchImage = if (stretchCount >= 5) {
@@ -33,9 +36,22 @@ fun CalendarDay(
         CalendarIcons.stretchTotalCountUnderFive
     }
     val dayTextColor = if (isActivated) {
-        gray900
+        if (isFirstInitialized) {
+            Green300
+        } else {
+            gray900
+        }
     } else {
         gray400
+    }
+    val fontWeight = if (isActivated) {
+        if (isClicked || isFirstInitialized) {
+            FontWeight.Bold
+        } else {
+            null
+        }
+    } else {
+        null
     }
     val defaultModifier = modifier
         .height(56.dp)
@@ -61,6 +77,7 @@ fun CalendarDay(
         Text(
             text = day,
             color = dayTextColor,
+            fontWeight = fontWeight,
             textAlign = TextAlign.Center
         )
 
