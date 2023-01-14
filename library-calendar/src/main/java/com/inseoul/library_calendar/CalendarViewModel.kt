@@ -103,7 +103,8 @@ class CalendarViewModel @Inject() constructor() : ViewModel() {
             days.add(
                 DayState(
                     day = it.toString(),
-                    isActivated = isNeeded
+                    isActivated = isNeeded,
+                    stretchCount = (0..7).random()
                 )
             )
         }
