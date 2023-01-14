@@ -3,16 +3,15 @@ package com.inseoul.designsystem.toolbar
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.inseoul.designsystem.theme.gray900
 
 @Composable
 fun InseoulToolbar(
@@ -30,7 +29,6 @@ fun InseoulToolbar(
     ) {
         if (backButtonImageResource != null && backButtonImageResource != 0) {
             InseoulToolbarImage(
-                modifier = modifier.padding(start = 20.dp),
                 imageResource = backButtonImageResource,
                 onClicked = { onImageClicked() }
             )
@@ -40,7 +38,9 @@ fun InseoulToolbar(
             modifier = Modifier
                 .padding(start = 16.dp)
                 .weight(1f),
-            text = title
+            text = title,
+            color = gray900,
+            fontWeight = FontWeight.Bold
         )
 
         if (leftImageResource != null && leftImageResource != 0) {
@@ -71,15 +71,19 @@ fun InseoulToolbar(
 
 @Composable
 fun InseoulToolbarImage(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     @DrawableRes imageResource: Int,
     onClicked: () -> Unit
 ) {
-    Image(
+    Box(
         modifier = modifier
-            .size(size = 24.dp)
+            .size(24.dp)
             .clickable { onClicked() },
-        painter = painterResource(id = imageResource),
-        contentDescription = null
-    )
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = imageResource),
+            contentDescription = null
+        )
+    }
 }
