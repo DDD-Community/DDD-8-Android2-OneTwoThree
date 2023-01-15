@@ -20,10 +20,10 @@ class MainActivity : ComponentActivity() {
 
     private fun getFCMToken(): String? {
         var token: String? = null
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
+
             }
 
             // Get new FCM registration token
@@ -31,12 +31,12 @@ class MainActivity : ComponentActivity() {
 
             // Log and toast
             Log.d(TAG, "FCM Token is ${token}")
-        })
+        }
 
         return token
     }
 
     companion object {
-        val TAG = "MainActivity.class"
+        val TAG = MainActivity::class.simpleName
     }
 }
