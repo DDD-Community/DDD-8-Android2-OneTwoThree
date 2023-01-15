@@ -7,8 +7,12 @@ import com.treemiddle.setting.screen.SettingsScreen
 
 @Composable
 fun SettingsRoute(
-    modifier: Modifier = Modifier,
+    navigateToCatName: () -> Unit,
+    navigateToNotification: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
-    SettingsScreen()
+    SettingsScreen(
+        navigateToCatName = navigateToCatName,
+        navigateToNotification = navigateToNotification
+    )
 }
