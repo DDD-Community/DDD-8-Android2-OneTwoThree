@@ -1,7 +1,6 @@
 package com.inseoul.onetwothree.di
 
 import android.app.Application
-import com.example.common.Constants.Companion.BASE_URL
 import com.inseoul.network.api.AlarmAPI
 import com.inseoul.network.api.AuthAPI
 import com.inseoul.network.api.MemberAPI
@@ -51,7 +50,7 @@ object RetrofitModule {
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
