@@ -2,12 +2,18 @@ package com.inseoul.network.source
 
 import com.inseoul.data.model.*
 import com.inseoul.data.source.NetworkDataSource
+import com.inseoul.network.api.AlarmAPI
+import com.inseoul.network.api.AuthAPI
+import com.inseoul.network.api.MemberAPI
 import com.inseoul.network.api.StretchingAPI
 import com.inseoul.network.mapper.*
 import javax.inject.Inject
 
 class NetworkDataSourceImpl @Inject constructor(
+    private val memberAPI: MemberAPI,
+    private val alarmAPI: AlarmAPI,
     private val stretchingAPI: StretchingAPI,
+    private val authAPI: AuthAPI,
     private val authInfoNetworkDataMapper: AuthInfoNetworkDataMapper,
     private val enrollMemberInfoNetworkDataMapper: EnrollMemberInfoNetworkDataMapper,
     private val getAlarmNetworkDataMapper: GetAlarmNetworkDataMapper,
@@ -21,7 +27,7 @@ class NetworkDataSourceImpl @Inject constructor(
         nickname: String,
         firebaseToken: String
     ): MemberId {
-        val networkDataList = stretchingAPI.enrollMemberInfo(
+        val networkDataList = memberAPI.enrollMemberInfo(
             nickname, firebaseToken
         )
         val networkData = networkDataList.data
@@ -29,13 +35,13 @@ class NetworkDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getMemberInfo(firebase_token: String): AuthInfoData {
-        val networkDataList = stretchingAPI.getMemberInfo(firebase_token)
+        val networkDataList = memberAPI.getMemberInfo(firebase_token)
         val networkData = networkDataList.data
         return authInfoNetworkDataMapper.from(networkData)
     }
 
     override suspend fun changeNickname(onetwothreeMemberId: Int, nickname: String) {
-        val networkData = stretchingAPI.changeNickname(
+        val networkData = memberAPI.changeNickname(
             onetwothreeMemberId, nickname
         )
         return networkData
@@ -49,19 +55,19 @@ class NetworkDataSourceImpl @Inject constructor(
         endTime: String,
         count: Int
     ) {
-        val networkData = stretchingAPI.addAlarm(
+        val networkData = alarmAPI.addAlarm(
             onetwothreeMemberId, dayOfWeeks, excludeHoliday, startTime, endTime, count
         )
         return networkData
     }
 
     override suspend fun deleteAlarm(alarm_id: Int?) {
-        val networkData = stretchingAPI.deleteAlarm(alarm_id)
+        val networkData = alarmAPI.deleteAlarm(alarm_id)
         return networkData
     }
 
     override suspend fun getAlarm(onetwothreeMemberId: Int): List<GetAlarmData> {
-        val networkDataList = stretchingAPI.getAlarm(onetwothreeMemberId)
+        val networkDataList = alarmAPI.getAlarm(onetwothreeMemberId)
         val networkData = networkDataList.data
         return getAlarmNetworkDataMapper.fromList(networkData)
     }
@@ -87,7 +93,7 @@ class NetworkDataSourceImpl @Inject constructor(
         month: Int?,
         day: Int?
     ): GetStretchingDayDataResponse {
-        val networkDataList = stretchingAPI.getStretchingDay(
+        val networkDataList = authAPI.getStretchingDay(
             onetwothreeMemberId, year, month, day
         )
         return getStretchingDayNetworkDataMapper.from(networkDataList)
@@ -99,7 +105,7 @@ class NetworkDataSourceImpl @Inject constructor(
         onetwothree_member_id: Int,
         stretchingType: String
     ): StretchingAuthCount {
-        val networkDataList = stretchingAPI.getStretchingAuthCount(
+        val networkDataList = authAPI.getStretchingAuthCount(
             onetwothree_member_id, stretchingType
         )
         val networkData = networkDataList.data

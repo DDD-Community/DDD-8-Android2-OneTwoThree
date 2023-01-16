@@ -2,6 +2,9 @@ package com.inseoul.onetwothree.di
 
 import android.app.Application
 import com.example.common.Constants.Companion.BASE_URL
+import com.inseoul.network.api.AlarmAPI
+import com.inseoul.network.api.AuthAPI
+import com.inseoul.network.api.MemberAPI
 import com.inseoul.network.api.StretchingAPI
 import dagger.Module
 import dagger.Provides
@@ -56,8 +59,27 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideVaccinationCenterService(retrofit: Retrofit): StretchingAPI {
+    fun provideMemberService(retrofit: Retrofit): MemberAPI {
+        return retrofit.create(MemberAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAlarmService(retrofit: Retrofit): AlarmAPI {
+        return retrofit.create(AlarmAPI::class.java)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideStretchingService(retrofit: Retrofit): StretchingAPI {
         return retrofit.create(StretchingAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthService(retrofit: Retrofit): AuthAPI {
+        return retrofit.create(AuthAPI::class.java)
     }
 
 }
