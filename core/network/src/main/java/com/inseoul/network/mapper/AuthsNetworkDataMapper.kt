@@ -6,7 +6,7 @@ import com.inseoul.network.model.Auths
 import com.inseoul.network.model.GetStretchingDayNetworkResponse
 import javax.inject.Inject
 
-class AuthsNetworkDataMapper @Inject constructor() :
+class AuthsNetworkDataMapper :
     Mapper<Auths, com.inseoul.data.model.Auths> {
     override fun from(input: Auths?): com.inseoul.data.model.Auths {
         return com.inseoul.data.model.Auths(
@@ -23,7 +23,7 @@ class AuthsNetworkDataMapper @Inject constructor() :
     }
 }
 
-class GetStretchingDayNetworkDataMapper @Inject constructor() :
+class GetStretchingDayNetworkDataMapper :
     Mapper<GetStretchingDayNetworkResponse, GetStretchingDayDataResponse> {
     override fun from(input: GetStretchingDayNetworkResponse?): GetStretchingDayDataResponse {
         val authsNetworkDataMapper = AuthsNetworkDataMapper()

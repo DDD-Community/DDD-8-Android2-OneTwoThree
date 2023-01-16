@@ -5,7 +5,7 @@ import com.inseoul.data.model.GetStretchingDataResponse
 import com.inseoul.network.model.GetStretchingNetworkResponse
 import javax.inject.Inject
 
-class GetStretchingNetworkDataMapper @Inject constructor():
+class GetStretchingNetworkDataMapper :
     Mapper<GetStretchingNetworkResponse, GetStretchingDataResponse> {
     override fun from(input: GetStretchingNetworkResponse?): GetStretchingDataResponse {
         return GetStretchingDataResponse(

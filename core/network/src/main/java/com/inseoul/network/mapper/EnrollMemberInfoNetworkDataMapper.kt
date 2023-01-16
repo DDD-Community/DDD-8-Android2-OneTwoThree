@@ -4,7 +4,7 @@ import com.example.common.Mapper
 import com.inseoul.network.model.MemberId
 import javax.inject.Inject
 
-class EnrollMemberInfoNetworkDataMapper @Inject constructor() :
+class EnrollMemberInfoNetworkDataMapper :
     Mapper<MemberId, com.inseoul.data.model.MemberId>{
     override fun from(input: MemberId?): com.inseoul.data.model.MemberId {
         return com.inseoul.data.model.MemberId(

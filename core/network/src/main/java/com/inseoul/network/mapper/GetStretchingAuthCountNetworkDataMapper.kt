@@ -4,7 +4,7 @@ import com.example.common.Mapper
 import com.inseoul.network.model.StretchingAuthCount
 import javax.inject.Inject
 
-class GetStretchingAuthCountNetworkDataMapper @Inject constructor():
+class GetStretchingAuthCountNetworkDataMapper :
     Mapper<StretchingAuthCount, com.inseoul.data.model.StretchingAuthCount> {
     override fun from(input: StretchingAuthCount?): com.inseoul.data.model.StretchingAuthCount {
         return com.inseoul.data.model.StretchingAuthCount(
