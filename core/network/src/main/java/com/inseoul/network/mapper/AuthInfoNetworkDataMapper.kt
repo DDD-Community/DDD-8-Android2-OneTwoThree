@@ -6,17 +6,17 @@ import javax.inject.Inject
 
 class AuthInfoNetworkDataMapper @Inject constructor() :
     Mapper<AuthInfoData, com.inseoul.data.model.AuthInfoData> {
-    override fun from(i: AuthInfoData?): com.inseoul.data.model.AuthInfoData {
+    override fun from(input: AuthInfoData?): com.inseoul.data.model.AuthInfoData {
         return com.inseoul.data.model.AuthInfoData(
-            memberId = i?.memberId,
-            nickname = i?.nickname
+            memberId = input?.memberId,
+            nickname = input?.nickname
         )
     }
 
-    override fun to(o: com.inseoul.data.model.AuthInfoData?): AuthInfoData {
+    override fun to(output: com.inseoul.data.model.AuthInfoData?): AuthInfoData {
         return AuthInfoData(
-            memberId = o?.memberId,
-            nickname = o?.nickname
+            memberId = output?.memberId,
+            nickname = output?.nickname
         )
     }
 }

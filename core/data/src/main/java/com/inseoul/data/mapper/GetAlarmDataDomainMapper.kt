@@ -6,23 +6,23 @@ import javax.inject.Inject
 
 class GetAlarmDataDomainMapper @Inject constructor() :
     Mapper<GetAlarmData, com.inseoul.domain.entity.GetAlarmData> {
-    override fun from(i: GetAlarmData?): com.inseoul.domain.entity.GetAlarmData {
+    override fun from(input: GetAlarmData?): com.inseoul.domain.entity.GetAlarmData {
         return com.inseoul.domain.entity.GetAlarmData(
-            alarmId = i?.alarmId,
-            dayOfWeeks = i?.dayOfWeeks,
-            excludeHoliday = i?.excludeHoliday,
-            count = i?.count,
-            pushTimeList = i?.pushTimeList
+            alarmId = input?.alarmId,
+            dayOfWeeks = input?.dayOfWeeks,
+            excludeHoliday = input?.excludeHoliday,
+            count = input?.count,
+            pushTimeList = input?.pushTimeList
         )
     }
 
-    override fun to(o: com.inseoul.domain.entity.GetAlarmData?): GetAlarmData {
+    override fun to(output: com.inseoul.domain.entity.GetAlarmData?): GetAlarmData {
         return GetAlarmData(
-            alarmId = o?.alarmId,
-            dayOfWeeks = o?.dayOfWeeks,
-            excludeHoliday = o?.excludeHoliday,
-            count = o?.count,
-            pushTimeList = o?.pushTimeList
+            alarmId = output?.alarmId,
+            dayOfWeeks = output?.dayOfWeeks,
+            excludeHoliday = output?.excludeHoliday,
+            count = output?.count,
+            pushTimeList = output?.pushTimeList
         )
     }
 }

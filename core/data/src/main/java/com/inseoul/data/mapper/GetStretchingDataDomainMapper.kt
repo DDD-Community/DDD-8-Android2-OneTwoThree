@@ -7,15 +7,15 @@ import javax.inject.Inject
 
 class GetStretchingDataDomainMapper @Inject constructor() :
     Mapper<GetStretchingDataResponse, GetStretchingEntityResponse> {
-    override fun from(i: GetStretchingDataResponse?): GetStretchingEntityResponse {
+    override fun from(input: GetStretchingDataResponse?): GetStretchingEntityResponse {
         return GetStretchingEntityResponse(
-            stretchings = i?.stretchings
+            stretchings = input?.stretchings
         )
     }
 
-    override fun to(o: GetStretchingEntityResponse?): GetStretchingDataResponse {
+    override fun to(output: GetStretchingEntityResponse?): GetStretchingDataResponse {
         return GetStretchingDataResponse(
-            stretchings = o?.stretchings
+            stretchings = output?.stretchings
         )
     }
 }

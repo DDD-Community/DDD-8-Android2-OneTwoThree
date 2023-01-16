@@ -6,15 +6,15 @@ import javax.inject.Inject
 
 class GetStretchingAuthCountDataDomainMapper @Inject constructor() :
     Mapper<StretchingAuthCount, com.inseoul.domain.entity.StretchingAuthCount> {
-    override fun from(i: StretchingAuthCount?): com.inseoul.domain.entity.StretchingAuthCount {
+    override fun from(input: StretchingAuthCount?): com.inseoul.domain.entity.StretchingAuthCount {
         return com.inseoul.domain.entity.StretchingAuthCount(
-            stretchingAuthCount = i?.stretchingAuthCount
+            stretchingAuthCount = input?.stretchingAuthCount
         )
     }
 
-    override fun to(o: com.inseoul.domain.entity.StretchingAuthCount?): StretchingAuthCount {
+    override fun to(output: com.inseoul.domain.entity.StretchingAuthCount?): StretchingAuthCount {
         return StretchingAuthCount(
-            stretchingAuthCount = o?.stretchingAuthCount
+            stretchingAuthCount = output?.stretchingAuthCount
         )
     }
 }

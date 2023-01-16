@@ -7,23 +7,23 @@ import javax.inject.Inject
 // list 단위 list 내부 단위 확인 필요ㅕ
 class GetAlarmNetworkDataMapper @Inject constructor() :
     Mapper<GetAlarmData, com.inseoul.data.model.GetAlarmData> {
-    override fun from(i: GetAlarmData?): com.inseoul.data.model.GetAlarmData {
+    override fun from(input: GetAlarmData?): com.inseoul.data.model.GetAlarmData {
         return com.inseoul.data.model.GetAlarmData(
-            alarmId = i?.alarmId,
-            dayOfWeeks = i?.dayOfWeeks,
-            excludeHoliday = i?.excludeHoliday,
-            count = i?.count,
-            pushTimeList = i?.pushTimeList
+            alarmId = input?.alarmId,
+            dayOfWeeks = input?.dayOfWeeks,
+            excludeHoliday = input?.excludeHoliday,
+            count = input?.count,
+            pushTimeList = input?.pushTimeList
         )
     }
 
-    override fun to(o: com.inseoul.data.model.GetAlarmData?): GetAlarmData {
+    override fun to(output: com.inseoul.data.model.GetAlarmData?): GetAlarmData {
         return GetAlarmData(
-            alarmId = o?.alarmId,
-            dayOfWeeks = o?.dayOfWeeks,
-            excludeHoliday = o?.excludeHoliday,
-            count = o?.count,
-            pushTimeList = o?.pushTimeList
+            alarmId = output?.alarmId,
+            dayOfWeeks = output?.dayOfWeeks,
+            excludeHoliday = output?.excludeHoliday,
+            count = output?.count,
+            pushTimeList = output?.pushTimeList
         )
     }
 

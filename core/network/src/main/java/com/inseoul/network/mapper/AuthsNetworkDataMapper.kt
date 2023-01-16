@@ -8,37 +8,37 @@ import javax.inject.Inject
 
 class AuthsNetworkDataMapper @Inject constructor() :
     Mapper<Auths, com.inseoul.data.model.Auths> {
-    override fun from(i: Auths?): com.inseoul.data.model.Auths {
+    override fun from(input: Auths?): com.inseoul.data.model.Auths {
         return com.inseoul.data.model.Auths(
-            time = i?.time,
-            stretchingType = i?.stretchingType
+            time = input?.time,
+            stretchingType = input?.stretchingType
         )
     }
 
-    override fun to(o: com.inseoul.data.model.Auths?): Auths {
+    override fun to(output: com.inseoul.data.model.Auths?): Auths {
         return Auths(
-            time = o?.time,
-            stretchingType = o?.stretchingType
+            time = output?.time,
+            stretchingType = output?.stretchingType
         )
     }
 }
 
 class GetStretchingDayNetworkDataMapper @Inject constructor() :
     Mapper<GetStretchingDayNetworkResponse, GetStretchingDayDataResponse> {
-    override fun from(i: GetStretchingDayNetworkResponse?): GetStretchingDayDataResponse {
+    override fun from(input: GetStretchingDayNetworkResponse?): GetStretchingDayDataResponse {
         val authsNetworkDataMapper = AuthsNetworkDataMapper()
         val authsList = listOf<Auths>()
         return GetStretchingDayDataResponse(
-            authCount = i?.authCount,
+            authCount = input?.authCount,
             auths = authsNetworkDataMapper.fromList(authsList)
         )
     }
 
-    override fun to(o: GetStretchingDayDataResponse?): GetStretchingDayNetworkResponse {
+    override fun to(output: GetStretchingDayDataResponse?): GetStretchingDayNetworkResponse {
         val authsNetworkDataMapper = AuthsNetworkDataMapper()
         val authsList = listOf<com.inseoul.data.model.Auths>()
         return GetStretchingDayNetworkResponse(
-            authCount = o?.authCount,
+            authCount = output?.authCount,
             auths = authsNetworkDataMapper.toList(authsList)
         )
     }

@@ -6,15 +6,15 @@ import javax.inject.Inject
 
 class GetStretchingAuthCountNetworkDataMapper @Inject constructor():
     Mapper<StretchingAuthCount, com.inseoul.data.model.StretchingAuthCount> {
-    override fun from(i: StretchingAuthCount?): com.inseoul.data.model.StretchingAuthCount {
+    override fun from(input: StretchingAuthCount?): com.inseoul.data.model.StretchingAuthCount {
         return com.inseoul.data.model.StretchingAuthCount(
-            stretchingAuthCount = i?.stretchingAuthCount
+            stretchingAuthCount = input?.stretchingAuthCount
         )
     }
 
-    override fun to(o: com.inseoul.data.model.StretchingAuthCount?): StretchingAuthCount {
+    override fun to(output: com.inseoul.data.model.StretchingAuthCount?): StretchingAuthCount {
         return StretchingAuthCount(
-            stretchingAuthCount = o?.stretchingAuthCount
+            stretchingAuthCount = output?.stretchingAuthCount
         )
     }
 

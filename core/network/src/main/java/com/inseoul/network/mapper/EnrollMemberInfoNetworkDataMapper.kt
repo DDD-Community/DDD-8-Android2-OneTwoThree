@@ -6,15 +6,15 @@ import javax.inject.Inject
 
 class EnrollMemberInfoNetworkDataMapper @Inject constructor() :
     Mapper<MemberId, com.inseoul.data.model.MemberId>{
-    override fun from(i: MemberId?): com.inseoul.data.model.MemberId {
+    override fun from(input: MemberId?): com.inseoul.data.model.MemberId {
         return com.inseoul.data.model.MemberId(
-            memberId = i?.memberId
+            memberId = input?.memberId
         )
     }
 
-    override fun to(o: com.inseoul.data.model.MemberId?): MemberId {
+    override fun to(output: com.inseoul.data.model.MemberId?): MemberId {
         return MemberId(
-            memberId = o?.memberId
+            memberId = output?.memberId
         )
     }
 

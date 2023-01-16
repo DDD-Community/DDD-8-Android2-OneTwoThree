@@ -1,16 +1,16 @@
 package com.example.common
 
-interface Mapper<I, O> {
+interface Mapper<INPUT, OUTPUT> {
 
-    fun from(i: I?): O
+    fun from(input: INPUT?): OUTPUT
 
-    fun to(o: O?): I
+    fun to(output: OUTPUT?): INPUT
 
-    fun fromList(list : List<I>?) : List<O> {
+    fun fromList(list : List<INPUT>?) : List<OUTPUT> {
         return list?.mapNotNull { from(it) } ?: listOf()
     }
 
-    fun toList(list : List<O>?) : List<I> {
+    fun toList(list : List<OUTPUT>?) : List<INPUT> {
         return list?.mapNotNull { to(it) } ?: listOf()
     }
 

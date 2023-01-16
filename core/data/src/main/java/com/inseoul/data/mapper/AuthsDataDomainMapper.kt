@@ -8,17 +8,17 @@ import javax.inject.Inject
 
 class AuthsDataDomainMapper @Inject constructor() :
     Mapper<Auths, com.inseoul.domain.entity.Auths> {
-    override fun from(i: Auths?): com.inseoul.domain.entity.Auths {
+    override fun from(input: Auths?): com.inseoul.domain.entity.Auths {
         return com.inseoul.domain.entity.Auths(
-            time = i?.time,
-            stretchingType = i?.stretchingType
+            time = input?.time,
+            stretchingType = input?.stretchingType
         )
     }
 
-    override fun to(o: com.inseoul.domain.entity.Auths?): Auths {
+    override fun to(output: com.inseoul.domain.entity.Auths?): Auths {
         return Auths(
-            time = o?.time,
-            stretchingType = o?.stretchingType
+            time = output?.time,
+            stretchingType = output?.stretchingType
         )
     }
 }
@@ -26,20 +26,20 @@ class AuthsDataDomainMapper @Inject constructor() :
 
 class GetStretchingDayDataDomainMapper @Inject constructor() :
     Mapper<GetStretchingDayDataResponse, GetStretchingDayEntityResponse> {
-    override fun from(i: GetStretchingDayDataResponse?): GetStretchingDayEntityResponse {
+    override fun from(input: GetStretchingDayDataResponse?): GetStretchingDayEntityResponse {
         val authsDataDomainMapper = AuthsDataDomainMapper()
         val authsList = listOf<Auths>()
         return GetStretchingDayEntityResponse(
-            authCount = i?.authCount,
+            authCount = input?.authCount,
             auths = authsDataDomainMapper.fromList(authsList)
         )
     }
 
-    override fun to(o: GetStretchingDayEntityResponse?): GetStretchingDayDataResponse {
+    override fun to(output: GetStretchingDayEntityResponse?): GetStretchingDayDataResponse {
         val authsDataDomainMapper = AuthsDataDomainMapper()
         val authsList = listOf<com.inseoul.domain.entity.Auths>()
         return GetStretchingDayDataResponse(
-            authCount = o?.authCount,
+            authCount = output?.authCount,
             auths = authsDataDomainMapper.toList(authsList)
         )
     }
