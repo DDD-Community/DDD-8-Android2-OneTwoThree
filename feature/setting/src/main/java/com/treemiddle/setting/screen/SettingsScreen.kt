@@ -2,6 +2,7 @@ package com.treemiddle.setting.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Surface
@@ -19,19 +20,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.inseoul.designsystem.toolbar.InseoulToolbar
 
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(
+    navigateToCatName: () -> Unit,
+    navigateToNotification: () -> Unit
+) {
     Surface {
         Column(modifier = Modifier.fillMaxSize()) {
             SettingsToolbar()
             SettingsMenu(
                 menuDrawableImageVector = Icons.Default.AccountCircle,
-                menuTitle = "고양이 이름 변경하기"
+                menuTitle = "고양이 이름 변경하기",
+                navigate = navigateToCatName
             )
             SettingsMenu(
                 menuDrawableImageVector = Icons.Default.Menu,
-                menuTitle = "알림"
+                menuTitle = "알림",
+                navigate = navigateToNotification
             )
             Divider(
                 modifier = Modifier
@@ -48,14 +55,10 @@ fun SettingsScreen() {
 // NOTE : InseoulToolbar를 사용해야 합니다.
 @Composable
 fun SettingsToolbar() {
-    Text(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.Red)
-            .padding(bottom = 18.dp)
-            .height(56.dp),
-        text = "툴바가 들어가야합니다.",
-        textAlign = TextAlign.Center
+    InseoulToolbar(
+        modifier = Modifier.fillMaxWidth(),
+        title = "설정",
+        onImageClicked = {}
     )
 }
 
@@ -63,12 +66,14 @@ fun SettingsToolbar() {
 fun SettingsMenu(
     modifier: Modifier = Modifier,
     menuDrawableImageVector: ImageVector, // NOTE : 임시로 ImageVector로 설정합니다.
-    menuTitle: String
+    menuTitle: String,
+    navigate: () -> Unit
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(58.dp),
+            .height(58.dp)
+            .clickable { navigate() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(

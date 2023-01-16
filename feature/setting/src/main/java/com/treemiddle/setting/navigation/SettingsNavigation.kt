@@ -6,8 +6,11 @@ import com.treemiddle.setting.SettingsRoute
 
 const val settingsRoute = "settings_route"
 
-fun NavGraphBuilder.onSettingsScreen() {
+fun NavGraphBuilder.onSettingsScreen(
+    navigateToCatName: () -> Unit,
+    navigateToNotification: () -> Unit
+) {
     composable(route = settingsRoute) {
-        SettingsRoute()
+        SettingsRoute(navigateToCatName, navigateToNotification)
     }
 }
