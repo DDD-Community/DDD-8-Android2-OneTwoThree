@@ -21,7 +21,11 @@ class CalendarViewModel @Inject() constructor() : ViewModel() {
     val calendarState: List<DayState>
         get() = _calendarState
 
+    private var currentYear = EMPTY_STRING
+    private var currentCalendar = EMPTY_STRING
+
     init {
+        setCurrentCalendar()
         initalized()
     }
 
@@ -72,13 +76,14 @@ class CalendarViewModel @Inject() constructor() : ViewModel() {
         }
 
         val currentDays = calendarHelper.createCalendar()
+        val year = calendarHelper.getYear()
         val firstWeekEmptyCount = getFirstWeekDayEmptyCount()
         val lastWeekEmptyCount = getLastWeekDayEmptyCount()
         val daysOfPreviousMonth = getLastDaysOfPreviousMonth(firstWeekEmptyCount)
         val daysOfNextMonth = getFirstDaysOfNextMonth(lastWeekEmptyCount)
 
         addDaysIfNeeded(daysOfPreviousMonth)
-        addDaysIfNeeded(currentDays, true)
+        addDaysIfNeeded(currentDays, isNeeded = true)
         addDaysIfNeeded(daysOfNextMonth)
 
         loadCalendarUi()
@@ -96,14 +101,23 @@ class CalendarViewModel @Inject() constructor() : ViewModel() {
 
     private fun getCalendarToolbarTitle(): String = calendarHelper.getCurrentYearAndMonth()
 
-    private fun addDaysIfNeeded(dayList: List<Int>, isNeeded: Boolean = false) {
+    private fun addDaysIfNeeded(
+        dayList: List<Int>,
+        year: String = calendarHelper.getYear().toString(),
+        month: String = calendarHelper.getMonth().toString(),
+        isNeeded: Boolean = false
+    ) {
         if (dayList.isEmpty()) return
 
         dayList.forEach {
             days.add(
                 DayState(
+                    year = year,
+                    month = month,
                     day = it.toString(),
-                    isActivated = isNeeded
+                    isActivated = isNeeded,
+                    stretchCount = (0..7).random(),
+                    currentCalendar = currentCalendar
                 )
             )
         }
@@ -125,5 +139,12 @@ class CalendarViewModel @Inject() constructor() : ViewModel() {
         viewModelScope.launch {
             calendarTitle.emit(getCalendarToolbarTitle())
         }
+    }
+
+    private fun setCurrentCalendar() {
+        val calendar = calendarHelper.getCurrentCalendar()
+
+        currentYear = calendar.split(" ").first()
+        currentCalendar = calendar
     }
 }

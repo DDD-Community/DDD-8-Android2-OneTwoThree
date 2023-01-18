@@ -16,14 +16,15 @@ class CalendarHelper {
     fun getMonth(): Int = calendar[Calendar.MONTH].plus(other = 1)
 
     fun nextMonth() {
-        var currentMonth = getMonth()
-        if (currentMonth >= 12) {
-            currentMonth = 0
+        val currentMonth = getMonth()
+        if (currentMonth in 0..11) {
+            setMonth(currentMonth + 1)
+            setDay()
+        } else {
             nextYear()
+            setMonth(1)
             setDay()
         }
-
-        calendar.set(Calendar.MONTH, currentMonth)
     }
 
     fun previousMonth() {
@@ -34,7 +35,7 @@ class CalendarHelper {
             setDay()
         }
 
-        calendar.set(Calendar.MONTH, currentMonth.minus(1))
+         calendar.set(Calendar.MONTH, currentMonth.minus(1))
     }
 
     fun setMonth(month: Int) = calendar.set(Calendar.MONTH, month.minus(1))
