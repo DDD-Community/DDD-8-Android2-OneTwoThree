@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CalendarViewModel @Inject() constructor() : ViewModel() {
+class CalendarViewModel @Inject constructor() : ViewModel() {
     var calendarTitle = MutableStateFlow(EMPTY_STRING)
         private set
 

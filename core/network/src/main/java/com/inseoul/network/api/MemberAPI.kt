@@ -6,9 +6,7 @@ import retrofit2.http.*
 
 interface MemberAPI {
 
-    // 회원정보 등록 API
-    @Headers("Content-Type: application/json")
-    @POST("/api/member")
+    @POST("api/member")
     @FormUrlEncoded
     suspend fun enrollMemberInfo(
         @Field("nickname") nickname: String,

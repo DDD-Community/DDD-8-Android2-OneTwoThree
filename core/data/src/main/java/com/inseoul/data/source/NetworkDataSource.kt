@@ -11,11 +11,6 @@ interface NetworkDataSource {
         firebaseToken: String
     ): MemberId
 
-    // 회원정보 조회 API
-    suspend fun getMemberInfo(
-        firebase_token: String
-    ): AuthInfoData
-
     // 닉네임 변경 API
     suspend fun changeNickname(
         onetwothreeMemberId: Int,

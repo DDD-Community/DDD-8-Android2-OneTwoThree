@@ -5,12 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    // 회원정보 등록 API
-    suspend fun enrollMemberInfo(
-        nickname: String,
-        firebaseToken: String
-    ): Flow<MemberId>
-
     // 회원정보 조회 API
     suspend fun getMemberInfo(
         firebase_token: String

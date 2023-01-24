@@ -14,7 +14,6 @@ class NetworkDataSourceImpl @Inject constructor(
     private val alarmAPI: AlarmAPI,
     private val stretchingAPI: StretchingAPI,
     private val authAPI: AuthAPI,
-    private val authInfoNetworkDataMapper: AuthInfoNetworkDataMapper,
     private val enrollMemberInfoNetworkDataMapper: EnrollMemberInfoNetworkDataMapper,
     private val getAlarmNetworkDataMapper: GetAlarmNetworkDataMapper,
     private val getStretchingAuthCountNetworkDataMapper: GetStretchingAuthCountNetworkDataMapper,
@@ -32,12 +31,6 @@ class NetworkDataSourceImpl @Inject constructor(
         )
         val networkData = networkDataList.data
         return enrollMemberInfoNetworkDataMapper.from(networkData)
-    }
-
-    override suspend fun getMemberInfo(firebase_token: String): AuthInfoData {
-        val networkDataList = memberAPI.getMemberInfo(firebase_token)
-        val networkData = networkDataList.data
-        return authInfoNetworkDataMapper.from(networkData)
     }
 
     override suspend fun changeNickname(onetwothreeMemberId: Int, nickname: String) {

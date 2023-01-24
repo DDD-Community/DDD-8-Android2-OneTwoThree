@@ -3,6 +3,7 @@ package com.treemiddle.catname
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewModelScope
 import com.treemiddle.catname.screen.CatNameScreen
 
 @Composable

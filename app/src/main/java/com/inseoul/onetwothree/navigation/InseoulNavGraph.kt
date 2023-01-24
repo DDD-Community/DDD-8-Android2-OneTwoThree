@@ -21,8 +21,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         onBoardingScreen {
-            // NOTE : 임시로 캘린더 화면으로 이동합니다.
-            navController.navigate(calendarRoute)
+            navController.navigate(catNameRoute)
         }
         onCalendarRoute()
         onSettingsScreen(
