@@ -17,7 +17,12 @@ import com.inseoul.designsystem.theme.gray900
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 
 @Composable
-fun CatNameScreen(navigate: () -> Unit) {
+fun CatNameScreen(
+    navigate: () -> Unit,
+    catName: String,
+    onCatNameChange: (String) -> Unit,
+    onClickConfirm: () -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
@@ -41,7 +46,9 @@ fun CatNameScreen(navigate: () -> Unit) {
             InseoulTextField(
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp),
                 label = "고양이 이름",
-                placeholder = "이름을 적어주세요"
+                placeholder = "이름을 적어주세요",
+                text = catName,
+                onValueChange = onCatNameChange
             )
             Text(
                 modifier = Modifier.padding(start = 16.dp),
@@ -49,7 +56,7 @@ fun CatNameScreen(navigate: () -> Unit) {
             )
         }
 
-        CatNameButton { navigate() }
+        CatNameButton { onClickConfirm() }
     }
 }
 

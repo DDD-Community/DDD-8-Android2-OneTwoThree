@@ -18,9 +18,19 @@ class PrefsHelperImpl @Inject constructor(applicationContext: Context) : PrefsHe
             }
         }
 
+    override var userToken: String
+        get() = prefs.getString(USER_TOKEN, Constants.EMPTY_STRING) ?: Constants.EMPTY_STRING
+        @Synchronized
+        set(value) {
+            prefs.edit {
+                putString(USER_TOKEN, value)
+            }
+        }
+
     companion object {
         const val FILE_NAME = "one_two_three"
 
         private const val MEMBER_ID = "member_id"
+        private const val USER_TOKEN = "user_token"
     }
 }

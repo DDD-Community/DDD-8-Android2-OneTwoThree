@@ -6,6 +6,7 @@ import com.inseoul.data.source.NetworkDataSource
 import com.inseoul.data.source.NetworkToLocalBridge
 import com.inseoul.data.source.NetworkToLocalBridgeImpl
 import com.inseoul.data.source.UserInfoDataSource
+import com.inseoul.data.source.local.PrefsHelper
 import com.inseoul.data.source.local.UserInfoLocalDataSource
 import com.inseoul.domain.repository.Repository
 import com.inseoul.domain.repository.UserInfoRepository
@@ -44,8 +45,9 @@ object NewRepositoryModule {
     @Provides
     @Singleton
     fun provideUserInfoRepository(
-        userInfoDataSource: UserInfoDataSource
-    ): UserInfoRepository = UserInfoRepositoryImpl(userInfoDataSource)
+        userInfoDataSource: UserInfoDataSource,
+        prefsHelper: PrefsHelper
+    ): UserInfoRepository = UserInfoRepositoryImpl(userInfoDataSource, prefsHelper)
 
     @Provides
     @Singleton
