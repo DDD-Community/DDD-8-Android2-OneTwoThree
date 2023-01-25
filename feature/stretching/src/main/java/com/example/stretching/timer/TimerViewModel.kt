@@ -1,9 +1,12 @@
-package com.example.stretching
+package com.example.stretching.timer
 
 import android.os.Build
 import android.os.CountDownTimer
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import com.example.stretching.ButtonState
+import com.example.stretching.Status
+import com.example.stretching.TimerModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

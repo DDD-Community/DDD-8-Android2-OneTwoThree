@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.common.Constants
+import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 
