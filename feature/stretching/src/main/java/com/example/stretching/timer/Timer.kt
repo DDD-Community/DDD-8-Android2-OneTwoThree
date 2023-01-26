@@ -41,7 +41,37 @@ fun TimerScreen(viewModel: TimerViewModel) {
 
 @Composable
 fun StretchingTimer(time: String, remainingTime: Long) {
-    Row(
+    Column {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = time,
+                fontSize = 60.sp,
+                color = Color.Black,
+                style = Typography.h1
+            )
+        }
+        Text(text = "시간에 따른 텍스트 변화 테스트")
+        if (changeTime1(remainingTime)) {
+            Text(text = "1 번")
+        } else if (changeTime2(remainingTime)) {
+            Text(text = "2번")
+        } else if (changeTime3(remainingTime)) {
+            Text(text = "3번")
+        }
+        
+
+
+    }
+    if (isTimeFinish(remainingTime)) {
+        // 화면 이동
+    }
+    /*Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
@@ -57,7 +87,7 @@ fun StretchingTimer(time: String, remainingTime: Long) {
     }
     if (isTimeFinish(remainingTime)) {
         // 화면 이동
-    }
+    }*/
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -116,6 +146,9 @@ fun Duration.format(): String {
 }
 
 private fun isTimeFinish(time: Long) = time < 1000L
+private fun changeTime1(time: Long) = time in 20001..24999
+private fun changeTime2(time: Long) = time < 20000L && 15000L<time
+private fun changeTime3(time: Long) = time < 15000L
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
