@@ -8,9 +8,8 @@ const val neckupStretchingRoute = "neckup_stretching_route"
 
 fun NavGraphBuilder.neckupStretchingScreen(
     navigateToFinish: () -> Unit,
-    navigateToList: () -> Unit
 ) {
     composable(route = neckupStretchingRoute) {
-        NeckupStretchingRoute (navigateToFinish, navigateToList)
+        NeckupStretchingRoute (navigateToFinish, )
     }
 }

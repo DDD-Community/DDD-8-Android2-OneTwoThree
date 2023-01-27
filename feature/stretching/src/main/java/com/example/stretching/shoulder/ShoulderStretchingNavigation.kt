@@ -8,9 +8,8 @@ const val shoulderStretchingRoute = "shoulder_stretching_route"
 
 fun NavGraphBuilder.shoulderStretchingScreen(
     navigateToFinish: () -> Unit,
-    navigateToList: () -> Unit
 ) {
     composable(route = shoulderStretchingRoute) {
-        ShoulderStretchingRoute (navigateToFinish, navigateToList)
+        ShoulderStretchingRoute (navigateToFinish, )
     }
 }

@@ -11,7 +11,6 @@ import com.inseoul.designsystem.theme.bg
 @Composable
 fun WristStretchingScreen(
     navigateToFinish: () -> Unit,
-    navigateToList: () -> Unit
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),

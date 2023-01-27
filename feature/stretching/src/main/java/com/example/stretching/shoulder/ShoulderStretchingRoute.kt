@@ -5,10 +5,8 @@ import androidx.compose.runtime.Composable
 @Composable
 fun ShoulderStretchingRoute(
     navigateToFinish: () -> Unit,
-    navigateToList: () -> Unit
 ) {
     ShoulderStretchingScreen(
         navigateToFinish = navigateToFinish,
-        navigateToList = navigateToList
     )
 }

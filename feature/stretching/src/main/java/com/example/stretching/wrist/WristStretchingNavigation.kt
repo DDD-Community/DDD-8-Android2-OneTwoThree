@@ -7,9 +7,8 @@ const val wristStretchingRoute = "wrist_stretching_route"
 
 fun NavGraphBuilder.wristStretchingScreen(
     navigateToFinish: () -> Unit,
-    navigateToList: () -> Unit
 ) {
     composable(route = wristStretchingRoute) {
-        WristStretchingRoute (navigateToFinish, navigateToList)
+        WristStretchingRoute (navigateToFinish, )
     }
 }

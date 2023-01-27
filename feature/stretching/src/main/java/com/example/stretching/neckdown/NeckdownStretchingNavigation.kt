@@ -7,9 +7,8 @@ const val neckdownStretchingRoute = "neckdown_stretching_route"
 
 fun NavGraphBuilder.neckdownStretchingScreen(
     navigateToFinish: () -> Unit,
-    navigateToList: () -> Unit
 ) {
     composable(route = neckdownStretchingRoute) {
-        NeckdownStretchingRoute (navigateToFinish, navigateToList)
+        NeckdownStretchingRoute (navigateToFinish)
     }
 }

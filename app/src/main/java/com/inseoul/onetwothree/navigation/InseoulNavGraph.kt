@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.stretching.arm.ArmStretchingScreen
 import com.example.stretching.arm.armStretchingRoute
 import com.example.stretching.arm.armStretchingScreen
+import com.example.stretching.finish.stretchingFinishRoute
 import com.inseoul.onboarding.navigation.onBoardingRoute
 import com.inseoul.onboarding.navigation.onBoardingScreen
 import com.treemiddle.calendar.screen.navigation.calendarRoute
@@ -46,10 +47,8 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
         armStretchingScreen(
             navigateToFinish = {
                 // 스트레칭 완료 화면으로 이동
+                navController.navigate(stretchingFinishRoute)
             },
-            navigateToList = {
-                // 스트레칭 리스트 화면으로 이동
-            }
         )
 
 

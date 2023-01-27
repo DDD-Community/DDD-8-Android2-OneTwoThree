@@ -7,9 +7,8 @@ const val armStretchingRoute = "arm_stretching_route"
 
 fun NavGraphBuilder.armStretchingScreen(
     navigateToFinish: () -> Unit,
-    navigateToList: () -> Unit
 ) {
     composable(route = armStretchingRoute) {
-        ArmStretchingRoute (navigateToFinish, navigateToList)
+        ArmStretchingRoute (navigateToFinish)
     }
 }
