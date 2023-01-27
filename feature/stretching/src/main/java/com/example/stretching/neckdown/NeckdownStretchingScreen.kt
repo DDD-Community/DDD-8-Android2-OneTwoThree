@@ -6,7 +6,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import com.inseoul.designsystem.theme.bg
 
 @Composable
 fun NeckdownStretchingScreen(
@@ -14,7 +14,7 @@ fun NeckdownStretchingScreen(
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.Gray
+        color = bg
     ) {
         Column {
             Text(text = "목 접기 스트레칭 화면")

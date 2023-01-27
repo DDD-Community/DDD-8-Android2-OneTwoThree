@@ -4,6 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.stretching.arm.ArmStretchingScreen
+import com.example.stretching.arm.armStretchingRoute
+import com.example.stretching.arm.armStretchingScreen
 import com.inseoul.onboarding.navigation.onBoardingRoute
 import com.inseoul.onboarding.navigation.onBoardingScreen
 import com.treemiddle.calendar.screen.navigation.calendarRoute
@@ -37,6 +40,16 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
         onCatNameScreen {
             // NOTE : 닉네임을 입력하면 다음 화면으로 이동해야 합니다. (미정)
         }
+
+
+        // 즐거운 스트레칭~!
+        armStretchingScreen(
+            navigateToFinish = {
+                // 스트레칭 완료 화면으로 이동
+            }
+        )
+
+
     }
 }
 
