@@ -11,6 +11,7 @@ import com.inseoul.designsystem.theme.bg
 @Composable
 fun ShoulderStretchingScreen(
     navigateToFinish: () -> Unit,
+    navigateToList: () -> Unit
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),

@@ -11,6 +11,7 @@ import com.inseoul.designsystem.theme.bg
 @Composable
 fun NeckupStretchingScreen(
     navigateToFinish: () -> Unit,
+    navigateToList: () -> Unit
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),

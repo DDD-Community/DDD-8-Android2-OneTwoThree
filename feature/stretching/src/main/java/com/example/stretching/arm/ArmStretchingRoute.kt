@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun ArmStretchingRoute(
-    navigateToFinish: () -> Unit
+    navigateToFinish: () -> Unit,
+    navigateToList: () -> Unit
 ) {
     ArmStretchingScreen(
-        navigateToFinish = navigateToFinish
+        navigateToFinish = navigateToFinish,
+        navigateToList = navigateToList
     )
 }

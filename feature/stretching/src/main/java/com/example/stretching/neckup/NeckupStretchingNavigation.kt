@@ -7,9 +7,10 @@ import com.example.stretching.shoulder.ShoulderStretchingRoute
 const val neckupStretchingRoute = "neckup_stretching_route"
 
 fun NavGraphBuilder.neckupStretchingScreen(
-    navigateToFinish: () -> Unit
+    navigateToFinish: () -> Unit,
+    navigateToList: () -> Unit
 ) {
     composable(route = neckupStretchingRoute) {
-        NeckupStretchingRoute (navigateToFinish)
+        NeckupStretchingRoute (navigateToFinish, navigateToList)
     }
 }

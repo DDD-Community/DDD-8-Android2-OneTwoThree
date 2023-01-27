@@ -6,9 +6,10 @@ import androidx.navigation.compose.composable
 const val wristStretchingRoute = "wrist_stretching_route"
 
 fun NavGraphBuilder.wristStretchingScreen(
-    navigateToFinish: () -> Unit
+    navigateToFinish: () -> Unit,
+    navigateToList: () -> Unit
 ) {
     composable(route = wristStretchingRoute) {
-        WristStretchingRoute (navigateToFinish)
+        WristStretchingRoute (navigateToFinish, navigateToList)
     }
 }

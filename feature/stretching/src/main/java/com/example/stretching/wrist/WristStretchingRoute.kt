@@ -5,8 +5,10 @@ import androidx.compose.runtime.Composable
 @Composable
 fun WristStretchingRoute(
     navigateToFinish: () -> Unit,
+    navigateToList: () -> Unit
 ) {
     WristStretchingScreen(
-        navigateToFinish = navigateToFinish
+        navigateToFinish = navigateToFinish,
+        navigateToList = navigateToList
     )
 }

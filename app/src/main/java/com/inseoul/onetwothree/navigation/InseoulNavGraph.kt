@@ -46,6 +46,9 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
         armStretchingScreen(
             navigateToFinish = {
                 // 스트레칭 완료 화면으로 이동
+            },
+            navigateToList = {
+                // 스트레칭 리스트 화면으로 이동
             }
         )
 

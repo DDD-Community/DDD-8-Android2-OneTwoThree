@@ -7,9 +7,10 @@ import com.example.stretching.wrist.WristStretchingRoute
 const val shoulderStretchingRoute = "shoulder_stretching_route"
 
 fun NavGraphBuilder.shoulderStretchingScreen(
-    navigateToFinish: () -> Unit
+    navigateToFinish: () -> Unit,
+    navigateToList: () -> Unit
 ) {
     composable(route = shoulderStretchingRoute) {
-        ShoulderStretchingRoute (navigateToFinish)
+        ShoulderStretchingRoute (navigateToFinish, navigateToList)
     }
 }

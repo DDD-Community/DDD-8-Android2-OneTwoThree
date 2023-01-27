@@ -6,9 +6,10 @@ import androidx.navigation.compose.composable
 const val neckdownStretchingRoute = "neckdown_stretching_route"
 
 fun NavGraphBuilder.neckdownStretchingScreen(
-    navigateToFinish: () -> Unit
+    navigateToFinish: () -> Unit,
+    navigateToList: () -> Unit
 ) {
     composable(route = neckdownStretchingRoute) {
-        NeckdownStretchingRoute (navigateToFinish)
+        NeckdownStretchingRoute (navigateToFinish, navigateToList)
     }
 }
