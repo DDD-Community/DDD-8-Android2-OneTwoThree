@@ -11,6 +11,8 @@ import com.example.common.Constants
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 
+// TODO 사물 이미지 리스트로 넣은 후, 랜덤하게 보여주기 (중복x) ~ Math.random
+
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun StretchingFinishScreen() {

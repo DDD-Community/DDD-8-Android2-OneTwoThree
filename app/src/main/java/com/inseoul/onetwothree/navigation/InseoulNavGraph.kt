@@ -8,6 +8,9 @@ import com.example.stretching.arm.ArmStretchingScreen
 import com.example.stretching.arm.armStretchingRoute
 import com.example.stretching.arm.armStretchingScreen
 import com.example.stretching.finish.stretchingFinishRoute
+import com.example.stretching.finish.stretchingFinishScreen
+import com.example.stretching.shoulder.shoulderStretchingRoute
+import com.example.stretching.shoulder.shoulderStretchingScreen
 import com.inseoul.onboarding.navigation.onBoardingRoute
 import com.inseoul.onboarding.navigation.onBoardingScreen
 import com.treemiddle.calendar.screen.navigation.calendarRoute
@@ -51,7 +54,13 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
             },
         )
 
-
+        shoulderStretchingScreen(
+            navigateToFinish = {
+                navController.navigate(armStretchingRoute)
+            }
+        )
+        stretchingFinishScreen(
+        )
     }
 }
 

@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.R
+import androidx.compose.material.Button
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.*
+import com.example.stretching.ButtonState
 import com.example.stretching.TimerModel
 import com.example.stretching.TimerScreen
 import com.example.stretching.format
@@ -23,6 +25,9 @@ import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.theme.bg
 import com.inseoul.onetwothree.ui.theme.Typography
 import java.time.Duration
+
+// TODO 프리뷰에서는 텍스트가 다 나오지만, 실기기에서는 텍스트가 안 나온다
+// TODO 구조 문제 해결 / 코드 정리
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -36,24 +41,36 @@ fun ShoulderStretchingScreen(
         modifier = Modifier.fillMaxSize(),
         color = bg
     ) {
-        Column {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
             StretchingTimer(timer.timeDuration.format(), timer.remainingTime, navigateToFinish)
-            LottieAnimation()
+            Box(
+                modifier = Modifier
+                    .height(120.dp)
+                    .width(120.dp),
+            ) {
+                LottieAnimation()
+            }
         }
     }
 }
 
 @Composable
 fun LottieAnimation() {
-    val composition by rememberLottieComposition(spec =
-    LottieCompositionSpec.RawRes(com.inseoul.designsystem.R.raw.shoulder_1),
+    val composition by rememberLottieComposition(
+        spec = LottieCompositionSpec.RawRes(
+            com.inseoul.designsystem.R.raw.shoulder_1
+        ),
     )
-    val progress by animateLottieCompositionAsState(composition = composition,
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
         iterations = LottieConstants.IterateForever
     )
     LottieAnimation(
         composition = composition,
-        progress = {progress}
+        progress = { progress }
     )
 }
 
@@ -86,10 +103,15 @@ fun StretchingTimer(
         }
     }
     if (isTimeFinish(remainingTime)) {
-        navigateToFinish
+        /*Button(onClick = navigateToFinish) {
+            Text(text = "이동")
+        }*/
+        // TODO 실기기 테스트에서 원활하게 동작x... 문제점 찾기
+        navigateToFinish()
     }
 }
 
+// 삭제 가능할 듯
 @RequiresApi(Build.VERSION_CODES.O)
 fun Duration.format(): String {
     val seconds = kotlin.math.abs(seconds)

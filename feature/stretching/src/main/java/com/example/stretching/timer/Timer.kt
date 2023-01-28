@@ -145,10 +145,10 @@ fun Duration.format(): String {
     return value
 }
 
-private fun isTimeFinish(time: Long) = time < 1000L
-private fun changeTime1(time: Long) = time in 20001..24999
-private fun changeTime2(time: Long) = time < 20000L && 15000L<time
-private fun changeTime3(time: Long) = time < 15000L
+fun isTimeFinish(time: Long) = time < 1000L
+fun changeTime1(time: Long) = time in 20001..24999
+fun changeTime2(time: Long) = time < 20000L && 15000L<time
+fun changeTime3(time: Long) = time < 15000L
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
