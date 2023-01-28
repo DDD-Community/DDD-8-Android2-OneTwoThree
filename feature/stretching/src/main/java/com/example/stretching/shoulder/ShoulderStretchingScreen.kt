@@ -1,15 +1,13 @@
 package com.example.stretching.shoulder
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.R
-import androidx.compose.material.Button
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,45 +15,67 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.airbnb.lottie.compose.*
-import com.example.stretching.ButtonState
-import com.example.stretching.TimerModel
-import com.example.stretching.TimerScreen
+import com.example.stretching.*
 import com.example.stretching.format
 import com.example.stretching.timer.TimerViewModel
+import com.inseoul.designsystem.R
+import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 import java.time.Duration
 
 // TODO 프리뷰에서는 텍스트가 다 나오지만, 실기기에서는 텍스트가 안 나온다
 // TODO 구조 문제 해결 / 코드 정리
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ShoulderStretchingScreen(
     navigateToFinish: () -> Unit,
-    // 테스트
+    navigateToBack: () -> Unit,
     viewModel: TimerViewModel
 ) {
     val timer by viewModel.timerState.collectAsState(TimerModel())
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = bg
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            StretchingTimer(timer.timeDuration.format(), timer.remainingTime, navigateToFinish)
-            Box(
-                modifier = Modifier
-                    .height(120.dp)
-                    .width(120.dp),
+    val showDialog = remember { mutableStateOf(false) }
+    if (showDialog.value)
+        StretchingDialog(
+            setShowDialog = { showDialog.value = it },
+            navigateToBack = navigateToBack
+        )
+
+    Scaffold(
+        topBar = {
+            InseoulToolbar(
+                modifier = Modifier,
+                title = "어깨 운동",
+                backButtonImageResource = InseoulIcons.ArrowBack,
+                onImageClicked = {
+                    showDialog.value = true
+                }
+            )
+        },
+        content = {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = bg
             ) {
-                LottieAnimation()
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    StretchingTimer(
+                        timer.timeDuration.format(),
+                        timer.remainingTime,
+                        navigateToFinish
+                    )
+                    TimerButton(viewModel)
+                }
             }
         }
-    }
+    )
 }
+
 
 @Composable
 fun LottieAnimation() {
@@ -79,7 +99,7 @@ fun StretchingTimer(
     time: String,
     remainingTime: Long,
     navigateToFinish: () -> Unit,
-    ) {
+) {
     Column {
         Row(
             modifier = Modifier
@@ -98,8 +118,10 @@ fun StretchingTimer(
         Text(text = "시간에 따른 텍스트 변화 테스트")
         if (changeText1(remainingTime)) {
             Text(text = "1 번")
+            LottieAnimation()
         } else if (changeText2(remainingTime)) {
             Text(text = "2번")
+            LottieAnimation()   // 그냥 로띠 하나로 묶을까?
         }
     }
     if (isTimeFinish(remainingTime)) {
@@ -123,8 +145,8 @@ fun Duration.format(): String {
     return value
 }
 
-private fun changeText1(time: Long) = time < 30000L && 15000L<time
-private fun changeText2(time: Long) = time < 15000L && 1000L<time
+private fun changeText1(time: Long) = time < 30000L && 15000L < time
+private fun changeText2(time: Long) = time < 15000L && 1000L < time
 private fun isTimeFinish(time: Long) = time < 1000L
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -133,5 +155,7 @@ private fun isTimeFinish(time: Long) = time < 1000L
 fun TimerPreview() {
     ShoulderStretchingScreen(
         {},
-        TimerViewModel())
+        {},
+        TimerViewModel()
+    )
 }

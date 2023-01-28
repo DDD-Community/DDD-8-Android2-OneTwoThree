@@ -1,13 +1,13 @@
 package com.example.stretching.neckup
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,13 +21,16 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.stretching.*
 import com.example.stretching.timer.TimerViewModel
+import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 
 /*
 TODO 애니메이션 전환될 때 화면이 끊기는 문제 해결 필요
  */
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NeckupStretchingScreen(
@@ -36,45 +39,48 @@ fun NeckupStretchingScreen(
     viewModel: TimerViewModel
 ) {
     val timer by viewModel.timerState.collectAsState(TimerModel())
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = bg
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(text = "목 올리기 스트레칭 화면")
-            StretchingTimer(
-                timer.timeDuration.format(),
-                timer.remainingTime,
-                //navigateToFinish
+    val showDialog = remember { mutableStateOf(false) }
+    if (showDialog.value)
+        StretchingDialog(
+            setShowDialog = { showDialog.value = it },
+            navigateToBack = navigateToBack
+        )
+
+    Scaffold(
+        topBar = {
+            InseoulToolbar(
+                modifier = Modifier,
+                title = "목 업 운동",
+                backButtonImageResource = InseoulIcons.ArrowBack,
+                onImageClicked = {
+                    showDialog.value = true
+                }
             )
-            TimerButton(viewModel)
+        },
+        content = {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = bg
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(text = "목 올리기 스트레칭 화면")
+                    StretchingTimer(
+                        timer.timeDuration.format(),
+                        timer.remainingTime,
+                        navigateToFinish
+                    )
+                    TimerButton(viewModel)
+                }
+            }
         }
-    }
-}
-
-@Composable
-fun LottieAnimation(res: Int) {
-    val composition by rememberLottieComposition(
-        spec = LottieCompositionSpec.RawRes(
-            res
-            //com.inseoul.designsystem.R.raw.shoulder_1
-        ),
-    )
-    val progress by animateLottieCompositionAsState(
-        composition = composition,
-        iterations = LottieConstants.IterateForever
-    )
-    com.airbnb.lottie.compose.LottieAnimation(
-        composition = composition,
-        progress = { progress }
     )
 }
 
 @Composable
-fun StretchingTimer(time: String, remainingTime: Long) {
+fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> Unit,) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -104,12 +110,28 @@ fun StretchingTimer(time: String, remainingTime: Long) {
             Text(text = "목 올리기 3번")
             LottieAnimation(com.inseoul.designsystem.R.raw.neckup_3)
         }
-
-
     }
     if (isTimeFinish(remainingTime)) {
-        // 화면 이동
+        navigateToFinish()  // 일단 추가
     }
+}
+
+@Composable
+fun LottieAnimation(res: Int) {
+    val composition by rememberLottieComposition(
+        spec = LottieCompositionSpec.RawRes(
+            res
+            //com.inseoul.designsystem.R.raw.shoulder_1
+        ),
+    )
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        iterations = LottieConstants.IterateForever
+    )
+    com.airbnb.lottie.compose.LottieAnimation(
+        composition = composition,
+        progress = { progress }
+    )
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

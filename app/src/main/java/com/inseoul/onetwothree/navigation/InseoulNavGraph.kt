@@ -56,6 +56,9 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
                 // 스트레칭 완료 화면으로 이동
                 navController.navigate(stretchingFinishRoute)
             },
+            navigateToBack = {
+                navController.popBackStack()
+            }
         )
 
         neckupStretchingScreen(
@@ -70,6 +73,9 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
         shoulderStretchingScreen(
             navigateToFinish = {
                 navController.navigate(armStretchingRoute)
+            },
+            navigateToBack = {
+                navController.popBackStack()
             }
         )
         stretchingFinishScreen(

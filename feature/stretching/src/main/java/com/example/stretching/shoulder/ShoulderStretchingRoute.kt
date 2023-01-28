@@ -10,10 +10,12 @@ import com.example.stretching.timer.TimerViewModel
 @Composable
 fun ShoulderStretchingRoute(
     navigateToFinish: () -> Unit,
+    navigateToBack: () -> Unit,
     viewModel: TimerViewModel = hiltViewModel()
 ) {
     ShoulderStretchingScreen(
         navigateToFinish = navigateToFinish,
+        navigateToBack = navigateToBack,
         viewModel = viewModel
     )
 }
