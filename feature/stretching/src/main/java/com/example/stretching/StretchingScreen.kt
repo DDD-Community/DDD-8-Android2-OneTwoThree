@@ -22,6 +22,7 @@ import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 
+/*
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -74,4 +75,4 @@ fun StretchingPreview(
     StretchingScreen(
         navController = NavHostController(context)
     )
-}
+}*/

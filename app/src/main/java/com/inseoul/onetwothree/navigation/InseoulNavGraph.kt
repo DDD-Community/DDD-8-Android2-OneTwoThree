@@ -1,5 +1,7 @@
 package com.inseoul.onetwothree.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -9,6 +11,7 @@ import com.example.stretching.arm.armStretchingRoute
 import com.example.stretching.arm.armStretchingScreen
 import com.example.stretching.finish.stretchingFinishRoute
 import com.example.stretching.finish.stretchingFinishScreen
+import com.example.stretching.neckup.neckupStretchingScreen
 import com.example.stretching.shoulder.shoulderStretchingRoute
 import com.example.stretching.shoulder.shoulderStretchingScreen
 import com.inseoul.onboarding.navigation.onBoardingRoute
@@ -19,6 +22,7 @@ import com.treemiddle.catname.navigation.catNameRoute
 import com.treemiddle.catname.navigation.onCatNameScreen
 import com.treemiddle.setting.navigation.onSettingsScreen
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun InseoulNavGraph(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
@@ -52,6 +56,15 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
                 // 스트레칭 완료 화면으로 이동
                 navController.navigate(stretchingFinishRoute)
             },
+        )
+
+        neckupStretchingScreen(
+            navigateToFinish = {
+                navController.navigate(stretchingFinishRoute)
+            },
+            navigateToBack = {
+                navController.popBackStack()
+            }
         )
 
         shoulderStretchingScreen(

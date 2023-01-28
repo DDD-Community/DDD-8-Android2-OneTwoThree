@@ -10,10 +10,12 @@ import com.example.stretching.timer.TimerViewModel
 @Composable
 fun NeckupStretchingRoute(
     navigateToFinish: () -> Unit,
+    navigateToBack: () -> Unit,
     viewModel: TimerViewModel = hiltViewModel()
 ) {
     NeckupStretchingScreen(
         navigateToFinish = navigateToFinish,
+        navigateToBack = navigateToBack,
         viewModel = viewModel
     )
 }

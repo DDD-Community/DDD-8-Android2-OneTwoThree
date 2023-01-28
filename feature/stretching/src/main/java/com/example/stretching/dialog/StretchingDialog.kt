@@ -19,7 +19,8 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun StretchingDialog(
-    navController: NavHostController,
+    //navController: NavHostController,
+    navigateToBack: () -> Unit,
     setShowDialog: (Boolean) -> Unit,
 ) {
     Dialog(onDismissRequest = { setShowDialog(false) }) {
@@ -51,9 +52,7 @@ fun StretchingDialog(
                             Text(text = "이어하기", color = Color.Black)
                         }
                         Button(
-                            onClick = {
-                                navController.popBackStack()
-                            },
+                            onClick = navigateToBack,
                             modifier = Modifier
                                 .weight(1f)
                                 .padding(start = 4.dp),

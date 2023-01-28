@@ -32,6 +32,7 @@ TODO 애니메이션 전환될 때 화면이 끊기는 문제 해결 필요
 @Composable
 fun NeckupStretchingScreen(
     navigateToFinish: () -> Unit,
+    navigateToBack: () -> Unit,
     viewModel: TimerViewModel
 ) {
     val timer by viewModel.timerState.collectAsState(TimerModel())
@@ -119,6 +120,7 @@ fun PreviewTest(
 ) {
     NeckupStretchingScreen(
         navigateToFinish = {},
+        navigateToBack = {},
         viewModel = viewModel
     )
 }
