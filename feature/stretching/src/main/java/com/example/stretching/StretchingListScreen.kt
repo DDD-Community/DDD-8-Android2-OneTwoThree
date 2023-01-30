@@ -4,19 +4,23 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.theme.gray400
+import com.inseoul.designsystem.theme.gray600
 import com.inseoul.designsystem.toolbar.InseoulToolbar
+import com.inseoul.onetwothree.ui.theme.pretendard
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -70,10 +74,15 @@ fun StretchingList(
         Row() {
             Column(modifier = Modifier
                 .padding(16.dp)
-                .weight(2f)) {
-                Text(text = title)
-                Text(text = content)
-                Text(text = "30초")
+                .weight(3f)) {
+                Text(text = title, fontFamily = pretendard, fontWeight = FontWeight.Bold, fontSize = 21.sp)
+                Text(text = content, fontFamily = pretendard, fontSize = 19.sp)
+                Spacer(modifier = Modifier.padding(horizontal = 12.dp))
+                Row {
+                    Icon(painter = painterResource(id = InseoulIcons.ClockMono), contentDescription = null, tint = gray400)
+                    Spacer(modifier = Modifier.padding(5.dp))
+                    Text(text = "30초", fontFamily = pretendard, fontSize = 16.sp, color = gray600 )
+                }
             }
             Image(
                 modifier = Modifier
