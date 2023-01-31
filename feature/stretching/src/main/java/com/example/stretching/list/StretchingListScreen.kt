@@ -1,7 +1,10 @@
 package com.example.stretching
 
 import android.annotation.SuppressLint
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -10,8 +13,10 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,7 +31,13 @@ import com.inseoul.onetwothree.ui.theme.pretendard
 @Composable
 fun StretchingListScreen(
     navigateToBack: () -> Unit,
+    navigateToArm: () -> Unit,
+    navigateToNeckdown: () -> Unit,
+    navigateToNeckup: () -> Unit,
+    navigateToShoulder: () -> Unit,
+    navigateToWrist: () -> Unit
 ) {
+    val localContext = LocalContext.current
     Scaffold(
         topBar = {
             InseoulToolbar(
@@ -39,7 +50,7 @@ fun StretchingListScreen(
         content = {
             // 리스트 넣기
             Surface(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxSize(),
                 color = bg
             ) {
                 Column(
@@ -48,15 +59,31 @@ fun StretchingListScreen(
                         vertical = 12.dp
                     )
                 ) {
-                    StretchingList("옆으로 목 늘리기", "목과 어깨를 이어주는 근육을 이완시켜 뭉친 근육을 풀어줘요.")
+                    StretchingList("옆으로 목 늘리기", "목과 어깨를 이어주는 근육을 이완시켜 뭉친 근육을 풀어줘요.", modifier = Modifier.clickable {
+                        Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
+                    })
                     Spacer(modifier = Modifier . height (12.dp))
-                    StretchingList("목 굽히기", "목의 양 앞, 옆 근육들을 풀어주는 동작으로 목 통증 완화에 도움을 줘요")
+                    StretchingList("목 굽히기", "목의 양 앞, 옆 근육들을 풀어주는 동작으로 목 통증 완화에 도움을 줘요",
+                        modifier = Modifier.clickable(
+                            onClick = {
+                                Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
+                                Log.d("TAG", "StretchingListScreen: 클릭 테스트2")
+                            }
+                        )
+                    )
                     Spacer(modifier = Modifier . height (12.dp))
-                    StretchingList("어깨 돌리기", "손목 터널 증후군 예방과 손목 유연성 강화에 도움을 줘요")
+                    StretchingList("어깨 돌리기", "손목 터널 증후군 예방과 손목 유연성 강화에 도움을 줘요",modifier = Modifier.clickable {
+                        Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
+                        Log.d("TAG", "StretchingListScreen: 클릭 테스트")
+                    })
                     Spacer(modifier = Modifier . height (12.dp))
-                    StretchingList("팔 펴서 당기기", "내용4")
+                    StretchingList("팔 펴서 당기기", "내용4", modifier = Modifier.clickable {
+                        Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
+                    })
                     Spacer(modifier = Modifier . height (12.dp))
-                    StretchingList("제목5", "내용5")
+                    StretchingList("제목5", "내용5", modifier = Modifier.clickable {
+                        Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
+                    })
                 }
             }
         }
@@ -65,10 +92,11 @@ fun StretchingListScreen(
 
 @Composable
 fun StretchingList(
-    title: String, content: String
+    title: String, content: String,
+    modifier: Modifier
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
     ) {
         Row() {
@@ -100,13 +128,13 @@ fun StretchingList(
 @Preview
 @Composable
 fun StretchingListPreview() {
-    StretchingList("제목","내용")
+    StretchingList("제목","내용", modifier = Modifier)
 }
 
 @Preview
 @Composable
 fun StretchingListScreenPreview() {
-    StretchingListScreen {
-
-    }
+    StretchingListScreen(
+        {},{},{},{},{},{}
+    )
 }
