@@ -33,7 +33,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = onBoardingRoute,
+        startDestination = stretchingListRoute, //onBoardingRoute,
         modifier = modifier
     ) {
         onBoardingScreen {

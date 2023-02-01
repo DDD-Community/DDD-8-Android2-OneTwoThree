@@ -23,6 +23,7 @@ import com.example.stretching.*
 import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.theme.gray700
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 
@@ -85,6 +86,20 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        if (changeTime1(remainingTime)) {
+            Text(text = "왼쪽으로 고개를 갸우뚱 숙인 후 왼손으로 \n 머리를 가볍게 눌러주세요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.neckup_2)
+        } else if (changeTime2(remainingTime)) {
+            Text(text = "반대편 어깨가 따라 올라가지 않도록 \n 주의하며 약 10초간 목 근육을 늘려주세요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.neckup_2)
+        } else if (changeTime3(remainingTime)) {
+            Text(text = "오른쪽으로 고개를 갸웅뚱 숙인 후 오른손으로 \n 머리를 가볍게 눌러주세요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.neckup_3)
+        } else {
+            Text(text = "반대편 어깨가 따라 올라가지 않도록 \n 주의하며 약 10초간 목 근육을 늘려주세요", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.neckup_4)
+        }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -99,17 +114,7 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
                 style = Typography.h1
             )
         }
-        Text(text = "시간에 따른 텍스트 변화 테스트")
-        if (changeTime1(remainingTime)) {
-            Text(text = " 목 올리기 1 번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.neckup_2)
-        } else if (changeTime2(remainingTime)) {
-            Text(text = "목 올리기 2번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.neckup_2)
-        } else if (changeTime3(remainingTime)) {
-            Text(text = "목 올리기 3번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.neckup_3)
-        }
+
     }
     if (isTimeFinish(remainingTime)) {
         navigateToFinish()  // 일단 추가

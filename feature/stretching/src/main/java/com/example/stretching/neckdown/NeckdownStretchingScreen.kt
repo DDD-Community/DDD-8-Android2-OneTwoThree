@@ -23,6 +23,7 @@ import com.example.stretching.*
 import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.theme.gray700
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 
@@ -79,6 +80,20 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        if (changeTime1(remainingTime)) {
+            Text(text = "양손을 뒤통수에 댄 뒤 목에 힘을 빼고 천천히 \n 머리를 앞으로 숙여주세요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.neckdown_1)
+        } else if (changeTime2(remainingTime)) {
+            Text(text = "10초 정도 지그시 눌러주세요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.neckdown_2)
+        } else if (changeTime3(remainingTime)) {
+            Text(text = "깍지 낀 손으로 뒷목을 받쳐준 뒤 목에 힘을 \n 빼고 머리를 천천히 젖혀주세요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.neckdown_3)
+        } else {
+            Text(text = "목 앞 근육이 늘어남을 느끼며 10초 정도 \n 유지해주세요", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.neckdown_4)
+        }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -92,16 +107,6 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
                 color = Color.Black,
                 style = Typography.h1
             )
-        }
-        if (changeTime1(remainingTime)) {
-            Text(text = " 목 내리기 1 번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.neckdown_1)
-        } else if (changeTime2(remainingTime)) {
-            Text(text = "목 내리기 2번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.neckdown_2)
-        } else if (changeTime3(remainingTime)) {
-            Text(text = "목 내리기 3번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.neckdown_3)
         }
     }
     if (isTimeFinish(remainingTime)) {

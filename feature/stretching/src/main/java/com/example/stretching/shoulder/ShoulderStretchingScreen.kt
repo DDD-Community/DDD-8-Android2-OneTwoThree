@@ -21,6 +21,7 @@ import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.R
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.theme.gray700
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 import java.time.Duration
@@ -100,7 +101,16 @@ fun StretchingTimer(
     remainingTime: Long,
     navigateToFinish: () -> Unit,
 ) {
-    Column {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        LottieAnimation()
+        if (changeText1(remainingTime)) {
+            Text(text = "양팔을 아래로 뻗고 어깨로 앞에서 뒤로 \n 원을 그리듯 돌려주세요", color = gray700)
+        } else if (changeText2(remainingTime)) {
+            Text(text = "너무 빠르게 움직이지 않도록 주의하며 \n 30초간 반복해 주세요", color = gray700)
+        }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -115,20 +125,8 @@ fun StretchingTimer(
                 style = Typography.h1
             )
         }
-        Text(text = "시간에 따른 텍스트 변화 테스트")
-        if (changeText1(remainingTime)) {
-            Text(text = "1 번")
-            LottieAnimation()
-        } else if (changeText2(remainingTime)) {
-            Text(text = "2번")
-            LottieAnimation()   // 그냥 로띠 하나로 묶을까?
-        }
     }
     if (isTimeFinish(remainingTime)) {
-        /*Button(onClick = navigateToFinish) {
-            Text(text = "이동")
-        }*/
-        // TODO 실기기 테스트에서 원활하게 동작x... 문제점 찾기
         navigateToFinish()
     }
 }

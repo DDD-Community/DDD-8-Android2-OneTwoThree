@@ -21,6 +21,7 @@ import com.example.stretching.*
 import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.theme.gray700
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 
@@ -78,6 +79,20 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        // TODO 함수명 변경 & 시간 조절
+        if (changeTime1(remainingTime)) {
+            Text(text = "어깨 높이에서 왼쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_1)
+        } else if (changeTime2(remainingTime)) {
+            Text(text = "얼굴은 편 팔의 반대 방향으로 돌리고, \n 10초 정도 지그시 당겨주세요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_2)
+        } else if (changeTime3(remainingTime)) {
+            Text(text = "어깨 높이에서 오른쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_3)
+        } else {
+            Text(text = "얼굴은 편 팔의 반대 방향으로 돌리고, \n 10초 정도 지그시 당겨주세요.", color = gray700)
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_4)
+        }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -91,17 +106,6 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
                 color = Color.Black,
                 style = Typography.h1
             )
-        }
-        Text(text = "시간에 따른 텍스트 변화 테스트")
-        if (changeTime1(remainingTime)) {
-            Text(text = " 팔 운동 1 번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.arm_1)
-        } else if (changeTime2(remainingTime)) {
-            Text(text = "팔 운동 2번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.arm_2)
-        } else if (changeTime3(remainingTime)) {
-            Text(text = "팔 운동 3번")
-            LottieAnimation(com.inseoul.designsystem.R.raw.arm_3)
         }
     }
     if (isTimeFinish(remainingTime)) {

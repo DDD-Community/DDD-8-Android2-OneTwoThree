@@ -23,9 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.inseoul.designsystem.icon.InseoulIcons
-import com.inseoul.designsystem.theme.bg
-import com.inseoul.designsystem.theme.gray400
-import com.inseoul.designsystem.theme.gray600
+import com.inseoul.designsystem.theme.*
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.pretendard
 
@@ -44,7 +42,7 @@ fun StretchingListScreen(
         topBar = {
             InseoulToolbar(
                 modifier = Modifier,
-                title = "손목 운동 운동",
+                title = "손목 운동 운동" ,
                 backButtonImageResource = InseoulIcons.ArrowBack,
                 onImageClicked = navigateToBack
             )
@@ -112,8 +110,8 @@ fun StretchingList(
             Column(modifier = Modifier
                 .padding(16.dp)
                 .weight(3f)) {
-                Text(text = title, fontFamily = pretendard, fontWeight = FontWeight.Bold, fontSize = 21.sp)
-                Text(text = content, fontFamily = pretendard, fontSize = 19.sp)
+                Text(text = title, fontFamily = pretendard, fontWeight = FontWeight.Bold, fontSize = 21.sp, color = gray900)
+                Text(text = content, fontFamily = pretendard, fontSize = 19.sp, color = gray700)
                 Spacer(modifier = Modifier.padding(horizontal = 12.dp))
                 Row {
                     Icon(painter = painterResource(id = InseoulIcons.ClockMono), contentDescription = null, tint = gray400)

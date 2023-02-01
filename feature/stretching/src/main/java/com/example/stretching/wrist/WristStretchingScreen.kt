@@ -21,6 +21,7 @@ import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.R
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.theme.gray700
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 
@@ -77,6 +78,20 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        if (changeTime1(remainingTime)) {
+            Text(text = "팔을 죽 뻗어 손바닥을 몸 안쪽으로 향하게 \n 한 후 반대쪽 손으로 잡고 당겨요.", color = gray700)
+            LottieAnimation(R.raw.wrist_1)
+        } else if (changeTime2(remainingTime)) {
+            Text(text = "10초 정도 지그시 눌러주세요.", color = gray700)
+            LottieAnimation(R.raw.wrist_2)
+        } else if (changeTime3(remainingTime)) {
+            Text(text = "팔을 쭉 뻗어 손바닥을 몸 바깥쪽으로 \n 향하게 한 후 반대쪽 손으로 잡고 당겨요.", color = gray700)
+            LottieAnimation(R.raw.wrist_3)
+        } else {
+            Text(text = "10초 정도 지그시 눌러주세요.", color = gray700)
+            LottieAnimation(R.raw.wrist_4)
+        }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -90,17 +105,6 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
                 color = Color.Black,
                 style = Typography.h1
             )
-        }
-        Text(text = "시간에 따른 텍스트 변화 테스트")
-        if (changeTime1(remainingTime)) {
-            Text(text = " 손목 운동 1 번")
-            LottieAnimation(R.raw.wrist_1)
-        } else if (changeTime2(remainingTime)) {
-            Text(text = "손목 운동 2번")
-            LottieAnimation(R.raw.wrist_2)
-        } else if (changeTime3(remainingTime)) {
-            Text(text = "손목 운동 3번")
-            LottieAnimation(R.raw.wrist_3)
         }
     }
     if (isTimeFinish(remainingTime)) {
