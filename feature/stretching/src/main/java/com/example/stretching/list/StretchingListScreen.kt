@@ -6,7 +6,9 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -54,13 +56,16 @@ fun StretchingListScreen(
                 color = bg
             ) {
                 Column(
-                    modifier = Modifier.padding(
-                        horizontal = 16.dp,
-                        vertical = 12.dp
-                    )
+                    modifier = Modifier
+                        .padding(
+                            horizontal = 16.dp,
+                            vertical = 12.dp
+                        )
+                        .verticalScroll(rememberScrollState())  // 스크롤 기능 추가
                 ) {
                     StretchingList("옆으로 목 늘리기", "목과 어깨를 이어주는 근육을 이완시켜 뭉친 근육을 풀어줘요.", modifier = Modifier.clickable {
                         Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
+                        navigateToNeckup()
                     })
                     Spacer(modifier = Modifier . height (12.dp))
                     StretchingList("목 굽히기", "목의 양 앞, 옆 근육들을 풀어주는 동작으로 목 통증 완화에 도움을 줘요",
@@ -68,6 +73,7 @@ fun StretchingListScreen(
                             onClick = {
                                 Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
                                 Log.d("TAG", "StretchingListScreen: 클릭 테스트2")
+                                navigateToNeckdown()
                             }
                         )
                     )
@@ -75,14 +81,17 @@ fun StretchingListScreen(
                     StretchingList("어깨 돌리기", "손목 터널 증후군 예방과 손목 유연성 강화에 도움을 줘요",modifier = Modifier.clickable {
                         Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
                         Log.d("TAG", "StretchingListScreen: 클릭 테스트")
+                        navigateToShoulder()
                     })
                     Spacer(modifier = Modifier . height (12.dp))
                     StretchingList("팔 펴서 당기기", "내용4", modifier = Modifier.clickable {
                         Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
+                        navigateToArm()
                     })
                     Spacer(modifier = Modifier . height (12.dp))
                     StretchingList("제목5", "내용5", modifier = Modifier.clickable {
                         Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()
+                        navigateToWrist()
                     })
                 }
             }
@@ -135,6 +144,11 @@ fun StretchingListPreview() {
 @Composable
 fun StretchingListScreenPreview() {
     StretchingListScreen(
-        {},{},{},{},{},{}
+        navigateToBack = {},
+        navigateToArm = {},
+        navigateToNeckdown = {},
+        navigateToNeckup = {},
+        navigateToShoulder = {},
+        navigateToWrist = {}
     )
 }

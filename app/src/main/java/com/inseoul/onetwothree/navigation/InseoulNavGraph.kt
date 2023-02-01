@@ -11,9 +11,14 @@ import com.example.stretching.arm.armStretchingRoute
 import com.example.stretching.arm.armStretchingScreen
 import com.example.stretching.finish.stretchingFinishRoute
 import com.example.stretching.finish.stretchingFinishScreen
+import com.example.stretching.list.stretchingListRoute
+import com.example.stretching.list.stretchingListScreen
+import com.example.stretching.neckdown.neckdownStretchingRoute
+import com.example.stretching.neckup.neckupStretchingRoute
 import com.example.stretching.neckup.neckupStretchingScreen
 import com.example.stretching.shoulder.shoulderStretchingRoute
 import com.example.stretching.shoulder.shoulderStretchingScreen
+import com.example.stretching.wrist.wristStretchingRoute
 import com.inseoul.onboarding.navigation.onBoardingRoute
 import com.inseoul.onboarding.navigation.onBoardingScreen
 import com.treemiddle.calendar.screen.navigation.calendarRoute
@@ -79,6 +84,28 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
             }
         )
         stretchingFinishScreen(
+        )
+
+
+        stretchingListScreen(
+            navigateToBack = {
+                navController.popBackStack()
+            },
+            navigateToArm = {
+                navController.navigate(armStretchingRoute)
+            },
+            navigateToNeckdown = {
+                navController.navigate(neckdownStretchingRoute)
+            },
+            navigateToNeckup = {
+                navController.navigate(neckupStretchingRoute)
+            },
+            navigateToShoulder = {
+                navController.navigate(shoulderStretchingRoute)
+            },
+            navigateToWrist = {
+                navController.navigate(wristStretchingRoute)
+            }
         )
     }
 }
