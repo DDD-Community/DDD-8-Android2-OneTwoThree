@@ -5,8 +5,10 @@ import androidx.navigation.compose.composable
 
 const val stretchingFinishRoute = "stretching_finish_route"
 
-fun NavGraphBuilder.stretchingFinishScreen() {
+fun NavGraphBuilder.stretchingFinishScreen(
+    navigateToBack: () -> Unit,
+) {
     composable(route = stretchingFinishRoute) {
-        StretchingFinishRoute() // 경로 추가
+        StretchingFinishRoute(navigateToBack) // 경로 추가
     }
 }

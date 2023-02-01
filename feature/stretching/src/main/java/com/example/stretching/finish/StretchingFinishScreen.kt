@@ -20,7 +20,9 @@ import com.inseoul.designsystem.toolbar.InseoulToolbar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun StretchingFinishScreen() {
+fun StretchingFinishScreen(
+    navigateToBack: () -> Unit,
+) {
     Scaffold(
         topBar = {
             InseoulToolbar(

@@ -4,6 +4,10 @@ import androidx.compose.runtime.Composable
 import com.example.stretching.StretchingFinishScreen
 
 @Composable
-fun StretchingFinishRoute() {
-    StretchingFinishScreen()
+fun StretchingFinishRoute(
+    navigateToBack: () -> Unit,
+) {
+    StretchingFinishScreen(
+        navigateToBack = navigateToBack
+    )
 }

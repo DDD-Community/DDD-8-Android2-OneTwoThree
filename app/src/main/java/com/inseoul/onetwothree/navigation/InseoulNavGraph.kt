@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.stretching.arm.ArmStretchingScreen
 import com.example.stretching.arm.armStretchingRoute
 import com.example.stretching.arm.armStretchingScreen
 import com.example.stretching.finish.stretchingFinishRoute
@@ -14,12 +13,13 @@ import com.example.stretching.finish.stretchingFinishScreen
 import com.example.stretching.list.stretchingListRoute
 import com.example.stretching.list.stretchingListScreen
 import com.example.stretching.neckdown.neckdownStretchingRoute
+import com.example.stretching.neckdown.neckdownStretchingScreen
 import com.example.stretching.neckup.neckupStretchingRoute
 import com.example.stretching.neckup.neckupStretchingScreen
 import com.example.stretching.shoulder.shoulderStretchingRoute
 import com.example.stretching.shoulder.shoulderStretchingScreen
 import com.example.stretching.wrist.wristStretchingRoute
-import com.inseoul.onboarding.navigation.onBoardingRoute
+import com.example.stretching.wrist.wristStretchingScreen
 import com.inseoul.onboarding.navigation.onBoardingScreen
 import com.treemiddle.calendar.screen.navigation.calendarRoute
 import com.treemiddle.calendar.screen.navigation.onCalendarRoute
@@ -75,15 +75,37 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
             }
         )
 
-        shoulderStretchingScreen(
-            navigateToFinish = {
-                navController.navigate(armStretchingRoute)
+        neckdownStretchingScreen(
+            navigateToFinish =  {
+                navController.navigate(stretchingFinishRoute)
             },
             navigateToBack = {
                 navController.popBackStack()
             }
         )
+
+        shoulderStretchingScreen(
+            navigateToFinish = {
+                navController.navigate(stretchingFinishRoute)
+            },
+            navigateToBack = {
+                navController.popBackStack()
+            }
+        )
+
+        wristStretchingScreen(
+            navigateToFinish = {
+                navController.navigate(stretchingFinishRoute)
+            },
+            navigateToBack = {
+                navController.popBackStack()
+            }
+        )
+
         stretchingFinishScreen(
+            navigateToBack = {
+                navController.popBackStack()
+            }
         )
 
 
