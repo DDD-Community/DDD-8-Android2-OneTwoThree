@@ -105,6 +105,21 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
         stretchingFinishScreen(
             navigateToBack = {
                 navController.popBackStack()
+            },
+            navigateToArm = {
+                navController.navigate(armStretchingRoute)
+            },
+            navigateToNeckdown = {
+                navController.navigate(neckdownStretchingRoute)
+            },
+            navigateToNeckup = {
+                navController.navigate(neckupStretchingRoute)
+            },
+            navigateToShoulder = {
+                navController.navigate(shoulderStretchingRoute)
+            },
+            navigateToWrist = {
+                navController.navigate(wristStretchingRoute)
             }
         )
 

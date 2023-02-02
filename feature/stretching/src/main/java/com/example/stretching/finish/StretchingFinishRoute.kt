@@ -6,8 +6,18 @@ import com.example.stretching.StretchingFinishScreen
 @Composable
 fun StretchingFinishRoute(
     navigateToBack: () -> Unit,
+    navigateToArm: () -> Unit,
+    navigateToNeckdown: () -> Unit,
+    navigateToNeckup: () -> Unit,
+    navigateToShoulder: () -> Unit,
+    navigateToWrist: () -> Unit,
 ) {
     StretchingFinishScreen(
-        navigateToBack = navigateToBack
+        navigateToBack = navigateToBack,
+        navigateToArm = navigateToArm,
+        navigateToNeckdown = navigateToNeckdown,
+        navigateToNeckup = navigateToNeckup,
+        navigateToShoulder = navigateToShoulder,
+        navigateToWrist = navigateToWrist
     )
 }
