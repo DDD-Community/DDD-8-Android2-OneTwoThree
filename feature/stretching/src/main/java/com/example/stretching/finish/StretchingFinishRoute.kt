@@ -11,6 +11,7 @@ fun StretchingFinishRoute(
     navigateToNeckup: () -> Unit,
     navigateToShoulder: () -> Unit,
     navigateToWrist: () -> Unit,
+    name: String?
 ) {
     StretchingFinishScreen(
         navigateToBack = navigateToBack,
@@ -18,6 +19,7 @@ fun StretchingFinishRoute(
         navigateToNeckdown = navigateToNeckdown,
         navigateToNeckup = navigateToNeckup,
         navigateToShoulder = navigateToShoulder,
-        navigateToWrist = navigateToWrist
+        navigateToWrist = navigateToWrist,
+        name = name
     )
 }

@@ -1,9 +1,11 @@
 package com.example.stretching.finish
 
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 
-const val stretchingFinishRoute = "stretching_finish_route"
+const val stretchingFinishRoute = "stretching_finish_route/{name}"
 
 fun NavGraphBuilder.stretchingFinishScreen(
     navigateToBack: () -> Unit,
@@ -13,14 +15,19 @@ fun NavGraphBuilder.stretchingFinishScreen(
     navigateToShoulder: () -> Unit,
     navigateToWrist: () -> Unit,
 ) {
-    composable(route = stretchingFinishRoute) {
+    composable(route = stretchingFinishRoute,
+        arguments = listOf(navArgument("name") {
+            type = NavType.StringType
+        })
+    ) { backStackEntry ->
         StretchingFinishRoute(
             navigateToBack,
             navigateToArm,
             navigateToNeckdown,
             navigateToNeckup,
             navigateToShoulder,
-            navigateToWrist
+            navigateToWrist,
+            backStackEntry.arguments?.getString("name")
         )
     }
 }

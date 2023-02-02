@@ -59,7 +59,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
         armStretchingScreen(
             navigateToFinish = {
                 // 스트레칭 완료 화면으로 이동
-                navController.navigate(stretchingFinishRoute)
+                navController.navigate("stretching_finish_route/arm")
             },
             navigateToBack = {
                 navController.popBackStack()
@@ -68,7 +68,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
 
         neckupStretchingScreen(
             navigateToFinish = {
-                navController.navigate(stretchingFinishRoute)
+                navController.navigate("stretching_finish_route/neckup")
             },
             navigateToBack = {
                 navController.popBackStack()
@@ -77,7 +77,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
 
         neckdownStretchingScreen(
             navigateToFinish =  {
-                navController.navigate(stretchingFinishRoute)
+                navController.navigate("stretching_finish_route/neckdown")
             },
             navigateToBack = {
                 navController.popBackStack()
@@ -86,7 +86,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
 
         shoulderStretchingScreen(
             navigateToFinish = {
-                navController.navigate(stretchingFinishRoute)
+                navController.navigate("stretching_finish_route/shoulder")
             },
             navigateToBack = {
                 navController.popBackStack()
@@ -95,7 +95,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
 
         wristStretchingScreen(
             navigateToFinish = {
-                navController.navigate(stretchingFinishRoute)
+                navController.navigate("stretching_finish_route/wrist")
             },
             navigateToBack = {
                 navController.popBackStack()

@@ -1,6 +1,7 @@
 package com.example.stretching
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
@@ -28,8 +29,10 @@ fun StretchingFinishScreen(
     navigateToNeckup: () -> Unit,
     navigateToShoulder: () -> Unit,
     navigateToWrist: () -> Unit,
+    name: String?
     // TODO navigateToMain 메인화면으로 이동하는 nav 구현
 ) {
+    Log.e("TAG", "StretchingFinishScreen: $name", )
     Scaffold(
         topBar = {
             InseoulToolbar(

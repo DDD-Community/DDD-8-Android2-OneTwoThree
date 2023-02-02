@@ -8,6 +8,7 @@ import com.example.stretching.wrist.WristStretchingRoute
 
 const val shoulderStretchingRoute = "shoulder_stretching_route"
 
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.shoulderStretchingScreen(
     navigateToFinish: () -> Unit,
