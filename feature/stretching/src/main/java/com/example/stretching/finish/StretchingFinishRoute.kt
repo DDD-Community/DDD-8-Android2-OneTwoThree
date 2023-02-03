@@ -1,6 +1,7 @@
 package com.example.stretching.finish
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.stretching.StretchingFinishScreen
 
 @Composable
@@ -11,7 +12,8 @@ fun StretchingFinishRoute(
     navigateToNeckup: () -> Unit,
     navigateToShoulder: () -> Unit,
     navigateToWrist: () -> Unit,
-    name: String?
+    name: String?,
+    stretchingFinishViewModel: StretchingFinishViewModel = hiltViewModel()
 ) {
     StretchingFinishScreen(
         navigateToBack = navigateToBack,
@@ -20,6 +22,7 @@ fun StretchingFinishRoute(
         navigateToNeckup = navigateToNeckup,
         navigateToShoulder = navigateToShoulder,
         navigateToWrist = navigateToWrist,
-        name = name
+        name = name,
+        stretchingFinishViewModel = stretchingFinishViewModel
     )
 }

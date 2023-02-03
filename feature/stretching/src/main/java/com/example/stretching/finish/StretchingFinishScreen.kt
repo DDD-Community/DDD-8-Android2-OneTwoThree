@@ -9,15 +9,17 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavHostController
 import com.example.common.Constants
+import com.example.stretching.finish.StretchingFinishViewModel
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.gray700
 import com.inseoul.designsystem.theme.gray900
@@ -35,10 +37,11 @@ fun StretchingFinishScreen(
     navigateToNeckup: () -> Unit,
     navigateToShoulder: () -> Unit,
     navigateToWrist: () -> Unit,
-    name: String?
+    name: String?,
+    stretchingFinishViewModel: StretchingFinishViewModel
     // TODO navigateToMain 메인화면으로 이동하는 nav 구현
 ) {
-    Log.e("TAG", "StretchingFinishScreen: $name", )
+    // Log.e("TAG", "StretchingFinishScreen: $name", )
     Scaffold(
         topBar = {
             InseoulToolbar(
@@ -55,22 +58,28 @@ fun StretchingFinishScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
-                    modifier = Modifier.height(120.dp).width(120.dp),
+                    modifier = Modifier
+                        .height(120.dp)
+                        .width(120.dp),
                     alignment = Alignment.Center,
                     imageVector = Icons.Default.Email, contentDescription = null)
                 Spacer(modifier = Modifier.height(144.dp))
                 Text(text = "스트레칭 완료!", fontFamily = pretendard, fontWeight = FontWeight.Bold, fontSize = 35.sp, color = gray900)
 
-                // 테스트 중
-                var i: Int = 0
-                i += 1
-                if (i >=5) {
-                    i = 0
-                }
-                val cleanRoomList = mutableListOf("A", "B", "C", "D", "E")
-                val value = cleanRoomList[i]
+                // 테스트 중 -> vm 이동
+                // TODO 화면이 전환된 후 다시 돌아오면 기존 데이터 유실..
+                // 진짜 랜덤으로 값을 줘버리면 -> 클라이언트에서 시간 소요가 큼. 무조건 특정 순서(알고리즘)에 따라 값을 줘야함3
 
-                Text(text = "${name.toString()} Stretching을 완료해 \n y $value 가 청소되었어요.", fontFamily = pretendard, fontSize = 24.sp, color = gray700)
+
+                //var i = stretchingFinishViewModel.count
+                // TODO 긴급처방.. 코드 수정 필요!
+                val cleanRoomList = mutableListOf("캣 타워", "액자", "쓰레기 봉투", "통조림", "과자 봉지")
+                //val value = cleanRoomList[i!!]
+                val value = cleanRoomList.random()
+
+                stretchingFinishViewModel.increaseCount()
+
+                Text(text = "${name.toString()} Stretching을 완료해 \n  ${value}가 청소되었어요.", fontFamily = pretendard, fontSize = 24.sp, color = gray700)
                 Spacer(modifier = Modifier.height(96.dp))
                 Button(
                     modifier = Modifier
