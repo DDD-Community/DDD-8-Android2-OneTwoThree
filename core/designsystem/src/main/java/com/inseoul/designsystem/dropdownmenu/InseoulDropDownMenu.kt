@@ -17,10 +17,11 @@ import com.inseoul.designsystem.icon.InseoulIcons
 @Composable
 fun InSeoulDropDownMenu(
     list: List<String>,
+    currentValue: MutableState<String>
 ) {
 
     val expanded = remember { mutableStateOf(false) }
-    val currentValue = remember { mutableStateOf(list[0]) }
+    // val currentValue = remember { mutableStateOf(list[0]) }
 
     val icon = if (expanded.value)
         InseoulIcons.ArrowIncreaseMono

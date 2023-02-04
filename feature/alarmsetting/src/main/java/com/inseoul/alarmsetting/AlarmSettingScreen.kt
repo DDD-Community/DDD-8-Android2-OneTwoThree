@@ -51,7 +51,7 @@ fun AlarmSettingScreen() {
                 // 일주일 캘린더 추가
                 Column {
                     HolidayAlarm(switchOn)
-                    AlarmTimer()
+                    AlarmTimer(timeList, timeList , count)
                     Spacer(modifier = Modifier.height(240.dp))
                     SaveButton()
                 }
@@ -87,7 +87,16 @@ fun HolidayAlarm(switchOn: MutableState<Boolean>) {
 }
 
 @Composable
-fun AlarmTimer() {
+fun AlarmTimer(
+    listStartTime: List<String>,
+    listEndTime: List<String>,
+    listAlarmCount: List<String>
+) {
+
+    val currentValueStartTime = remember { mutableStateOf(listStartTime[0]) }
+    val currentValueEndTime = remember { mutableStateOf(listEndTime[0]) }
+    val alarmCount = remember { mutableStateOf(listAlarmCount[0]) }
+
     Column(
         modifier = Modifier.padding(16.dp)
     ) {
@@ -96,20 +105,25 @@ fun AlarmTimer() {
             text = "알림 시간", style = Typography.body2
         )
         Row {
-            TimerComponent(text = "시작")
+            TimerComponent(text = "시작", listStartTime, currentValueStartTime)
             Spacer(modifier = Modifier.width(24.dp))
-            TimerComponent("종료")
+            TimerComponent("종료", listEndTime, currentValueEndTime)
         }
         Text(
             modifier = Modifier.padding(top = 40.dp, bottom = 16.dp),
             text = "알림 횟수", style = Typography.body2
         )
-        InSeoulDropDownMenu(list = count)
+
+        InSeoulDropDownMenu(list = listAlarmCount,
+            currentValue = alarmCount
+            )
     }
 }
 
 @Composable
-fun TimerComponent(text: String) {
+fun TimerComponent(text: String,
+                   list: List<String>,
+                   currentValue: MutableState<String>) {
     Column {
         Text(
             modifier = Modifier.padding(bottom = 4.dp),
@@ -118,7 +132,9 @@ fun TimerComponent(text: String) {
             fontSize = 12.sp,
             color = gray600
         )
-        InSeoulDropDownMenu(list = timeList)
+        InSeoulDropDownMenu(list = list,
+            currentValue = currentValue
+            )
     }
 }
 
