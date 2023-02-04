@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -12,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import com.inseoul.designsystem.dropdownmenu.InSeoulDropDownMenu
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.switchbutton.InseoulSwitch
+import com.inseoul.designsystem.theme.bg
 import com.inseoul.designsystem.theme.gray600
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
@@ -25,7 +29,7 @@ val count = listOf("1번", "2번", "3번")
 fun AlarmSettingScreen() {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colors.background
+        color = bg
     ) {
         Scaffold(
             topBar = {
@@ -38,10 +42,15 @@ fun AlarmSettingScreen() {
                     }
                 )
             },
+
             content = {
+
+                // remember 값 이동 및 저장
+                val switchOn = remember { mutableStateOf(false) }
+
                 // 일주일 캘린더 추가
                 Column {
-                    HolidayAlarm()
+                    HolidayAlarm(switchOn)
                     AlarmTimer()
                     Spacer(modifier = Modifier.height(240.dp))
                     SaveButton()
@@ -52,7 +61,7 @@ fun AlarmSettingScreen() {
 }
 
 @Composable
-fun HolidayAlarm() {
+fun HolidayAlarm(switchOn: MutableState<Boolean>) {
     Row(
         modifier = Modifier.padding(16.dp)
     ) {
@@ -70,8 +79,10 @@ fun HolidayAlarm() {
         InseoulSwitch(
             width = 52.dp,
             height = 32.dp,
-            gapBetweenThumbAndTrackEdge = 4.dp
+            gapBetweenThumbAndTrackEdge = 4.dp,
+            switchOn = switchOn
         )
+
     }
 }
 
