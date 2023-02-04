@@ -18,6 +18,7 @@ import com.example.stretching.shoulder.shoulderStretchingRoute
 import com.example.stretching.shoulder.shoulderStretchingScreen
 import com.example.stretching.wrist.wristStretchingRoute
 import com.example.stretching.wrist.wristStretchingScreen
+import com.inseoul.alarmsetting.alarmSettingScreen
 import com.inseoul.onboarding.navigation.onBoardingRoute
 import com.inseoul.onboarding.navigation.onBoardingScreen
 import com.treemiddle.calendar.screen.navigation.calendarRoute
@@ -54,6 +55,11 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
         }
 
 
+        alarmSettingScreen(
+            navigateToBack = {
+                navController.popBackStack()
+            }
+        )
         // 즐거운 스트레칭~!
         armStretchingScreen(
             navigateToFinish = {

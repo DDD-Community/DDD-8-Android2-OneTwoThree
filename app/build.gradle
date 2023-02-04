@@ -58,6 +58,7 @@ dependencies {
     implementation(project(":feature:setting"))
     implementation(project(":feature:catname"))
     implementation(project(":feature:stretching"))
+    implementation(project(":feature:alarmsetting"))
 
     implementation(project(":library-calendar"))
     implementation(project(":core:designsystem"))

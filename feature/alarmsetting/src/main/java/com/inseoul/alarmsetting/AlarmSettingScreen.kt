@@ -26,7 +26,9 @@ val count = listOf("1번", "2번", "3번")
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun AlarmSettingScreen() {
+fun AlarmSettingScreen(
+    navigateToBack: () -> Unit
+) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = bg
@@ -37,9 +39,7 @@ fun AlarmSettingScreen() {
                     modifier = Modifier,
                     title = "알림",
                     backButtonImageResource = InseoulIcons.ArrowBack,
-                    onImageClicked = {
-                        // 뒤로 가기 기능 추가
-                    }
+                    onImageClicked = navigateToBack
                 )
             },
 
@@ -157,5 +157,7 @@ fun SaveButton() {
 @Preview
 @Composable
 fun AlarmSettingPreview() {
-    AlarmSettingScreen()
+    AlarmSettingScreen(
+        navigateToBack = {}
+    )
 }
