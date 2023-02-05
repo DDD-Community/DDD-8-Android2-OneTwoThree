@@ -3,6 +3,8 @@ package com.inseoul.alarmsetting
 import android.annotation.SuppressLint
 import android.graphics.drawable.shapes.Shape
 import android.util.Log
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,16 +14,14 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.inseoul.designsystem.dropdownmenu.InSeoulDropDownMenu
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.switchbutton.InseoulSwitch
-import com.inseoul.designsystem.theme.bg
-import com.inseoul.designsystem.theme.gray400
-import com.inseoul.designsystem.theme.gray600
-import com.inseoul.designsystem.theme.gray900
+import com.inseoul.designsystem.theme.*
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 import com.inseoul.onetwothree.ui.theme.pretendard
@@ -161,38 +161,45 @@ fun SaveButton() {
 }
 
 @Composable
-fun AlarmWeek(
-
-) {
-    val isTextClick = remember { mutableStateOf(false) }
-    val isSpecificList = remember { mutableListOf<Boolean>() }
-    Row(
-        modifier = Modifier
+fun AlarmWeek() {
+    Column(modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp)
+            .padding(16.dp)
     ) {
-        Text(text = "월", Modifier.background(color = gray400, shape = CircleShape))
-        Text(text = "화")
-        Text(text = "수")
-
-        // 테스트 중
-        val dayList = listOf("목", "금", "토")
-        dayList.forEach { day ->
-            Text(text = day,
-                color = gray900,
-                modifier = Modifier.clickable {
-                    if (isTextClick.value) {
-                        isTextClick.value = true
-                        val asd = mutableListOf<String>()
-                        asd.add(day)
-                        Log.d("TAG", "AlarmWeek: $asd")
-                    } else {
-                        isTextClick.value = false
-                    }
-                }
-                )
+        Text(text = "요일 반복", style = Typography.body2, color = gray900)
+        Row(horizontalArrangement = Arrangement.spacedBy(28.dp)) {
+            TextColor(text = "월")
+            TextColor(text = "화")
+            TextColor(text = "수")
+            TextColor(text = "목")
+            TextColor(text = "금")
+            TextColor(text = "토")
+            TextColor(text = "일")
         }
     }
+
+}
+
+@Composable
+fun TextColor(text: String) {
+    var isSelected by remember { mutableStateOf(false) }
+    val textColor: Color by animateColorAsState(
+        targetValue = when (isSelected) {
+            true -> Green300
+            false -> Color.White
+        },
+        animationSpec = tween()
+    )
+    Text(text = text,
+        color = gray900,
+        fontSize = 16.sp,
+        modifier = Modifier
+            .background(shape = RoundedCornerShape(40.dp), color = textColor)
+            .clickable {
+                isSelected = !isSelected
+                // viewmodel 값 넣어주기
+            }
+    )
 }
 
 @Preview
