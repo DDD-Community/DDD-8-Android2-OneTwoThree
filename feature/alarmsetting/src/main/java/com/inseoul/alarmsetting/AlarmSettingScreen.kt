@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.inseoul.designsystem.dropdownmenu.InSeoulDropDownMenu
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.switchbutton.InseoulSwitch
@@ -32,7 +33,8 @@ val count = listOf("1번", "2번", "3번")
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun AlarmSettingScreen(
-    navigateToBack: () -> Unit
+    navigateToBack: () -> Unit,
+    // alarmSettingViewModel: AlarmSettingViewModel = viewModel()
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -163,8 +165,8 @@ fun SaveButton() {
 @Composable
 fun AlarmWeek() {
     Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+        .fillMaxWidth()
+        .padding(16.dp)
     ) {
         Text(text = "요일 반복", style = Typography.body2, color = gray900)
         Row(horizontalArrangement = Arrangement.spacedBy(28.dp)) {
@@ -181,7 +183,8 @@ fun AlarmWeek() {
 }
 
 @Composable
-fun TextColor(text: String) {
+fun TextColor(text: String,
+              alarmSettingViewModel: AlarmSettingViewModel = viewModel()) {
     var isSelected by remember { mutableStateOf(false) }
     val textColor: Color by animateColorAsState(
         targetValue = when (isSelected) {
@@ -197,7 +200,12 @@ fun TextColor(text: String) {
             .background(shape = RoundedCornerShape(40.dp), color = textColor)
             .clickable {
                 isSelected = !isSelected
-                // viewmodel 값 넣어주기
+                // TODO  viewmodel 값 넣어주기
+                alarmSettingViewModel.addAlarmDay(text)
+                val alarmDate = alarmSettingViewModel.alarmDay
+                alarmDate.map {
+                    println(it)
+                }
             }
     )
 }
@@ -212,6 +220,7 @@ fun AlarmWeekPreview() {
 @Composable
 fun AlarmSettingPreview() {
     AlarmSettingScreen(
+        // alarmSettingViewModel = AlarmSettingViewModel(),
         navigateToBack = {}
     )
 }
