@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.inseoul.designsystem.icon.InseoulIcons
+import com.inseoul.designsystem.theme.gray900
 
 @Composable
 fun InSeoulDropDownMenu(
@@ -44,13 +45,14 @@ fun InSeoulDropDownMenu(
                     modifier = Modifier
                         .weight(1f)
                         .width(122.dp),
-                    text = currentValue.value, fontSize = 18.sp
+                    text = currentValue.value, fontSize = 18.sp, color = gray900
                 )
 
                 Icon(
                     painter = painterResource(id = icon),
                     contentDescription = "DropDownIcon",
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier.padding(top = 8.dp),
+                    tint = gray900
                 )
 
                 DropdownMenu(expanded = expanded.value,
@@ -62,7 +64,7 @@ fun InSeoulDropDownMenu(
                             currentValue.value = it
                             expanded.value = false
                         }) {
-                            Text(text = it)
+                            Text(text = it, color = gray900)
                         }
                     }
                 }

@@ -18,6 +18,7 @@ import com.example.stretching.shoulder.shoulderStretchingRoute
 import com.example.stretching.shoulder.shoulderStretchingScreen
 import com.example.stretching.wrist.wristStretchingRoute
 import com.example.stretching.wrist.wristStretchingScreen
+import com.inseoul.alarmsetting.alarmSettingRoute
 import com.inseoul.alarmsetting.alarmSettingScreen
 import com.inseoul.onboarding.navigation.onBoardingRoute
 import com.inseoul.onboarding.navigation.onBoardingScreen
@@ -33,7 +34,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = onBoardingRoute,
+        startDestination = alarmSettingRoute,//onBoardingRoute,
         modifier = modifier
     ) {
         onBoardingScreen {
