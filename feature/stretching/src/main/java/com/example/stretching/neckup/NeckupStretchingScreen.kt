@@ -27,10 +27,6 @@ import com.inseoul.designsystem.theme.gray700
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 
-/*
-TODO 애니메이션 전환될 때 화면이 끊기는 문제 해결 필요
- */
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -119,24 +115,6 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
     if (isTimeFinish(remainingTime)) {
         navigateToFinish()  // 일단 추가
     }
-}
-
-@Composable
-fun LottieAnimation(res: Int) {
-    val composition by rememberLottieComposition(
-        spec = LottieCompositionSpec.RawRes(
-            res
-            //com.inseoul.designsystem.R.raw.shoulder_1
-        ),
-    )
-    val progress by animateLottieCompositionAsState(
-        composition = composition,
-        iterations = LottieConstants.IterateForever
-    )
-    com.airbnb.lottie.compose.LottieAnimation(
-        composition = composition,
-        progress = { progress }
-    )
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

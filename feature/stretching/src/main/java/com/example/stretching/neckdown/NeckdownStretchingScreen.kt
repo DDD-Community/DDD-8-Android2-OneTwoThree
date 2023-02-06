@@ -114,23 +114,6 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
     }
 }
 
-@Composable
-fun LottieAnimation(res: Int) {
-    val composition by rememberLottieComposition(
-        spec = LottieCompositionSpec.RawRes(
-            res
-        ),
-    )
-    val progress by animateLottieCompositionAsState(
-        composition = composition,
-        iterations = LottieConstants.IterateForever
-    )
-    com.airbnb.lottie.compose.LottieAnimation(
-        composition = composition,
-        progress = { progress }
-    )
-}
-
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable

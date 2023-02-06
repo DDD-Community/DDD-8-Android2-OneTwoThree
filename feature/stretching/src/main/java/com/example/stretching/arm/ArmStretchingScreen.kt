@@ -79,7 +79,6 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // TODO 함수명 변경 & 시간 조절
         if (changeTimeFirst(remainingTime)) {
             Text(text = "어깨 높이에서 왼쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.arm_1)
@@ -109,24 +108,6 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         }
     }
     if (isTimeFinish(remainingTime)) {
-        navigateToFinish()  // 일단 추가
+        navigateToFinish()
     }
-}
-
-@Composable
-fun LottieAnimation(res: Int) {
-    val composition by rememberLottieComposition(
-        spec = LottieCompositionSpec.RawRes(
-            res
-            //com.inseoul.designsystem.R.raw.shoulder_1
-        ),
-    )
-    val progress by animateLottieCompositionAsState(
-        composition = composition,
-        iterations = LottieConstants.IterateForever
-    )
-    com.airbnb.lottie.compose.LottieAnimation(
-        composition = composition,
-        progress = { progress }
-    )
 }

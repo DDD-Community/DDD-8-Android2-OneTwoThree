@@ -25,9 +25,6 @@ import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.Typography
 import java.time.Duration
 
-// TODO 프리뷰에서는 텍스트가 다 나오지만, 실기기에서는 텍스트가 안 나온다
-// TODO 구조 문제 해결 / 코드 정리
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -76,24 +73,6 @@ fun ShoulderStretchingScreen(
     )
 }
 
-
-@Composable
-fun LottieAnimation() {
-    val composition by rememberLottieComposition(
-        spec = LottieCompositionSpec.RawRes(
-            com.inseoul.designsystem.R.raw.shoulder_1
-        ),
-    )
-    val progress by animateLottieCompositionAsState(
-        composition = composition,
-        iterations = LottieConstants.IterateForever
-    )
-    LottieAnimation(
-        composition = composition,
-        progress = { progress }
-    )
-}
-
 @Composable
 fun StretchingTimer(
     time: String,
@@ -104,7 +83,7 @@ fun StretchingTimer(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        LottieAnimation()
+        LottieAnimation(com.inseoul.designsystem.R.raw.shoulder_1)
         if (changeShoulderTextFirst(remainingTime)) {
             Text(text = "양팔을 아래로 뻗고 어깨로 앞에서 뒤로 \n 원을 그리듯 돌려주세요", color = gray700)
         } else if (changeShoulderTextSecond(remainingTime)) {

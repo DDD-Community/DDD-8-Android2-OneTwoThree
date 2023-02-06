@@ -26,8 +26,6 @@ import com.inseoul.designsystem.theme.gray900
 import com.inseoul.designsystem.toolbar.InseoulToolbar
 import com.inseoul.onetwothree.ui.theme.pretendard
 
-// TODO 사물 이미지 리스트로 넣은 후, 랜덤하게 보여주기 (중복x) ~ Math.random
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun StretchingFinishScreen(
@@ -39,7 +37,7 @@ fun StretchingFinishScreen(
     navigateToWrist: () -> Unit,
     name: String?,
     stretchingFinishViewModel: StretchingFinishViewModel
-    // TODO navigateToMain 메인화면으로 이동하는 nav 구현
+    // navigateToMain 메인화면으로 이동하는 nav 구현
 ) {
     Scaffold(
         topBar = {
@@ -74,7 +72,9 @@ fun StretchingFinishScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
-                    onClick = { /*TODO*/ }) {
+                    onClick = {
+                        // 메인 화면으로 이동!
+                    }) {
                     Text(text = "확인")
                 }
                 Row(

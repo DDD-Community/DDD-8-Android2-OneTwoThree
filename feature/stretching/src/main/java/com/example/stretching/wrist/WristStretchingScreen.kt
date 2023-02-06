@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.stretching.*
-import com.example.stretching.neckup.LottieAnimation
 import com.example.stretching.timer.TimerViewModel
 import com.inseoul.designsystem.R
 import com.inseoul.designsystem.icon.InseoulIcons

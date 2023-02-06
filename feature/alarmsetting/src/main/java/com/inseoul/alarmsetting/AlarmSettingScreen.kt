@@ -34,7 +34,6 @@ val count = listOf("1번", "2번", "3번")
 @Composable
 fun AlarmSettingScreen(
     navigateToBack: () -> Unit,
-    // alarmSettingViewModel: AlarmSettingViewModel = viewModel()
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -51,11 +50,8 @@ fun AlarmSettingScreen(
             },
 
             content = {
-
-                // remember 값 이동 및 저장
                 val switchOn = remember { mutableStateOf(false) }
-
-                // 일주일 캘린더 추가
+                
                 Column {
                     AlarmWeek()
                     HolidayAlarm(switchOn)
@@ -200,7 +196,6 @@ fun TextColor(text: String,
             .background(shape = RoundedCornerShape(40.dp), color = textColor)
             .clickable {
                 isSelected = !isSelected
-                // TODO  viewmodel 값 넣어주기
                 alarmSettingViewModel.addAlarmDay(text)
                 val alarmDate = alarmSettingViewModel.alarmDay
                 alarmDate.map {
@@ -220,7 +215,6 @@ fun AlarmWeekPreview() {
 @Composable
 fun AlarmSettingPreview() {
     AlarmSettingScreen(
-        // alarmSettingViewModel = AlarmSettingViewModel(),
         navigateToBack = {}
     )
 }
