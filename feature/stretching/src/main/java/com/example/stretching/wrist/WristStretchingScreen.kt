@@ -78,13 +78,13 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        if (changeTime1(remainingTime)) {
+        if (changeTimeFirst(remainingTime)) {
             Text(text = "팔을 죽 뻗어 손바닥을 몸 안쪽으로 향하게 \n 한 후 반대쪽 손으로 잡고 당겨요.", color = gray700)
             LottieAnimation(R.raw.wrist_1)
-        } else if (changeTime2(remainingTime)) {
+        } else if (changeTimeSecond(remainingTime)) {
             Text(text = "10초 정도 지그시 눌러주세요.", color = gray700)
             LottieAnimation(R.raw.wrist_2)
-        } else if (changeTime3(remainingTime)) {
+        } else if (changeTimeThird(remainingTime)) {
             Text(text = "팔을 쭉 뻗어 손바닥을 몸 바깥쪽으로 \n 향하게 한 후 반대쪽 손으로 잡고 당겨요.", color = gray700)
             LottieAnimation(R.raw.wrist_3)
         } else {

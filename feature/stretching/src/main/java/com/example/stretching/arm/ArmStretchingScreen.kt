@@ -80,13 +80,13 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         verticalArrangement = Arrangement.Center
     ) {
         // TODO 함수명 변경 & 시간 조절
-        if (changeTime1(remainingTime)) {
+        if (changeTimeFirst(remainingTime)) {
             Text(text = "어깨 높이에서 왼쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.arm_1)
-        } else if (changeTime2(remainingTime)) {
+        } else if (changeTimeSecond(remainingTime)) {
             Text(text = "얼굴은 편 팔의 반대 방향으로 돌리고, \n 10초 정도 지그시 당겨주세요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.arm_2)
-        } else if (changeTime3(remainingTime)) {
+        } else if (changeTimeThird(remainingTime)) {
             Text(text = "어깨 높이에서 오른쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.arm_3)
         } else {
@@ -113,7 +113,6 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
     }
 }
 
-// TODO 삭제 가능 -> 추후에 하나로 묶어서 관리하자
 @Composable
 fun LottieAnimation(res: Int) {
     val composition by rememberLottieComposition(

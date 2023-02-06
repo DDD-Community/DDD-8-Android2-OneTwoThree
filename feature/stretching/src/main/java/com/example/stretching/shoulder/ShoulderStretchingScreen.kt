@@ -18,7 +18,6 @@ import com.airbnb.lottie.compose.*
 import com.example.stretching.*
 import com.example.stretching.format
 import com.example.stretching.timer.TimerViewModel
-import com.inseoul.designsystem.R
 import com.inseoul.designsystem.icon.InseoulIcons
 import com.inseoul.designsystem.theme.bg
 import com.inseoul.designsystem.theme.gray700
@@ -106,9 +105,9 @@ fun StretchingTimer(
         verticalArrangement = Arrangement.Center
     ) {
         LottieAnimation()
-        if (changeText1(remainingTime)) {
+        if (changeShoulderTextFirst(remainingTime)) {
             Text(text = "양팔을 아래로 뻗고 어깨로 앞에서 뒤로 \n 원을 그리듯 돌려주세요", color = gray700)
-        } else if (changeText2(remainingTime)) {
+        } else if (changeShoulderTextSecond(remainingTime)) {
             Text(text = "너무 빠르게 움직이지 않도록 주의하며 \n 30초간 반복해 주세요", color = gray700)
         }
         Row(
@@ -131,20 +130,8 @@ fun StretchingTimer(
     }
 }
 
-// 삭제 가능할 듯
-@RequiresApi(Build.VERSION_CODES.O)
-fun Duration.format(): String {
-    val seconds = kotlin.math.abs(seconds)
-    val value = String.format(
-        "%02d:%02d",
-        seconds % 3600 / 60,
-        seconds % 60
-    )
-    return value
-}
-
-private fun changeText1(time: Long) = time < 30000L && 15000L < time
-private fun changeText2(time: Long) = time < 15000L && 1000L < time
+private fun changeShoulderTextFirst(time: Long) = time < 30000L && 15000L < time
+private fun changeShoulderTextSecond(time: Long) = time < 15000L && 1000L < time
 private fun isTimeFinish(time: Long) = time < 1000L
 
 @RequiresApi(Build.VERSION_CODES.O)

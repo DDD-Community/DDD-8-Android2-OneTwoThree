@@ -8,7 +8,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.stretching.arm.armStretchingRoute
 import com.example.stretching.arm.armStretchingScreen
+import com.example.stretching.finish.stretchingFinishRoute
 import com.example.stretching.finish.stretchingFinishScreen
+import com.example.stretching.list.stretchingListRoute
 import com.example.stretching.list.stretchingListScreen
 import com.example.stretching.neckdown.neckdownStretchingRoute
 import com.example.stretching.neckdown.neckdownStretchingScreen
@@ -34,7 +36,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = alarmSettingRoute,//onBoardingRoute,
+        startDestination = stretchingListRoute,//onBoardingRoute,
         modifier = modifier
     ) {
         onBoardingScreen {
@@ -61,7 +63,7 @@ fun InseoulNavGraph(modifier: Modifier = Modifier) {
                 navController.popBackStack()
             }
         )
-        // 즐거운 스트레칭~!
+
         armStretchingScreen(
             navigateToFinish = {
                 // 스트레칭 완료 화면으로 이동

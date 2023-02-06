@@ -48,7 +48,6 @@ fun StretchingListScreen(
             )
         },
         content = {
-            // 리스트 넣기
             Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = bg
@@ -59,7 +58,7 @@ fun StretchingListScreen(
                             horizontal = 16.dp,
                             vertical = 12.dp
                         )
-                        .verticalScroll(rememberScrollState())  // 스크롤 기능 추가
+                        .verticalScroll(rememberScrollState())
                 ) {
                     StretchingList("옆으로 목 늘리기", "목과 어깨를 이어주는 근육을 이완시켜 뭉친 근육을 풀어줘요.", modifier = Modifier.clickable {
                         Toast.makeText(localContext, "클릭", Toast.LENGTH_SHORT).show()

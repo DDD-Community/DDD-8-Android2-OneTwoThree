@@ -57,11 +57,11 @@ fun StretchingTimer(time: String, remainingTime: Long) {
             )
         }
         Text(text = "시간에 따른 텍스트 변화 테스트")
-        if (changeTime1(remainingTime)) {
+        if (changeTimeFirst(remainingTime)) {
             Text(text = "1 번")
-        } else if (changeTime2(remainingTime)) {
+        } else if (changeTimeSecond(remainingTime)) {
             Text(text = "2번")
-        } else if (changeTime3(remainingTime)) {
+        } else if (changeTimeThird(remainingTime)) {
             Text(text = "3번")
         }
         
@@ -146,9 +146,9 @@ fun Duration.format(): String {
 }
 
 fun isTimeFinish(time: Long) = time < 1000L
-fun changeTime1(time: Long) = time in 20001..24999
-fun changeTime2(time: Long) = time < 20000L && 15000L<time
-fun changeTime3(time: Long) = time < 15000L
+fun changeTimeFirst(time: Long) = time in 20001..24999
+fun changeTimeSecond(time: Long) = time < 20000L && 15000L<time
+fun changeTimeThird(time: Long) = time < 15000L
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview

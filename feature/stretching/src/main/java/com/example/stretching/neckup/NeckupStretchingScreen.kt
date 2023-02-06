@@ -86,13 +86,13 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        if (changeTime1(remainingTime)) {
+        if (changeTimeFirst(remainingTime)) {
             Text(text = "왼쪽으로 고개를 갸우뚱 숙인 후 왼손으로 \n 머리를 가볍게 눌러주세요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.neckup_2)
-        } else if (changeTime2(remainingTime)) {
+        } else if (changeTimeSecond(remainingTime)) {
             Text(text = "반대편 어깨가 따라 올라가지 않도록 \n 주의하며 약 10초간 목 근육을 늘려주세요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.neckup_2)
-        } else if (changeTime3(remainingTime)) {
+        } else if (changeTimeThird(remainingTime)) {
             Text(text = "오른쪽으로 고개를 갸웅뚱 숙인 후 오른손으로 \n 머리를 가볍게 눌러주세요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.neckup_3)
         } else {
