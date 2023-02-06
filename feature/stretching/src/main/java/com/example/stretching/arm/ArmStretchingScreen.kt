@@ -45,7 +45,7 @@ fun ArmStretchingScreen(
         topBar = {
             InseoulToolbar(
                 modifier = Modifier,
-                title = "팔 운동",
+                title = "팔 펴서 당기기",
                 backButtonImageResource = InseoulIcons.ArrowBack,
                 onImageClicked = {
                     showDialog.value = true
@@ -80,17 +80,17 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         verticalArrangement = Arrangement.Center
     ) {
         if (changeTimeFirst(remainingTime)) {
-            Text(text = "어깨 높이에서 왼쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.arm_1)
+            Text(text = "어깨 높이에서 왼쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
         } else if (changeTimeSecond(remainingTime)) {
-            Text(text = "얼굴은 편 팔의 반대 방향으로 돌리고, \n 10초 정도 지그시 당겨주세요.", color = gray700)
             LottieAnimation(com.inseoul.designsystem.R.raw.arm_2)
-        } else if (changeTimeThird(remainingTime)) {
-            Text(text = "어깨 높이에서 오른쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
-            LottieAnimation(com.inseoul.designsystem.R.raw.arm_3)
-        } else {
             Text(text = "얼굴은 편 팔의 반대 방향으로 돌리고, \n 10초 정도 지그시 당겨주세요.", color = gray700)
+        } else if (changeTimeThird(remainingTime)) {
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_3)
+            Text(text = "어깨 높이에서 오른쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
+        } else {
             LottieAnimation(com.inseoul.designsystem.R.raw.arm_4)
+            Text(text = "얼굴은 편 팔의 반대 방향으로 돌리고, \n 10초 정도 지그시 당겨주세요.", color = gray700)
         }
         Row(
             modifier = Modifier

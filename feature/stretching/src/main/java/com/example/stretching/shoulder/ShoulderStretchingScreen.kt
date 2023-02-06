@@ -45,7 +45,7 @@ fun ShoulderStretchingScreen(
         topBar = {
             InseoulToolbar(
                 modifier = Modifier,
-                title = "어깨 운동",
+                title = "어깨 돌리기",
                 backButtonImageResource = InseoulIcons.ArrowBack,
                 onImageClicked = {
                     showDialog.value = true

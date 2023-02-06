@@ -43,7 +43,7 @@ fun WristStretchingScreen(
         topBar = {
             InseoulToolbar(
                 modifier = Modifier,
-                title = "손목 운동 운동",
+                title = "손목 스트레칭",
                 backButtonImageResource = InseoulIcons.ArrowBack,
                 onImageClicked = {
                     showDialog.value = true
@@ -78,17 +78,17 @@ fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> U
         verticalArrangement = Arrangement.Center
     ) {
         if (changeTimeFirst(remainingTime)) {
-            Text(text = "팔을 죽 뻗어 손바닥을 몸 안쪽으로 향하게 \n 한 후 반대쪽 손으로 잡고 당겨요.", color = gray700)
             LottieAnimation(R.raw.wrist_1)
+            Text(text = "팔을 죽 뻗어 손바닥을 몸 안쪽으로 향하게 \n 한 후 반대쪽 손으로 잡고 당겨요.", color = gray700)
         } else if (changeTimeSecond(remainingTime)) {
-            Text(text = "10초 정도 지그시 눌러주세요.", color = gray700)
             LottieAnimation(R.raw.wrist_2)
-        } else if (changeTimeThird(remainingTime)) {
-            Text(text = "팔을 쭉 뻗어 손바닥을 몸 바깥쪽으로 \n 향하게 한 후 반대쪽 손으로 잡고 당겨요.", color = gray700)
-            LottieAnimation(R.raw.wrist_3)
-        } else {
             Text(text = "10초 정도 지그시 눌러주세요.", color = gray700)
+        } else if (changeTimeThird(remainingTime)) {
+            LottieAnimation(R.raw.wrist_3)
+            Text(text = "팔을 쭉 뻗어 손바닥을 몸 바깥쪽으로 \n 향하게 한 후 반대쪽 손으로 잡고 당겨요.", color = gray700)
+        } else {
             LottieAnimation(R.raw.wrist_4)
+            Text(text = "10초 정도 지그시 눌러주세요.", color = gray700)
         }
 
         Row(
