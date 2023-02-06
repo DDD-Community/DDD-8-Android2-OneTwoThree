@@ -1,0 +1,113 @@
+package com.example.stretching.arm
+
+import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.stretching.*
+import com.example.stretching.timer.TimerViewModel
+import com.inseoul.designsystem.icon.InseoulIcons
+import com.inseoul.designsystem.theme.bg
+import com.inseoul.designsystem.theme.gray700
+import com.inseoul.designsystem.toolbar.InseoulToolbar
+import com.inseoul.onetwothree.ui.theme.Typography
+
+@RequiresApi(Build.VERSION_CODES.O)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@Composable
+fun ArmStretchingScreen(
+    navigateToFinish: () -> Unit,
+    navigateToBack: () -> Unit,
+    viewModel: TimerViewModel
+) {
+    val timer by viewModel.timerState.collectAsState(TimerModel())
+    val showDialog = remember { mutableStateOf(false) }
+    if (showDialog.value)
+        StretchingDialog(
+            setShowDialog = { showDialog.value = it },
+            navigateToBack = navigateToBack
+        )
+
+    Scaffold(
+        topBar = {
+            InseoulToolbar(
+                modifier = Modifier,
+                title = "팔 펴서 당기기",
+                backButtonImageResource = InseoulIcons.ArrowBack,
+                onImageClicked = {
+                    showDialog.value = true
+                }
+            )
+        },
+        content = {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = bg
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    StretchingTimer(
+                        timer.timeDuration.format(),
+                        timer.remainingTime,
+                        navigateToFinish
+                    )
+                    TimerButton(viewModel)
+                }
+            }
+        }
+    )
+}
+
+@Composable
+fun StretchingTimer(time: String, remainingTime: Long, navigateToFinish: () -> Unit,) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        if (changeTimeFirst(remainingTime)) {
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_1)
+            Text(text = "어깨 높이에서 왼쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
+        } else if (changeTimeSecond(remainingTime)) {
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_2)
+            Text(text = "얼굴은 편 팔의 반대 방향으로 돌리고, \n 10초 정도 지그시 당겨주세요.", color = gray700)
+        } else if (changeTimeThird(remainingTime)) {
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_3)
+            Text(text = "어깨 높이에서 오른쪽 팔을 편 다음 반대편 팔을 \n 이용해 몸통 방향으로 끌어당겨줘요.", color = gray700)
+        } else {
+            LottieAnimation(com.inseoul.designsystem.R.raw.arm_4)
+            Text(text = "얼굴은 편 팔의 반대 방향으로 돌리고, \n 10초 정도 지그시 당겨주세요.", color = gray700)
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = time,
+                fontSize = 60.sp,
+                color = Color.Black,
+                style = Typography.h1
+            )
+        }
+    }
+    if (isTimeFinish(remainingTime)) {
+        navigateToFinish()
+    }
+}

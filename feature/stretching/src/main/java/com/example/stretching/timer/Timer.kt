@@ -16,7 +16,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.common.Constants
+import com.example.stretching.timer.TimerViewModel
 import com.inseoul.onetwothree.ui.theme.Typography
 import com.inseoul.onetwothree.ui.theme.pretendard
 import java.time.Duration
@@ -40,22 +45,21 @@ fun TimerScreen(viewModel: TimerViewModel) {
 
 @Composable
 fun StretchingTimer(time: String, remainingTime: Long) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = time,
-            fontSize = 60.sp,
-            color = Color.Black,
-            style = Typography.h1
-        )
-    }
-    if (isTimeFinish(remainingTime)) {
-        // 화면 이동
+    Column {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = time,
+                fontSize = 60.sp,
+                color = Color.Black,
+                style = Typography.h1
+            )
+        }
     }
 }
 
@@ -103,6 +107,23 @@ fun TimerButton(timerState: TimerViewModel) {
     }
 }
 
+@Composable
+fun LottieAnimation(res: Int) {
+    val composition by rememberLottieComposition(
+        spec = LottieCompositionSpec.RawRes(
+            res
+        ),
+    )
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        iterations = LottieConstants.IterateForever
+    )
+    com.airbnb.lottie.compose.LottieAnimation(
+        composition = composition,
+        progress = { progress }
+    )
+}
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun Duration.format(): String {
     val seconds = kotlin.math.abs(seconds)
@@ -114,7 +135,10 @@ fun Duration.format(): String {
     return value
 }
 
-private fun isTimeFinish(time: Long) = time < 1000L
+fun isTimeFinish(time: Long) = time < 1000L
+fun changeTimeFirst(time: Long) = time in 20001..24999
+fun changeTimeSecond(time: Long) = time in 15001..19999
+fun changeTimeThird(time: Long) = time < 15000L
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Preview

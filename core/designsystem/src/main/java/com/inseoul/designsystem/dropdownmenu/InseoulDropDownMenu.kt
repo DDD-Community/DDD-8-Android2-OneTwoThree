@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -12,12 +13,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.inseoul.designsystem.icon.InseoulIcons
+import com.inseoul.designsystem.theme.gray900
 
 @Composable
-fun InSeoulDropDownMenu(list: List<String>) {
+fun InSeoulDropDownMenu(
+    list: List<String>,
+    currentValue: MutableState<String>
+) {
 
     val expanded = remember { mutableStateOf(false) }
-    val currentValue = remember { mutableStateOf(list[0]) }
+    // val currentValue = remember { mutableStateOf(list[0]) }
 
     val icon = if (expanded.value)
         InseoulIcons.ArrowIncreaseMono
@@ -40,13 +45,14 @@ fun InSeoulDropDownMenu(list: List<String>) {
                     modifier = Modifier
                         .weight(1f)
                         .width(122.dp),
-                    text = currentValue.value, fontSize = 18.sp
+                    text = currentValue.value, fontSize = 18.sp, color = gray900
                 )
 
                 Icon(
                     painter = painterResource(id = icon),
                     contentDescription = "DropDownIcon",
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier.padding(top = 8.dp),
+                    tint = gray900
                 )
 
                 DropdownMenu(expanded = expanded.value,
@@ -58,7 +64,7 @@ fun InSeoulDropDownMenu(list: List<String>) {
                             currentValue.value = it
                             expanded.value = false
                         }) {
-                            Text(text = it)
+                            Text(text = it, color = gray900)
                         }
                     }
                 }
