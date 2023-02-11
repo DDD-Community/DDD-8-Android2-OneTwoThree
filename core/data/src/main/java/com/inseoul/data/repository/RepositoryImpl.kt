@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
     private val networkDataSource: NetworkDataSource,
-    private val authInfoDataDomainMapper: AuthInfoDataDomainMapper,
     private val enrollMemberInfoDataDomainMapper: EnrollMemberInfoDataDomainMapper,
     private val getAlarmDataDomainMapper: GetAlarmDataDomainMapper,
     private val getStretchingAuthCountDataDomainMapper: GetStretchingAuthCountDataDomainMapper,
@@ -21,10 +20,7 @@ class RepositoryImpl @Inject constructor(
 ) : Repository {
 
     override suspend fun getMemberInfo(firebase_token: String): Flow<AuthInfoData> {
-        return flow {
-            val dataList = networkDataSource.getMemberInfo(firebase_token)
-            emit(authInfoDataDomainMapper.from(dataList))
-        }
+        TODO("Not yet implemented")
     }
 
     override suspend fun changeNickname(onetwothreeMemberId: Int, nickname: String) {
@@ -94,13 +90,4 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun enrollMemberInfo(
-        nickname: String,
-        firebaseToken: String
-    ): Flow<MemberId> {
-        return flow {
-            val data = networkDataSource.enrollMemberInfo(nickname, firebaseToken)
-            emit(enrollMemberInfoDataDomainMapper.from(data))
-        }
-    }
 }

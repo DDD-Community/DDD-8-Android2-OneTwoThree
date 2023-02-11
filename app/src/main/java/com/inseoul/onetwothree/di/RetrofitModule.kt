@@ -1,10 +1,12 @@
 package com.inseoul.onetwothree.di
 
 import android.app.Application
+import com.inseoul.data.source.NetworkToLocalBridge
 import com.inseoul.network.api.AlarmAPI
 import com.inseoul.network.api.AuthAPI
 import com.inseoul.network.api.MemberAPI
 import com.inseoul.network.api.StretchingAPI
+import com.inseoul.network.interceptor.OneTwoThreeInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,13 +35,17 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(cache: Cache): OkHttpClient {
+    fun provideOkHttpClient(
+        cache: Cache,
+        bridge: NetworkToLocalBridge
+    ): OkHttpClient {
         return OkHttpClient.Builder().apply {
             cache(cache)
             connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
             writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
             retryOnConnectionFailure(true)
+            addInterceptor(provideOneTwoThreeInterceptor(bridge))
             addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
@@ -50,7 +56,7 @@ object RetrofitModule {
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("http://34.64.88.54:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -68,7 +74,6 @@ object RetrofitModule {
         return retrofit.create(AlarmAPI::class.java)
     }
 
-
     @Provides
     @Singleton
     fun provideStretchingService(retrofit: Retrofit): StretchingAPI {
@@ -81,4 +86,8 @@ object RetrofitModule {
         return retrofit.create(AuthAPI::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideOneTwoThreeInterceptor(bridge: NetworkToLocalBridge): OneTwoThreeInterceptor =
+        OneTwoThreeInterceptor(bridge)
 }
